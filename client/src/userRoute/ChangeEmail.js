@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import qs from 'qs';
 import constants from '../constants.json';
 import styles from './User.module.css';
 
@@ -24,11 +23,8 @@ export default function ChangeEmail(props) {
                 username: props.username,
                 password: props.password
             },
-            data: qs.stringify({
+            data: {
                 email: event.target['email'].value
-            }),
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
             }
         })
         .then(response => {

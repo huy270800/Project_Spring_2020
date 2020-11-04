@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import qs from 'qs';
 import { Link } from "react-router-dom";
 import constants from '../constants.json';
 import styles from './User.module.css';
@@ -18,11 +17,8 @@ export default function RestorePw(props) {
         axios({
             method: 'post',
             url: constants.baseAddress + '/users/restore',
-            data: qs.stringify({
+            data: {
                 email: event.target['email'].value
-            }),
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
             }
         })
         .then(response => {

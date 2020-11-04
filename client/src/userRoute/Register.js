@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import qs from 'qs';
 import { Link } from "react-router-dom";
 import constants from '../constants.json';
 import styles from './User.module.css';
@@ -30,13 +29,10 @@ export default function Login(props) {
         axios({
             method: 'post',
             url: constants.baseAddress + '/users',
-            data: qs.stringify({
+            data: {
                 username: event.target['username'].value,
                 email: event.target['email'].value,
                 password: event.target['password'].value
-            }),
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
             }
         })
         .then(response => {

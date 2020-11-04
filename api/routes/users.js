@@ -5,7 +5,7 @@ const db = require('../db');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const emailAuth = require('../emailAuth.json');
-const server = require('../server.json');
+const client = require('../client.json');
 
 const saltrounds = 10;
 
@@ -43,7 +43,7 @@ router.post('/', (req,res) => {
   }
 
   let validationKey = Math.floor(Math.random()*10000000);
-  let link = `${server.address}/users/validation/newUser/${req.body.username}/${validationKey}`;
+  let link = `${client.address}/users/validation/newUser/${req.body.username}/${validationKey}`;
   let mailOptions={
     from: emailAuth.username,
     to : req.body.email,
@@ -122,7 +122,7 @@ router.post('/restore', (req, res) => {
     return db.query('insert into resetpw_table (username, validationkey) values($1, $2)', [foundUser.username, validationKey]);
   })
   .then(result => {
-    link = `${server.address}/users/validation/restore/${foundUser.username}/${validationKey}`;
+    link = `${client.address}/users/validation/restorePw/${foundUser.username}/${validationKey}`;
     mailOptions={
       from: emailAuth.username,
       to : req.body.email,
