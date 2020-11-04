@@ -12,9 +12,8 @@ export default function Account(props) {
         axios({
             method: 'get',
             url: constants.baseAddress + '/users/email',
-            auth: {
-                username: props.username,
-                password: props.password
+            params: {
+                username: props.username
             }
         })
         .then(response => {

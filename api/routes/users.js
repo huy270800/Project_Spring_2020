@@ -194,9 +194,20 @@ router.get('/validation/restorePw/:username/:validationKey', (req, res) => {
   })
 })
 
-//return email of the user in Auth
-router.get('/email', passport.authenticate('basic', {session : false}), (req, res) => {
-  res.json(req.user.email);
+//return email for the username in req.query
+router.get('/email', (req, res) => {
+  db.query('select * from user_table where username = $1', [req.query.username])
+  .then(result => {
+    if(result.rows.length === 0) {  // no such user
+      throw new Error("noUser");
+    }
+    res.json(result.rows[0].email);
+  })
+  .catch(error => {
+    console.error(error);
+    res.sendStatus(404);
+  })
+  
 })
 
 //change email of a user. needs new email in req.body
@@ -215,7 +226,7 @@ router.put('/changeEmail', passport.authenticate('basic', {session : false}), (r
 router.put('/changePassword', passport.authenticate('basic', {session : false}), (req, res) => {
   bcrypt.hash(req.body.password, saltrounds)
   .then(hash => {
-    db.query('update user_table set password=$1 where username=$2', [hash, req.user.username])
+    return db.query('update user_table set password=$1 where username=$2', [hash, req.user.username])
   })
   .then(result => {
     res.sendStatus(200);
