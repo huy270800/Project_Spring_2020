@@ -1,0 +1,40 @@
+{
+    "drinks": [
+        {
+            "id": 1,
+            "name": "Sting",
+            "price": "2€",
+            "description": "Sting 500ml bottle"
+        },
+        {
+            "id": 2,
+            "name": "Sting",
+            "price": "1.85€",
+            "description": "Sting can"
+        },
+        {
+            "id": 3,
+            "name": "7 Up",
+            "price": "2€",
+            "description": "7 Up 500ml"
+        },
+        {
+            "id": 4,
+            "name": "7 Up",
+            "price": "4€",
+            "description": "7 Up 1L"
+        },
+        {
+            "id": 5,
+            "name": "Coca",
+            "price": "2€",
+            "description": "Coca 500ml"
+        },
+        {
+            "id": 6,
+            "name": "7 Up",
+            "price": "4€",
+            "description": "Coca 1L"
+        }
+    ]
+}
