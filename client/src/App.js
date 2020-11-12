@@ -22,6 +22,8 @@ import Promotions from "./Promotions/Promotions";
 import Salad from "./Salad/Salad";
 import StoreList from "./StoreList/StoreList";
 
+import PizzaBuilder from "./PizzaBuilder/PizzaBuilder";
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -73,6 +75,7 @@ function App() {
           <Route path="/confirmEmail" component={ConfirmEmail} />
         </Switch>
         <Footer></Footer>
+        <PizzaBuilder />
       </div>
     </ThemeProvider>
   );
