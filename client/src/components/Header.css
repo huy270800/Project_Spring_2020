@@ -1,0 +1,17 @@
+.app {
+  min-height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.white a {
+  color: white;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
