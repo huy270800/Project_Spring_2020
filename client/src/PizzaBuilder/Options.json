@@ -1,0 +1,134 @@
+{
+    "Dough": [
+        {
+            "id": 1,
+            "name": "thick",
+            "price": 5.5,
+            "selected": false
+        },
+        {
+            "id": 2,
+            "name": "thin",
+            "price": 5,
+            "selected": false
+        },
+        {
+            "id": 3,
+            "name": "gluten-free",
+            "price": 6,
+            "selected": false
+        }
+    ],
+    "Crust": [
+        {
+            "id": 1,
+            "name": "normal",
+            "price": 0,
+            "selected": false
+        },
+        {
+            "id": 2,
+            "name": "extra",
+            "price": 0.1,
+            "selected": false
+        },
+        {
+            "id": 3,
+            "name": "Cheese filling",
+            "price": 0.2,
+            "selected": false
+        }
+    ],
+    "Cheese": [
+        {
+            "id": 1,
+            "name": "mozarella",
+            "price": 0,
+            "selected": false
+        },
+        {
+            "id": 2,
+            "name": "gouda",
+            "price": 0,
+            "selected": false
+        },
+        {
+            "id": 3,
+            "name": "lactose-free",
+            "price": 0,
+            "selected": false
+        },
+        {
+            "id": 4,
+            "name": "no cheese",
+            "price": -0.1,
+            "selected": false
+        }
+    ],
+    "Veggies": [
+        {
+            "id": 1,
+            "name": "Tomatoes",
+            "price": 0.1,
+            "selected": false
+        },
+        {
+            "id": 2,
+            "name": "Pineapple",
+            "price": 0.1,
+            "selected": false
+        },
+        {
+            "id": 3,
+            "name": "Garlic",
+            "price": 0.1,
+            "selected": false
+        },
+        {
+            "id": 4,
+            "name": "Basil",
+            "price": 0.1,
+            "selected": false
+        },
+        {
+            "id": 5,
+            "name": "Mushrooms",
+            "price": 0.1,
+            "selected": false
+        }
+    ],
+    "Meat": [
+        {
+            "id": 1,
+            "name": "Ham",
+            "price": 0.2,
+            "selected": false
+        },
+        {
+            "id": 2,
+            "name": "Salami",
+            "price": 0.2,
+            "selected": false
+        },
+        {
+            "id": 3,
+            "name": "Beef",
+            "price": 0.2,
+            "selected": false
+        }
+    ],
+    "Drink": [
+        {
+            "id": 1,
+            "name": "Cola",
+            "price": 0.7,
+            "selected": false
+        },
+        {
+            "id": 2,
+            "name": "Beer",
+            "price": 0.7,
+            "selected": false
+        }
+    ]
+}
