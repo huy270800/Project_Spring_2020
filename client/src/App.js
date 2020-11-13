@@ -1,6 +1,6 @@
 // dependencies
 import React, { useState } from "react";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import LoginButton from "./userRoute/LoginButton";
 import User from "./userRoute/User";
@@ -14,20 +14,20 @@ import { ThemeProvider } from "@material-ui/styles";
 // pages
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./Home/Home";
+import Home from "./Home/index";
 import Pizza from "./Pizza/Pizza";
 import Cart from "./Cart/Cart";
 import Drinks from "./Drinks/Drinks";
 import Promotions from "./Promotions/Promotions";
-import Salad from "./Salad/Salad";
+import Salad from "./Salad/index";
 import StoreList from "./StoreList/StoreList";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#e17055",
+      main: "#000000",
       secondary: "white",
-      third: "#d63031"
+      third: "#ffa502"
     }
   }
 });
@@ -45,11 +45,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <div>
         <Header></Header>
+
         <Switch>
-          <div>
-            <h1> Pizza Palace App </h1>
+          {/* <div>
             <LoginButton username={username} clearUser={clearUser} />
-          </div>
+          </div> */}
           <Route exact path="/" component={Home} />
           <Route path="/pizza" component={Pizza}></Route>
           <Route path="/salad" component={Salad}></Route>
