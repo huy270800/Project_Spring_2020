@@ -15,12 +15,12 @@ import { ThemeProvider } from "@material-ui/styles";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./Home/index";
-import Pizza from "./Pizza/Pizza";
-import Cart from "./Cart/Cart";
-import Drinks from "./Drinks/Drinks";
-import Promotions from "./Promotions/Promotions";
+import Pizza from "./Pizza/index";
+import Cart from "./Cart/index";
+import Beverages from "./Beverages/index";
+import Promotion from "./Promotion/index";
 import Salad from "./Salad/index";
-import StoreList from "./StoreList/StoreList";
+import StoreList from "./StoreList/index";
 
 const theme = createMuiTheme({
   palette: {
@@ -53,8 +53,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/pizza" component={Pizza}></Route>
           <Route path="/salad" component={Salad}></Route>
-          <Route path="/drinks" component={Drinks}></Route>
-          <Route path="/promotions" component={Promotions}></Route>
+          <Route path="/beverages" component={Beverages}></Route>
+          <Route path="/promotion" component={Promotion}></Route>
           <Route path="/storelist" component={StoreList}></Route>
           <Route path="/cart" component={Cart}></Route>
           <Route

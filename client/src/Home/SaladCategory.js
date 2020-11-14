@@ -30,7 +30,7 @@ export default function SaladCategory() {
               cuisine.
             </p>
             <Button mr="auto">
-              <Link>See more</Link>
+              <Link to="/salad">See more</Link>
             </Button>
           </Box>
         </Grid>

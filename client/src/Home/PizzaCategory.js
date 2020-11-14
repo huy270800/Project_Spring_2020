@@ -37,7 +37,7 @@ export default function PizzaCategory() {
               cuisine.
             </p>
             <Button mr="auto">
-              <Link>See more</Link>
+              <Link to="/pizza">See more</Link>
             </Button>
           </Box>
         </Grid>

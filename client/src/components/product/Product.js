@@ -6,11 +6,11 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Button,
   Typography,
   Box,
   Grid
 } from "@material-ui/core/";
+import Detail from "./Detail";
 
 const useStyles = makeStyles({
   card: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Product() {
+export default function Product(props) {
   const classes = useStyles();
   return (
     <Box m={4}>
@@ -53,9 +53,10 @@ export default function Product() {
               <Typography variant="h5">10e</Typography>
             </Grid>
             <Grid item>
-              <Button mr="auto" size="small" color="primary">
-                Add to cart
-              </Button>
+              <Detail
+                open={props.open}
+                handleOpenClose={props.handleOpenClose}
+              ></Detail>
             </Grid>
           </Grid>
         </CardActions>

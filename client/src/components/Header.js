@@ -62,12 +62,12 @@ export default function Header() {
           </Box>
           <Box m={2}>
             <Button>
-              <Link to="/drinks">Drinks</Link>
+              <Link to="/beverages">Beverages</Link>
             </Button>
           </Box>
           <Box m={2}>
             <Button>
-              <Link to="/promotions">Promotions</Link>
+              <Link to="/promotion">Promotion</Link>
             </Button>
           </Box>
           <Box m={2}>
@@ -78,13 +78,15 @@ export default function Header() {
         </Box>
         <Box className={classes.cart}>
           <IconButton aria-label="cart">
-            <StyledBadge
-              style={{ color: "white" }}
-              badgeContent={4}
-              color="secondary"
-            >
-              <ShoppingCartIcon />
-            </StyledBadge>
+            <Link to="/cart">
+              <StyledBadge
+                style={{ color: "white" }}
+                badgeContent={4}
+                color="secondary"
+              >
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </Link>
           </IconButton>
         </Box>
       </Box>
