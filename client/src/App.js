@@ -43,13 +43,11 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+    <LoginButton username={username} clearUser={clearUser} />
       <div>
         <Header></Header>
 
         <Switch>
-          {/* <div>
-            <LoginButton username={username} clearUser={clearUser} />
-          </div> */}
           <Route exact path="/" component={Home} />
           <Route path="/pizza" component={Pizza}></Route>
           <Route path="/salad" component={Salad}></Route>
@@ -57,18 +55,7 @@ function App() {
           <Route path="/promotion" component={Promotion}></Route>
           <Route path="/storelist" component={StoreList}></Route>
           <Route path="/cart" component={Cart}></Route>
-          <Route
-            path="/user"
-            render={(routeProps) => (
-              <User
-                {...routeProps}
-                setUsername={setUsername}
-                setPassword={setPassword}
-                username={username}
-                password={password}
-              />
-            )}
-          />
+          <Route path="/user" component={User} />
           <Route path="/*/validation" component={Validation} />
           <Route path="/confirmEmail" component={ConfirmEmail} />
         </Switch>

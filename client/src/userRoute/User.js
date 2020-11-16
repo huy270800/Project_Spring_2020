@@ -11,53 +11,12 @@ export default function User(props) {
   const routeName = "/user";
   return (
     <div>
-      <Route
-        exact
-        path={routeName + "/login"}
-        render={(routeProps) => (
-          <Login
-            {...routeProps}
-            setUsername={props.setUsername}
-            setPassword={props.setPassword}
-          />
-        )}
-      />
+      <Route exact path={routeName + "/login"} component={Login} />
       <Route exact path={routeName + "/register"} component={Register} />
       <Route exact path={routeName + "/restorePw"} component={RestorePw} />
-      <Route
-        exact
-        path={routeName + "/account"}
-        render={(routeProps) => (
-          <Account
-            {...routeProps}
-            username={props.username}
-            password={props.password}
-          />
-        )}
-      />
-      <Route
-        exact
-        path={routeName + "/changeEmail"}
-        render={(routeProps) => (
-          <ChangeEmail
-            {...routeProps}
-            password={props.password}
-            username={props.username}
-          />
-        )}
-      />
-      <Route
-        exact
-        path={routeName + "/changePw"}
-        render={(routeProps) => (
-          <ChangePw
-            {...routeProps}
-            password={props.password}
-            username={props.username}
-            setPassword={props.setPassword}
-          />
-        )}
-      />
+      <Route exact path={routeName + "/account"} component={Account} />
+      <Route exact path={routeName + "/changeEmail"} component={ChangeEmail} />
+      <Route exact path={routeName + "/changePw"} component={ChangePw} />
     </div>
   );
 }

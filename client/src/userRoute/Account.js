@@ -3,16 +3,19 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import constants from "../constants.json";
 import styles from "./User.module.css";
+import {useSelector} from 'react-redux';
 
 export default function Account(props) {
+  let isLogged = useSelector(state => state.isLogged);
   const [userEmail, setUserEmail] = useState(null);
+  
   //get email for logged in user
   useEffect(() => {
     axios({
       method: "get",
       url: constants.baseAddress + "/users/email",
       params: {
-        username: props.username
+        username: isLogged.username
       }
     })
       .then((response) => {
@@ -29,7 +32,7 @@ export default function Account(props) {
   return (
     <div className={styles.container}>
       <div className={styles.flex}>
-        <h2> {props.username} </h2>
+        <h2> {isLogged.username} </h2>
         <Link className={styles.button2} to="/">
           <button> close </button>
         </Link>

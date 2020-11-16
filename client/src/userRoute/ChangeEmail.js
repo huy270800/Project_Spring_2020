@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import constants from "../constants.json";
 import styles from "./User.module.css";
+import {useSelector} from 'react-redux';
 
 export default function ChangeEmail(props) {
+  let isLogged = useSelector(state => state.isLogged);
   const changeEmail = (event) => {
     event.preventDefault();
     if (!event.target["email"].value) {
       alert("please enter an email address !");
       return;
     }
-    if (event.target["password"].value !== props.password) {
+    if (event.target["password"].value !== isLogged.password) {
       alert("wrong password!");
       return;
     }
@@ -19,8 +21,8 @@ export default function ChangeEmail(props) {
       method: "put",
       url: constants.baseAddress + "/users/changeEmail",
       auth: {
-        username: props.username,
-        password: props.password
+        username: isLogged.username,
+        password: isLogged.password
       },
       data: {
         email: event.target["email"].value

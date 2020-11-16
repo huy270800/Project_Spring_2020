@@ -3,9 +3,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import constants from "../constants.json";
 import styles from "./User.module.css";
+import {useDispatch} from 'react-redux';
+import {sign_in} from '../actions';
 
 //log in form
 export default function Login(props) {
+  const dispatch = useDispatch();
+
   //auth user before log in
   const authUser = (event) => {
     event.preventDefault();
@@ -27,8 +31,12 @@ export default function Login(props) {
     })
       .then((response) => {
         console.log("Log in successful.");
-        props.setUsername(event.target["username"].value);
-        props.setPassword(event.target["password"].value);
+        dispatch(
+          sign_in(
+            event.target["username"].value,
+            event.target["password"].value
+          )
+        );
         props.history.push("/");
       })
       .catch((error) => {
