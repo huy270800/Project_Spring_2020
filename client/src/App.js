@@ -33,17 +33,9 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  //use these for authentication purposes
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
-  const clearUser = () => {
-    setUsername(null);
-    setPassword(null);
-  };
-
   return (
     <ThemeProvider theme={theme}>
-    <LoginButton username={username} clearUser={clearUser} />
+    <LoginButton />
       <div>
         <Header></Header>
 
