@@ -1,6 +1,11 @@
 // dependencies
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { Switch, Route, Router } from "react-router-dom";
+=======
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+>>>>>>> 01eb855c1b013dd490a5188391ae6159181eff39
 
 import LoginButton from "./userRoute/LoginButton";
 import User from "./userRoute/User";
@@ -34,6 +39,7 @@ const theme = createMuiTheme({
 });
 
 function App() {
+<<<<<<< HEAD
   //use these for authentication purposes
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
@@ -85,6 +91,28 @@ function App() {
         <Route path="/confirmEmail" component={ConfirmEmail} />
       </Switch>
       <Footer></Footer>
+=======
+  return (
+    <ThemeProvider theme={theme}>
+    <LoginButton />
+      <div>
+        <Header></Header>
+
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/pizza" component={Pizza}></Route>
+          <Route path="/salad" component={Salad}></Route>
+          <Route path="/beverages" component={Beverages}></Route>
+          <Route path="/promotion" component={Promotion}></Route>
+          <Route path="/storelist" component={StoreList}></Route>
+          <Route path="/cart" component={Cart}></Route>
+          <Route path="/user" component={User} />
+          <Route path="/*/validation" component={Validation} />
+          <Route path="/confirmEmail" component={ConfirmEmail} />
+        </Switch>
+        <Footer></Footer>
+      </div>
+>>>>>>> 01eb855c1b013dd490a5188391ae6159181eff39
     </ThemeProvider>
   );
 }

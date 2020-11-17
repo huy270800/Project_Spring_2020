@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import constants from "../constants.json";
 import styles from "./User.module.css";
+import {useSelector, useDispatch} from 'react-redux';
+import {sign_in} from '../actions';
 
 export default function ChangePw(props) {
+  let isLogged = useSelector(state => state.isLogged);
+  const dispatch = useDispatch();
+
   const changePassword = (event) => {
     event.preventDefault();
-    if (event.target["password"].value !== props.password) {
+    if (event.target["password"].value !== isLogged.password) {
       alert("wrong password!");
       return;
     }
@@ -23,8 +28,8 @@ export default function ChangePw(props) {
       method: "put",
       url: constants.baseAddress + "/users/changePassword",
       auth: {
-        username: props.username,
-        password: props.password
+        username: isLogged.username,
+        password: isLogged.password
       },
       data: {
         password: event.target["password2"].value
@@ -32,7 +37,12 @@ export default function ChangePw(props) {
     })
       .then((response) => {
         console.log("Password change successful.");
-        props.setPassword(event.target["password2"].value);
+        dispatch(
+          sign_in(
+            isLogged.username,
+            event.target["password2"].value
+          )
+        );
         props.history.push("/user/account");
       })
       .catch((error) => {
