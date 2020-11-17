@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import DropdownMenu from "./DropdownMenu";
+import { Button } from "@material-ui/core";
 
 export default function LoginButton(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -16,9 +17,9 @@ export default function LoginButton(props) {
     );
   } else {
     return (
-      <Link to="/user/login">
-        <button>log in or register</button>
-      </Link>
+      <Button>
+        <Link to="/user/login"> Register/ Login</Link>
+      </Button>
     );
   }
 }
