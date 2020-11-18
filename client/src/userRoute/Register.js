@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import constants from "../constants.json";
 import { Container, Box, Grid, TextField, Button } from "@material-ui/core";
+import Scroll from "../components/Scroll";
 
 const defaultProps = {
   border: 1
@@ -50,6 +51,7 @@ export default function Login(props) {
 
   return (
     <Container>
+      <Scroll showBelow={250}></Scroll>
       <Box {...defaultProps} borderTop={0} textAlign="center">
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item xs={6}>

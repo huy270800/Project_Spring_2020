@@ -1,16 +1,6 @@
 // dependencies
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Switch, Route, Router } from "react-router-dom";
-=======
 import React from "react";
 import { Switch, Route } from "react-router-dom";
->>>>>>> 01eb855c1b013dd490a5188391ae6159181eff39
-
-import LoginButton from "./userRoute/LoginButton";
-import User from "./userRoute/User";
-import Validation from "./components/Validation";
-import ConfirmEmail from "./userRoute/ConfirmEmail";
 
 // style
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -26,7 +16,10 @@ import Beverages from "./Beverages/index";
 import Promotion from "./Promotion/index";
 import Salad from "./Salad/index";
 import StoreList from "./StoreList/index";
-import Login from "./userRoute/Login";
+import Error from "./Error";
+import User from "./userRoute/User";
+import Validation from "./components/Validation";
+import ConfirmEmail from "./userRoute/ConfirmEmail";
 
 const theme = createMuiTheme({
   palette: {
@@ -39,62 +32,8 @@ const theme = createMuiTheme({
 });
 
 function App() {
-<<<<<<< HEAD
-  //use these for authentication purposes
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
-  const clearUser = () => {
-    setUsername(null);
-    setPassword(null);
-  };
   return (
     <ThemeProvider theme={theme}>
-      <Header></Header>
-
-      <Switch>
-        <Route
-          path="/user"
-          render={(routeProps) => (
-            <User
-              {...routeProps}
-              setUsername={setUsername}
-              setPassword={setPassword}
-              username={username}
-              password={password}
-            />
-          )}
-        />
-        {/* <div>
-          <LoginButton username={username} clearUser={clearUser} />
-        </div> */}
-
-        <Route exact path="/" component={Home} />
-        <Route path="/pizza" component={Pizza}></Route>
-        <Route path="/salad" component={Salad}></Route>
-        <Route path="/beverages" component={Beverages}></Route>
-        <Route path="/promotion" component={Promotion}></Route>
-        <Route path="/storelist" component={StoreList}></Route>
-        <Route path="/cart" component={Cart}></Route>
-        <Route
-          path="/user"
-          render={(routeProps) => (
-            <User
-              {...routeProps}
-              setUsername={setUsername}
-              setPassword={setPassword}
-              username={username}
-              password={password}
-            />
-          )}
-        />
-        <Route path="/*/validation" component={Validation} />
-        <Route path="/confirmEmail" component={ConfirmEmail} />
-      </Switch>
-      <Footer></Footer>
-=======
-  return (
-    <ThemeProvider theme={theme}>
-    <LoginButton />
       <div>
         <Header></Header>
 
@@ -109,10 +48,10 @@ function App() {
           <Route path="/user" component={User} />
           <Route path="/*/validation" component={Validation} />
           <Route path="/confirmEmail" component={ConfirmEmail} />
+          <Route component={Error}></Route>
         </Switch>
         <Footer></Footer>
       </div>
->>>>>>> 01eb855c1b013dd490a5188391ae6159181eff39
     </ThemeProvider>
   );
 }

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Container, Box, withStyles } from "@material-ui/core";
 // components
 import Navbar from "../components/Navbar";
-import Product from "../components/product/Product";
 import Scroll from "../components/Scroll";
+import Axios from "axios";
+import ProductList from "../components/product/ProductList";
 
 const defaultProps = {
   border: 1
@@ -23,8 +24,19 @@ const style = (theme) => ({
 });
 class Salad extends Component {
   state = {
-    open: false
+    open: false,
+    isLoading: false,
+    salad: []
   };
+  componentDidMount() {
+    Axios.get("")
+      .then((res) => {
+        this.setState({ salad: res.salad });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   handleOpenClose = () => {
     this.setState({ open: !this.state.open });
   };
@@ -43,10 +55,12 @@ class Salad extends Component {
             <Box {...border} borderTop={1}>
               <h3>Salad</h3>
             </Box>
-            <Product
+            <ProductList
               open={this.state.open}
               handleOpenClose={this.handleOpenClose}
-            ></Product>
+              salad={this.state.salad}
+              isLoading={this.state.isLoading}
+            ></ProductList>
           </Box>
         </Container>
       </div>

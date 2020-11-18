@@ -2,7 +2,12 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import constants from "../constants.json";
-import styles from "./User.module.css";
+import { Box, Grid, Container, TextField, Button } from "@material-ui/core";
+import Scroll from "../components/Scroll";
+
+const defaultProps = {
+  border: 1
+};
 
 //reset a PW
 export default function RestorePw(props) {
@@ -31,31 +36,49 @@ export default function RestorePw(props) {
   };
 
   return (
-    <div className={styles.container}>
-      <h2>Reset your password or retrieve account name</h2>
-      <div className={styles.instruction}>
-        Please enter your email.
-        <br /> Your account name and a link to restore your PW will be send to
-        your email.
-      </div>
-      <form onSubmit={restorePw}>
-        <div>
-          E-mail:
-          <input className={styles.textfield} type="email" name="email" />
-        </div>
-        <div>
-          Reset Password:
-          <button className={styles.button} type="submit">
-            Confirm
-          </button>
-        </div>
-      </form>
-      <div>
-        You remember your account? &nbsp;
-        <Link to="/user/login">
-          <button className={styles.button}> log in </button>
-        </Link>
-      </div>
-    </div>
+    <Container>
+      <Scroll showBelow={250}></Scroll>
+      <Box {...defaultProps} borderTop={0} textAlign="center">
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item xs={6}>
+            <img
+              src="../assets/img/login.jpg"
+              alt="login img"
+              style={{ maxWidth: "100%" }}
+            ></img>
+          </Grid>
+          <Grid item xs={6}>
+            <h3>Reset your password or retrieve account name</h3>
+            <p>
+              Your account name and a link to restore your PW will be send to
+              your email!
+            </p>
+            <form onSubmit={restorePw}>
+              <Box p={6}>
+                <Box style={{ marginBottom: "3vh" }}>
+                  <TextField
+                    fullWidth
+                    type="email"
+                    label="Email"
+                    variant="outlined"
+                    color="secondary"
+                    name="email"
+                  ></TextField>
+                </Box>
+              </Box>
+              <Button type="submit">reset password</Button>
+            </form>
+            <Box style={{ marginTop: "30vh" }}>
+              <div>
+                You remember your account? &nbsp;
+                <Link to="/user/login">
+                  <Button> log in </Button>
+                </Link>
+              </div>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+    </Container>
   );
 }

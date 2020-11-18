@@ -3,13 +3,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import constants from "../constants.json";
 import { Container, Box, TextField, Button, Grid } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { sign_in } from "../actions";
+import Scroll from "../components/Scroll";
 
 const defaultProps = {
   border: 1
 };
-
-import { useDispatch } from "react-redux";
-import { sign_in } from "../actions";
 
 //log in form
 export default function Login(props) {
@@ -52,6 +52,7 @@ export default function Login(props) {
 
   return (
     <Container>
+      <Scroll showBelow={250}></Scroll>
       <Box {...defaultProps} borderTop={0} textAlign="center">
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item xs={6}>
@@ -86,7 +87,6 @@ export default function Login(props) {
                   ></TextField>
                 </Box>
               </Box>
-
               <Button type="submit">Login</Button>
             </form>
             <Box style={{ marginTop: "30vh" }}>

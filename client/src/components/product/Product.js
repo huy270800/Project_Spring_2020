@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 export default function Product(props) {
   const classes = useStyles();
   return (
-    <Box m={4}>
+    <Box m={2} style={{ marginBottom: "10vh" }}>
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia

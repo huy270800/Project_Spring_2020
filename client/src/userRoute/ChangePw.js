@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import constants from "../constants.json";
 import styles from "./User.module.css";
-import {useSelector, useDispatch} from 'react-redux';
-import {sign_in} from '../actions';
+import { useSelector, useDispatch } from "react-redux";
+import { sign_in } from "../actions";
 
 export default function ChangePw(props) {
-  let isLogged = useSelector(state => state.isLogged);
+  let isLogged = useSelector((state) => state.isLogged);
   const dispatch = useDispatch();
 
   const changePassword = (event) => {
@@ -37,12 +37,7 @@ export default function ChangePw(props) {
     })
       .then((response) => {
         console.log("Password change successful.");
-        dispatch(
-          sign_in(
-            isLogged.username,
-            event.target["password2"].value
-          )
-        );
+        dispatch(sign_in(isLogged.username, event.target["password2"].value));
         props.history.push("/user/account");
       })
       .catch((error) => {
