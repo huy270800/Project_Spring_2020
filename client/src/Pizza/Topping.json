@@ -1,0 +1,130 @@
+{
+    "topping": [{
+        "meat":[
+            {
+            "id":1,
+            "name": "ham",
+            "selected":false 
+            },
+            {
+              "id":2,
+              "name": "pepperoni",
+              "selected": false
+            },
+            {
+            "id":3,
+            "name": "bacon",
+            "selected": false
+            },
+            {
+            "id":4,
+            "name": "chicken",
+            "selected":false
+            }
+
+        ],
+        "vegan":[
+            {
+                "id":1,
+                "name": "cheese",
+                "selected": false
+            },
+            {
+                "id":2,
+                "name": "onion",
+                "selected":false
+            },
+            {
+                "id":3,
+                "name":"corn",
+                "selected": false
+            },
+            {
+                "id":4,
+                "name": "mushroom",
+                "selected": false
+            },
+            {
+                "id": 5,
+                "name": "pepper",
+                "selected": false
+            },
+            {
+                "id":6,
+                "name": "pineapple",
+                "selected": false
+            },
+            {
+                "id":7,
+                "name": "brocolli",
+                "selected": false
+            },
+            {
+                "id":8,
+                "name": "tomatoe",
+                "selected": false
+            },
+            {
+                "id": 9,
+                "name": "garlic",
+                "selected": false
+            },
+            {
+                "id":10,
+                "name": "onion",
+                "selected": false
+            },
+            {
+                "id": 11 ,
+                "name": "potatoe",
+                "selected": false
+            }
+        ],
+        "seafood": [
+            {
+                "id":1,
+                "name": "shrimp",
+                "selected": false
+            },
+            {
+                "id":2,
+                "name": "slam",
+                "selected": false
+            },
+            {
+                "id":3,
+                "name": "squid",
+                "selected": false
+            },
+            {
+                "id": 4 ,
+                "name": "crab",
+                "selected": false
+            }
+        ],
+        "others":[
+            {
+                "id": 1,
+                "name": "italian sausage",
+                "selected": false
+            },
+            {
+                "id":2,
+                "name": "mandarin sauce",
+                "selected": false
+            },
+            {
+                "id":3,
+                "name": "thousand island sauce",
+                "selected":false
+            },
+            {
+                "id":4,
+                "name": "tomatoe sauce",
+                "selected": false
+            }
+            
+
+        ]
+    }]
+}
