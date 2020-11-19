@@ -1,39 +1,58 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import styles from './App.module.css';
-import LoginButton from './userRoute/LoginButton';
-import User from './userRoute/User';
-import Validation from './components/Validation';
-import ConfirmEmail from './userRoute/ConfirmEmail';
+// dependencies
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+
+// style
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+
+// pages
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./Home/index";
+import Pizza from "./Pizza/index";
+import Cart from "./Cart/index";
+import Beverages from "./Beverages/index";
+import Promotion from "./Promotion/index";
+import Salad from "./Salad/index";
+import StoreList from "./StoreList/index";
+import Error from "./Error";
+import User from "./userRoute/User";
+import Validation from "./components/Validation";
+import ConfirmEmail from "./userRoute/ConfirmEmail";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#000000",
+      secondary: "white",
+      third: "#ffa502"
+    }
+  }
+});
 
 function App() {
-
-  //use these for authentication purposes
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
-  const clearUser = () => {
-    setUsername(null);
-    setPassword(null);
-  }
-
   return (
-    <div className={styles.background} >
-    <div className={styles.app} >
-    <Router >
-      <div className={styles.container} >
-        <h1> Pizza Palace App </h1>
-        <LoginButton username = {username} clearUser = {clearUser} />
+    <ThemeProvider theme={theme}>
+      <div>
+        <Header></Header>
+
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/pizza" component={Pizza}></Route>
+          <Route path="/salad" component={Salad}></Route>
+          <Route path="/beverages" component={Beverages}></Route>
+          <Route path="/promotion" component={Promotion}></Route>
+          <Route path="/storelist" component={StoreList}></Route>
+          <Route path="/cart" component={Cart}></Route>
+          <Route path="/user" component={User} />
+          <Route path="/*/validation" component={Validation} />
+          <Route path="/confirmEmail" component={ConfirmEmail} />
+          <Route component={Error}></Route>
+        </Switch>
+        <Footer></Footer>
       </div>
-      <Route path="/user" render = { (routeProps) => <User {...routeProps}
-                                                            setUsername={setUsername}
-                                                            setPassword={setPassword}
-                                                            username= {username}
-                                                            password={password} /> } />
-      <Route path="/*/validation" component = {Validation} />
-      <Route path="/confirmEmail" component = {ConfirmEmail} />
-    </Router>
-    </div>
-    </div>
+    </ThemeProvider>
   );
 }
 

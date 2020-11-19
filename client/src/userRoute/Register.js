@@ -1,71 +1,130 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import constants from '../constants.json';
-import styles from './User.module.css';
+import constants from "../constants.json";
+import { Container, Box, Grid, TextField, Button } from "@material-ui/core";
+import Scroll from "../components/Scroll";
+
+const defaultProps = {
+  border: 1
+};
 
 //register form
 export default function Login(props) {
-
-    //send new user to api
-    const registerUser = (event) => {
-        event.preventDefault();
-        if(!event.target['username'].value){
-            alert('please enter a username!');
-            return;
-        }
-        if(!event.target['email'].value){
-            alert('please enter an email!');
-            return;
-        }
-        if(!event.target['password'].value){
-            alert('please enter a password!');
-            return;
-        }
-        if(event.target['password'].value !== event.target['password2'].value){
-            alert('passwords did not match!');
-            return;
-        }
-        axios({
-            method: 'post',
-            url: constants.baseAddress + '/users',
-            data: {
-                username: event.target['username'].value,
-                email: event.target['email'].value,
-                password: event.target['password'].value
-            }
-        })
-        .then(response => {
-            console.log('create user successful.');
-            props.history.push('/confirmEmail');
-        })
-        .catch(error => { 
-            console.error(error);
-            alert(" This user already exists. ");
-        });
+  //send new user to api
+  const registerUser = (event) => {
+    event.preventDefault();
+    if (!event.target["username"].value) {
+      alert("please enter a username!");
+      return;
     }
+    if (!event.target["email"].value) {
+      alert("please enter an email!");
+      return;
+    }
+    if (!event.target["password"].value) {
+      alert("please enter a password!");
+      return;
+    }
+    if (event.target["password"].value !== event.target["password2"].value) {
+      alert("passwords did not match!");
+      return;
+    }
+    axios({
+      method: "post",
+      url: constants.baseAddress + "/users",
+      data: {
+        username: event.target["username"].value,
+        email: event.target["email"].value,
+        password: event.target["password"].value
+      }
+    })
+      .then((response) => {
+        console.log("create user successful.");
+        props.history.push("/confirmEmail");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(" This user already exists. ");
+      });
+  };
 
-    return (
-        <div className={styles.container}>
+  return (
+    <Container>
+      <Scroll showBelow={250}></Scroll>
+      <Box {...defaultProps} borderTop={0} textAlign="center">
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item xs={6}>
+            <img
+              src="../assets/img/login.jpg"
+              alt="login img"
+              style={{ maxWidth: "100%" }}
+            ></img>
+          </Grid>
+          <Grid item xs={6}>
             <h2>Welcome to the Pizza Palace!</h2>
-            <form onSubmit={ registerUser }>
-                <div>
-                    Username: <input className={styles.textfield} type="text" name="username" />
-                </div>
-                <div>
-                    E-mail: <input className={styles.textfield} type="email" name="email" />
-                </div>
-                <div>
-                    Password: <input className={styles.textfield} type="password" name="password" />
-                </div>
-                <div>
-                    Repeat Password: <input className={styles.textfield} type="password" name="password2" />
-                </div>
-                <div>
-                    Create new Pizzalover: <button className={styles.button} type="submit">Register</button>
-                </div>
+            <form onSubmit={registerUser}>
+              <Box p={6}>
+                <Box style={{ marginBottom: "3vh" }}>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    label="Username"
+                    variant="outlined"
+                    color="secondary"
+                    name="username"
+                  ></TextField>
+                </Box>
+                <Box style={{ marginBottom: "3vh" }}>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    label="Email"
+                    variant="outlined"
+                    color="secondary"
+                    name="email"
+                  ></TextField>
+                </Box>
+                <Box style={{ marginBottom: "3vh" }}>
+                  <TextField
+                    fullWidth
+                    type="password"
+                    label="Password"
+                    variant="outlined"
+                    color="secondary"
+                    name="password"
+                  ></TextField>
+                </Box>
+                <Box>
+                  <TextField
+                    fullWidth
+                    type="password"
+                    label="Repeat password"
+                    variant="outlined"
+                    color="secondary"
+                    name="password2"
+                  ></TextField>
+                </Box>
+              </Box>
+              <Button type="submit">Register</Button>
             </form>
-            You already have an account? <Link to = '/user/login'> <button className={styles.button} > log in </button> </Link>
-        </div>
-    )
+            <Box style={{ marginTop: "30vh" }}>
+              <div>
+                You already have an account? &nbsp;
+                <Link to="/user/login">
+                  <Button> login </Button>
+                </Link>
+              </div>
+              <div>
+                You forgot your account? &nbsp;
+                <Link to="/user/restorePw">
+                  <Button> reset password </Button>
+                </Link>
+              </div>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+    </Container>
+  );
 }
