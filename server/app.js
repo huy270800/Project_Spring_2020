@@ -15,6 +15,7 @@ const db = require('./db');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var productsRouter = require('./routes/products');
 /* ---------------- routers done ---------------- */
 
 var app = express();
@@ -37,6 +38,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/products', productsRouter);
 /* ---------------- routes done -------------------- */
 
 //Authorization need username & hashed password in Auth field of request
@@ -101,6 +103,22 @@ Promise.all(
         id SERIAL PRIMARY KEY,
         username VARCHAR(32),
         validationkey VARCHAR(64)
+      )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.pizzas_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(64) UNIQUE,
+        size VARCHAR(32),
+        ingredients VARCHAR(512),
+        price VARCHAR(32),
+        spicy BOOLEAN,
+        seafood BOOLEAN,
+        mixed BOOLEAN,
+        vegan BOOLEAN,
+        bestseller BOOLEAN,
+        traditional BOOLEAN,
+        filling BOOLEAN,
+        recommend BOOLEAN,
+        img VARCHAR(256)
       )`),
       // Add more create table statements here
   ]
