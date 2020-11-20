@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var productsRouter = require('./routes/products');
+var locationsRouter = require('./routes/locations');
 /* ---------------- routers done ---------------- */
 
 var app = express();
@@ -39,6 +40,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/products', productsRouter);
+app.use('/locations', locationsRouter);
 /* ---------------- routes done -------------------- */
 
 //Authorization need username & hashed password in Auth field of request
@@ -103,6 +105,14 @@ Promise.all(
         id SERIAL PRIMARY KEY,
         username VARCHAR(32),
         validationkey VARCHAR(64)
+      )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.locations_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(32),
+        address VARCHAR(64),
+        delivery BOOLEAN,
+        latitude INT,
+        longitude INT
       )`),
       db.query(`CREATE TABLE IF NOT EXISTS public.pizzas_table(
         id SERIAL PRIMARY KEY,

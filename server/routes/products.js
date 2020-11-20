@@ -101,6 +101,9 @@ router.get('/salads', (req, res) => {
     if(req.query.id){
         db.query('select * from salads_table where id = $1', [req.query.id])
         .then(result => {
+            for (let i = 0; i < result.rows.length; ++i){
+                result.rows[i]['italian sausage'] = result.rows[i].italiansausage;
+            }
             res.json(result.rows);
         })
         .catch(err => {
@@ -111,6 +114,9 @@ router.get('/salads', (req, res) => {
         var nameLike="%"+req.query.name+"%";
         db.query('select * from salads_table where name ILIKE $1', [nameLike])
         .then(result => {
+            for (let i = 0; i < result.rows.length; ++i){
+                result.rows[i]['italian sausage'] = result.rows[i].italiansausage;
+            }
             res.json(result.rows);
         })
         .catch(err => {
@@ -120,6 +126,9 @@ router.get('/salads', (req, res) => {
     }else{
         db.query('select * from salads_table')
         .then(result => {
+            for (let i = 0; i < result.rows.length; ++i){
+                result.rows[i]['italian sausage'] = result.rows[i].italiansausage;
+            }
             res.json(result.rows);
         })
         .catch(err => {
