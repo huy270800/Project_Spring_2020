@@ -3,6 +3,7 @@ const readline = require('readline');
 const server = require('./server.json');
 const pizzas = require('./pizza.json');
 const salads = require('./salad.json');
+const stores = require('./StoreList.json');
 
 
 const rl = readline.createInterface({
@@ -34,6 +35,7 @@ new Promise((resolve, reject) => {
     ))
 })
 .then((response) => {
+    console.log('pizzas done!')
     //do axios request for every salad
     return Promise.all(salads.salad.map(sal =>
         axios({
@@ -47,8 +49,23 @@ new Promise((resolve, reject) => {
         })
     ))
 })
+.then ((response) => {
+    console.log('salads done!')
+    //do stores
+    return Promise.all(stores.StoreList.map(store =>
+        axios({
+            method: "post",
+            url: server.address + "/locations",
+            auth: {
+                username: 'Admin',
+                password: inputPassword
+            },
+            data: store
+        })
+    ))
+})
 .then((response) => {
-    console.log('done!');
+    console.log('locations done!');
 })
 .catch(error => {
     console.error(error);
