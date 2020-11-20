@@ -120,6 +120,28 @@ Promise.all(
         recommend BOOLEAN,
         img VARCHAR(256)
       )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.salads_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(64) UNIQUE,
+        size VARCHAR(32),
+        description VARCHAR(512),
+        price VARCHAR(32),
+        seafood BOOLEAN,
+        bacon BOOLEAN,
+        tomatoes BOOLEAN,
+        chicken BOOLEAN,
+        shrimp BOOLEAN,
+        sausage BOOLEAN,
+        pineapple BOOLEAN,
+        pepperoni BOOLEAN,
+        onion  BOOLEAN ,
+        ham BOOLEAN,
+        corn BOOLEAN,
+        cheese BOOLEAN,
+        pepper BOOLEAN,
+        mushroom BOOLEAN,
+        italiansausage BOOLEAN
+      )`),
       // Add more create table statements here
   ]
 ).then(() => {
