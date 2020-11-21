@@ -4,21 +4,25 @@
             {
             "id":1,
             "name": "ham",
+            "img": "../assets/img/ham.png",
             "selected":false 
             },
             {
               "id":2,
               "name": "pepperoni",
+              "img": "../assets/img/pepperoni.png",
               "selected": false
             },
             {
             "id":3,
             "name": "bacon",
+            "img": "../assets/img/bacon.png",
             "selected": false
             },
             {
             "id":4,
-            "name": "chicken",
+            "name": "grill_chicken",
+            "img": "../assets/img/grill_chicken.png",
             "selected":false
             }
 
@@ -27,78 +31,57 @@
             {
                 "id":1,
                 "name": "cheese",
+                "img": "../assets/img/cheese.png",
                 "selected": false
             },
             {
                 "id":2,
                 "name": "onion",
+                "img": "../assets/img/onion.png",
                 "selected":false
             },
             {
                 "id":3,
                 "name":"corn",
+                "img": "../assets/img/corn.png",
                 "selected": false
             },
             {
                 "id":4,
                 "name": "mushroom",
+                "img": "../assets/img/mushroom.png",
                 "selected": false
             },
             {
                 "id": 5,
                 "name": "pepper",
+                "img": "../assets/img/capsicum.png",
                 "selected": false
             },
             {
                 "id":6,
                 "name": "pineapple",
+                "img": "../assets/img/pineapple.png",
                 "selected": false
             },
             {
                 "id":7,
-                "name": "brocolli",
-                "selected": false
-            },
-            {
-                "id":8,
                 "name": "tomatoe",
-                "selected": false
-            },
-            {
-                "id": 9,
-                "name": "garlic",
-                "selected": false
-            },
-            {
-                "id":10,
-                "name": "onion",
-                "selected": false
-            },
-            {
-                "id": 11 ,
-                "name": "potatoe",
+                "img": "../assets/img/tomatoe.png",
                 "selected": false
             }
         ],
         "seafood": [
             {
                 "id":1,
-                "name": "shrimp",
-                "selected": false
-            },
-            {
-                "id":2,
-                "name": "slam",
-                "selected": false
-            },
-            {
-                "id":3,
-                "name": "squid",
+                "name": "Seafood (shrimp, slamp, ...)",
+                "img": "../assets/img/seafood.png",
                 "selected": false
             },
             {
                 "id": 4 ,
-                "name": "crab",
+                "name": "crab stick",
+                "img": "../assets/img/crab_stick.png",
                 "selected": false
             }
         ],
@@ -106,25 +89,9 @@
             {
                 "id": 1,
                 "name": "italian sausage",
-                "selected": false
-            },
-            {
-                "id":2,
-                "name": "mandarin sauce",
-                "selected": false
-            },
-            {
-                "id":3,
-                "name": "thousand island sauce",
-                "selected":false
-            },
-            {
-                "id":4,
-                "name": "tomatoe sauce",
+                "img": "../assets/img/italian_sausage.png",
                 "selected": false
             }
-            
-
         ]
     }]
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GoogleMap, InfoWindow, LoadScript, Marker } from '@react-google-maps/api';
 import * as data from "./StoreList.json"
+import Search from './Search';
 
 
  const check = (array) => {
@@ -22,6 +23,7 @@ export default function Map() {
         <LoadScript
       googleMapsApiKey="AIzaSyDOduUSUYX6lFwhxQmx2b3yHifFBAwiHSw"
     >
+      <Search/>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
