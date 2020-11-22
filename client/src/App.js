@@ -17,9 +17,12 @@ import Promotion from "./Promotion/index";
 import Salad from "./Salad/index";
 import StoreList from "./StoreList/index";
 import Error from "./Error";
-import User from "./userRoute/User";
+import User from "./User/User";
 import Validation from "./components/Validation";
-import ConfirmEmail from "./userRoute/ConfirmEmail";
+import ConfirmEmail from "./User/ConfirmEmail";
+import Checkout from "./Checkout";
+
+import ChangePw from "./User/ChangePw";
 
 const theme = createMuiTheme({
   palette: {
@@ -46,8 +49,10 @@ function App() {
           <Route path="/storelist" component={StoreList}></Route>
           <Route path="/cart" component={Cart}></Route>
           <Route path="/user" component={User} />
+          <Route path="/checkout" component={Checkout}></Route>
           <Route path="/*/validation" component={Validation} />
           <Route path="/confirmEmail" component={ConfirmEmail} />
+          <Route path="/change" component={ChangePw}></Route>
           <Route component={Error}></Route>
         </Switch>
         <Footer></Footer>

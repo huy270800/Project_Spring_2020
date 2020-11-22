@@ -22,8 +22,16 @@ export default function ProductList(props) {
           justify="space-around"
           alignItems="center"
         >
-          {props.salad.map((item) => {
-            return <Product></Product>;
+          {props.products.map((item) => {
+            return (
+              <Product
+                handleOpenClose={props.handleOpenClose}
+                open={props.open}
+                name={item.name}
+                description={item.description}
+                price={item.price}
+              ></Product>
+            );
           })}
         </Grid>
       )}

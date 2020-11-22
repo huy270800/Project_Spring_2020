@@ -82,18 +82,18 @@ export default function Detail(props) {
                 style={{ maxWidth: "100%" }}
               ></img>
               <Typography variant="h6" align="center">
-                Price
+                {props.price}
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Box className={classes.pad}>
-                <Typography variant="h5">Name</Typography>
+                <Typography variant="h5">{props.name}</Typography>
               </Box>
               <Box className={classes.pad}>
                 <Typography>Customer's choice</Typography>
               </Box>
               <Box className={classes.pad}>
-                <Typography>ingre</Typography>
+                <Typography>{props.description}</Typography>
               </Box>
               <Box className={classes.pad}>
                 <Typography variant="h6">SIZE</Typography>

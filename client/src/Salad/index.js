@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Container, Box, withStyles } from "@material-ui/core";
+import axios from "axios";
 // components
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";
-import Axios from "axios";
 import ProductList from "../components/product/ProductList";
 
 const defaultProps = {
@@ -26,12 +26,14 @@ class Salad extends Component {
   state = {
     open: false,
     isLoading: false,
-    salad: []
+    products: []
   };
   componentDidMount() {
-    Axios.get("")
+    this.setState({ isLoading: true });
+    axios
+      .get("https://pizzapalaceapi26071990.herokuapp.com/products/salads")
       .then((res) => {
-        this.setState({ salad: res.salad });
+        this.setState({ products: res.data, isLoading: false });
       })
       .catch((err) => {
         console.log(err);
@@ -58,7 +60,7 @@ class Salad extends Component {
             <ProductList
               open={this.state.open}
               handleOpenClose={this.handleOpenClose}
-              salad={this.state.salad}
+              products={this.state.products}
               isLoading={this.state.isLoading}
             ></ProductList>
           </Box>

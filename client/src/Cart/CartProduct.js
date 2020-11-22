@@ -4,8 +4,7 @@ import { Grid, Button, TextField, Box } from "@material-ui/core";
 export default function CartProduct() {
   return (
     <Box>
-      <hr color="#e1e1e1"></hr>
-      <Box marginTop={4} marginBottom={4}>
+      <Box marginTop={5} marginBottom={5}>
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item md={3}>
             <img

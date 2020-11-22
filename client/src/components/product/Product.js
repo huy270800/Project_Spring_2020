@@ -22,7 +22,7 @@ export default function Product(props) {
   const classes = useStyles();
   return (
     <Box m={2} style={{ marginBottom: "10vh" }}>
-      <Card className={classes.card}>
+      <Card className={classes.card} style={{ height: "45vh" }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -30,12 +30,12 @@ export default function Product(props) {
             height="160"
             src="../assets/img/salad.jpg"
           />
-          <CardContent>
+          <CardContent style={{ height: "10vh" }}>
             <Typography gutterBottom variant="h5" component="h2">
-              Name
+              {props.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Ingre
+              {props.description}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -50,12 +50,15 @@ export default function Product(props) {
               <Typography variant="body1" color="textSecondary" component="p">
                 From
               </Typography>
-              <Typography variant="h5">10e</Typography>
+              <Typography variant="h5">{props.price} e</Typography>
             </Grid>
             <Grid item>
               <Detail
                 open={props.open}
                 handleOpenClose={props.handleOpenClose}
+                name={props.name}
+                description={props.description}
+                price={props.price}
               ></Detail>
             </Grid>
           </Grid>
