@@ -8,9 +8,11 @@ import {
   CardMedia,
   Typography,
   Box,
-  Grid
+  Grid,
+  Button
 } from "@material-ui/core/";
-import Detail from "./Detail";
+import { Link } from "react-router-dom";
+// import Detail from "./Detail";
 
 const useStyles = makeStyles({
   card: {
@@ -21,25 +23,25 @@ const useStyles = makeStyles({
 export default function Product(props) {
   const classes = useStyles();
   return (
-    <Box m={2} style={{ marginBottom: "10vh" }}>
+    <Box m={2} style={{ marginBottom: "30vh" }}>
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
             component="img"
-            alt="Contemplative Reptile"
+            alt="Product"
             height="160"
-            src="../assets/img/salad.jpg"
+            src={props.img}
           />
-          <CardContent>
+          <CardContent style={{ height: "10vh" }}>
             <Typography gutterBottom variant="h5" component="h2">
-              Name
+              {props.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Ingre
+              {props.description}
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions style={{ padding: "5vh 3vh" }}>
           <Grid
             container
             direction="row"
@@ -50,13 +52,12 @@ export default function Product(props) {
               <Typography variant="body1" color="textSecondary" component="p">
                 From
               </Typography>
-              <Typography variant="h5">10e</Typography>
+              <Typography variant="h5">{props.price} </Typography>
             </Grid>
             <Grid item>
-              <Detail
-                open={props.open}
-                handleOpenClose={props.handleOpenClose}
-              ></Detail>
+              <Button>
+                <Link to={"/salad/" + props.id}>see more</Link>
+              </Button>
             </Grid>
           </Grid>
         </CardActions>

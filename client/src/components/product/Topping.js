@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   makeStyles,
   Button,
@@ -13,123 +13,54 @@ import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
 const useStyles = makeStyles((theme) => ({
   mar: {
-    marginTop: 6
+    marginTop: 6,
+    padding: theme.spacing(1)
   }
 }));
 
-export default function Topping() {
+export default function Topping(props) {
   const classes = useStyles();
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-  const [state, setState] = React.useState({
-    checkedA: false,
-    checkedB: false,
-    checkedC: false,
-    checkedD: false
-  });
+  // const handleChange = (event) => {
+  //   setState({ ...state, [event.target.name]: event.target.checked });
+  // };
+  // const [state, setState] = useState({
+  //   checkedA: false,
+  //   checkedB: false,
+  //   checkedC: false,
+  //   checkedD: false
+  // });
   return (
     <Grid container direction="row" justify="space-between" alignItems="center">
-      <Grid item className={classes.mar}>
-        <Button onChange={handleChange} variant="outlined" color="primary">
-          <FormControlLabel
-            style={{ margin: "0 0" }}
-            control={
-              <Box>
-                <img src="../assets/img/tomato.png" alt="tomato"></img>
-                <Typography align="center">Tomato</Typography>
-                <Typography>+1e</Typography>
-                <Checkbox
-                  icon={<RadioButtonUncheckedIcon />}
-                  checkedIcon={<CheckCircleIcon />}
-                  checked={state.checkedA}
-                  name="checkedA"
-                />
-              </Box>
-            }
-          />
-        </Button>
-      </Grid>
-      <Grid item className={classes.mar}>
-        <Button onChange={handleChange} variant="outlined" color="primary">
-          <FormControlLabel
-            style={{ margin: "0 0" }}
-            control={
-              <Box>
-                <img src="../assets/img/bacon.png" alt="tomato"></img>
-                <Typography align="center">Bacon</Typography>
-                <Typography>+1e</Typography>
-                <Checkbox
-                  icon={<RadioButtonUncheckedIcon />}
-                  checkedIcon={<CheckCircleIcon />}
-                  checked={state.checkedB}
-                  name="checkedB"
-                />
-              </Box>
-            }
-          />
-        </Button>
-      </Grid>
-      <Grid item className={classes.mar}>
-        <Button onChange={handleChange} variant="outlined" color="primary">
-          <FormControlLabel
-            style={{ margin: "0 0" }}
-            control={
-              <Box>
-                <img src="../assets/img/seafood.png" alt="tomato"></img>
-                <Typography align="center">Seafood</Typography>
-                <Typography>+1e</Typography>
-                <Checkbox
-                  icon={<RadioButtonUncheckedIcon />}
-                  checkedIcon={<CheckCircleIcon />}
-                  checked={state.checkedC}
-                  name="checkedC"
-                />
-              </Box>
-            }
-          />
-        </Button>
-      </Grid>
-      <Grid item className={classes.mar}>
-        <Button onChange={handleChange} variant="outlined" color="primary">
-          <FormControlLabel
-            style={{ margin: "0 0" }}
-            control={
-              <Box>
-                <img src="../assets/img/ham.png" alt="tomato"></img>
-                <Typography align="center">Ham</Typography>
-                <Typography>+1e</Typography>
-                <Checkbox
-                  icon={<RadioButtonUncheckedIcon />}
-                  checkedIcon={<CheckCircleIcon />}
-                  checked={state.checkedD}
-                  name="checkedD"
-                />
-              </Box>
-            }
-          />
-        </Button>
-      </Grid>
-      <Grid item className={classes.mar}>
-        <Button onChange={handleChange} variant="outlined" color="primary">
-          <FormControlLabel
-            style={{ margin: "0 0" }}
-            control={
-              <Box>
-                <img src="../assets/img/ham.png" alt="tomato"></img>
-                <Typography align="center">Ham</Typography>
-                <Typography>+1e</Typography>
-                <Checkbox
-                  icon={<RadioButtonUncheckedIcon />}
-                  checkedIcon={<CheckCircleIcon />}
-                  checked={state.checkedD}
-                  name="checkedD"
-                />
-              </Box>
-            }
-          />
-        </Button>
-      </Grid>
+      {props.topping.map((top) => {
+        return (
+          <Grid item xs={4} className={classes.mar} key={top.id}>
+            <Button
+              // onChange={handleChange}
+              variant="outlined"
+              color="primary"
+              style={{ width: "100%" }}
+            >
+              <FormControlLabel
+                style={{ margin: "0 0" }}
+                control={
+                  <Box height="20vh">
+                    <img src={top.img} alt={top.name}></img>
+                    <Typography align="center">{top.name}</Typography>
+                    <Typography>+ {top.price} €</Typography>
+                    {/* <Checkbox
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<CheckCircleIcon />}
+                      checked={top.selected}
+                      name="checkedA"
+                    /> */}
+                    <input type="checkbox" value={top.name}></input>
+                  </Box>
+                }
+              />
+            </Button>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 }

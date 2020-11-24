@@ -1,18 +1,18 @@
-.background{
-    background-color: rgb(131, 104, 180);
-    height: 100vh;
+.background {
+  background-color: rgb(131, 104, 180);
+  height: 100vh;
 }
-.app{
-    background-color: seashell;
-    height: 100vh;
-    max-width: 1440px;
-    margin-right: auto;
-    margin-left: auto;
+.app {
+  background-color: seashell;
+  height: 100vh;
+  max-width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
 }
-.container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 10px;
-    padding-left: 10px;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+  padding-left: 10px;
 }

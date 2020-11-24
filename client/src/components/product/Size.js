@@ -54,44 +54,30 @@ function StyledRadio(props) {
   );
 }
 
-export default function Size() {
+export default function Size(props) {
   return (
     <FormControl component="fieldset">
-      <RadioGroup
-        defaultValue="small"
-        aria-label="gender"
-        name="customized-radios"
-      >
+      <RadioGroup defaultValue="small" aria-label="size" name="size-radios">
         <Grid
           container
           direction="row"
           justify="space-between"
           alignItems="center"
         >
-          <Grid item>
-            <FormControlLabel
-              value="small"
-              control={<StyledRadio />}
-              label="Small"
-              labelPlacement="bottom"
-            />
-          </Grid>
-          <Grid item>
-            <FormControlLabel
-              value="medium"
-              control={<StyledRadio />}
-              label="Medium"
-              labelPlacement="bottom"
-            />
-          </Grid>
-          <Grid item>
-            <FormControlLabel
-              value="large"
-              control={<StyledRadio />}
-              label="Large"
-              labelPlacement="bottom"
-            />
-          </Grid>
+          {props.size &&
+            props.size.map((s) => {
+              return (
+                <Grid item xs={3}>
+                  <FormControlLabel
+                    key={s.id}
+                    value={s}
+                    control={<StyledRadio />}
+                    label={s}
+                    labelPlacement="bottom"
+                  ></FormControlLabel>
+                </Grid>
+              );
+            })}
         </Grid>
       </RadioGroup>
     </FormControl>

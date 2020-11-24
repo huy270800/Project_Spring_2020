@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Container, Box, withStyles } from "@material-ui/core";
+import React from "react";
+import { Container, Box, makeStyles } from "@material-ui/core";
+
 // components
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";
-import Axios from "axios";
-import ProductList from "../components/product/ProductList";
+import SaladList from "./SaladList";
 
 const defaultProps = {
   border: 1
@@ -14,7 +14,7 @@ const border = {
   p: 3
 };
 
-const style = (theme) => ({
+const useStyles = makeStyles({
   img: {
     margin: "auto",
     display: "block",
@@ -22,49 +22,26 @@ const style = (theme) => ({
     maxHeight: "100%"
   }
 });
-class Salad extends Component {
-  state = {
-    open: false,
-    isLoading: false,
-    salad: []
-  };
-  componentDidMount() {
-    Axios.get("")
-      .then((res) => {
-        this.setState({ salad: res.salad });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  handleOpenClose = () => {
-    this.setState({ open: !this.state.open });
-  };
-  render() {
-    return (
-      <div>
-        <Scroll showBelow={250} />
-        <img
-          src="../assets/img/salad.jpg"
-          alt="salad"
-          className={this.props.classes.img}
-        ></img>
-        <Container>
-          <Box {...defaultProps} borderTop={0}>
-            <Navbar></Navbar>
-            <Box {...border} borderTop={1}>
-              <h3>Salad</h3>
-            </Box>
-            <ProductList
-              open={this.state.open}
-              handleOpenClose={this.handleOpenClose}
-              salad={this.state.salad}
-              isLoading={this.state.isLoading}
-            ></ProductList>
+function Salad(props) {
+  const classes = useStyles();
+  return (
+    <div>
+      <Scroll showBelow={250} />
+      <img
+        src="../assets/img/salad.jpg"
+        alt="salad"
+        className={classes.img}
+      ></img>
+      <Container>
+        <Box {...defaultProps} borderTop={0}>
+          <Navbar></Navbar>
+          <Box {...border} borderTop={1}>
+            <h3>Salad</h3>
           </Box>
-        </Container>
-      </div>
-    );
-  }
+          <SaladList salads={props.salads}></SaladList>
+        </Box>
+      </Container>
+    </div>
+  );
 }
-export default withStyles(style)(Salad);
+export default Salad;

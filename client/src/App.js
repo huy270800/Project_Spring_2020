@@ -1,7 +1,7 @@
 // dependencies
-import React from "react";
+import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-
+import axios from "axios";
 // style
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
@@ -17,9 +17,16 @@ import Promotion from "./Promotion/index";
 import Salad from "./Salad/index";
 import StoreList from "./StoreList/index";
 import Error from "./Error";
-import User from "./userRoute/User";
+import User from "./User/User";
 import Validation from "./components/Validation";
-import ConfirmEmail from "./userRoute/ConfirmEmail";
+import ConfirmEmail from "./User/ConfirmEmail";
+import Checkout from "./Checkout";
+
+import ChangePw from "./User/ChangePw";
+import SaladDetail from "./Salad/SaladDetail";
+import PizzaDetail from "./Pizza/PizzaDetail";
+import DrinkDetail from "./Beverages/DrinkDetail";
+import Drink from "./Beverages/index";
 
 const theme = createMuiTheme({
   palette: {
@@ -31,29 +38,88 @@ const theme = createMuiTheme({
   }
 });
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <div>
-        <Header></Header>
+class App extends Component {
+  state = {
+    salads: [],
+    pizzas: [],
+    beverages: []
+  };
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/salads")
+      .then((res) => {
+        this.setState({ salads: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("http://localhost:4000/pizzas")
+      .then((res) => {
+        this.setState({ pizzas: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("http://localhost:4000/drinks")
+      .then((res) => {
+        this.setState({ beverages: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <div>
+          <Header></Header>
 
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/pizza" component={Pizza}></Route>
-          <Route path="/salad" component={Salad}></Route>
-          <Route path="/beverages" component={Beverages}></Route>
-          <Route path="/promotion" component={Promotion}></Route>
-          <Route path="/storelist" component={StoreList}></Route>
-          <Route path="/cart" component={Cart}></Route>
-          <Route path="/user" component={User} />
-          <Route path="/*/validation" component={Validation} />
-          <Route path="/confirmEmail" component={ConfirmEmail} />
-          <Route component={Error}></Route>
-        </Switch>
-        <Footer></Footer>
-      </div>
-    </ThemeProvider>
-  );
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route
+              path="/pizza/:id"
+              render={(props) => (
+                <PizzaDetail pizzas={this.state.pizzas}></PizzaDetail>
+              )}
+            ></Route>
+            <Route path="/pizza">
+              <Pizza pizzas={this.state.pizzas}></Pizza>
+            </Route>
+            <Route
+              path="/salad/:id"
+              render={(props) => (
+                <SaladDetail salads={this.state.salads}></SaladDetail>
+              )}
+            ></Route>
+            <Route path="/salad">
+              <Salad salads={this.state.salads}></Salad>
+            </Route>
+            <Route
+              path="/beverages/:id"
+              render={(props) => (
+                <DrinkDetail beverages={this.state.beverages}></DrinkDetail>
+              )}
+            ></Route>
+            <Route path="/beverages">
+              <Drink beverages={this.state.beverages}></Drink>
+            </Route>
+            <Route path="/promotion" component={Promotion}></Route>
+            <Route path="/storelist" component={StoreList}></Route>
+            <Route path="/cart" component={Cart}></Route>
+            <Route path="/user" component={User} />
+            <Route path="/checkout" component={Checkout}></Route>
+            <Route path="/*/validation" component={Validation} />
+            <Route path="/confirmEmail" component={ConfirmEmail} />
+            <Route path="/change" component={ChangePw}></Route>
+            <Route component={Error}></Route>
+          </Switch>
+          <Footer></Footer>
+        </div>
+      </ThemeProvider>
+    );
+  }
 }
 
 export default App;

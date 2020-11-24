@@ -15,6 +15,8 @@ const db = require('./db');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var productsRouter = require('./routes/products');
+var locationsRouter = require('./routes/locations');
 /* ---------------- routers done ---------------- */
 
 var app = express();
@@ -37,6 +39,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/products', productsRouter);
+app.use('/locations', locationsRouter);
 /* ---------------- routes done -------------------- */
 
 //Authorization need username & hashed password in Auth field of request
@@ -101,6 +105,52 @@ Promise.all(
         id SERIAL PRIMARY KEY,
         username VARCHAR(32),
         validationkey VARCHAR(64)
+      )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.locations_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(32),
+        address VARCHAR(64),
+        delivery BOOLEAN,
+        latitude INT,
+        longitude INT
+      )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.pizzas_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(64) UNIQUE,
+        size VARCHAR(32),
+        ingredients VARCHAR(512),
+        price VARCHAR(32),
+        spicy BOOLEAN,
+        seafood BOOLEAN,
+        mixed BOOLEAN,
+        vegan BOOLEAN,
+        bestseller BOOLEAN,
+        traditional BOOLEAN,
+        filling BOOLEAN,
+        recommend BOOLEAN,
+        img VARCHAR(256)
+      )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.salads_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(64) UNIQUE,
+        size VARCHAR(32),
+        description VARCHAR(512),
+        price VARCHAR(32),
+        seafood BOOLEAN,
+        bacon BOOLEAN,
+        tomatoes BOOLEAN,
+        chicken BOOLEAN,
+        shrimp BOOLEAN,
+        sausage BOOLEAN,
+        pineapple BOOLEAN,
+        pepperoni BOOLEAN,
+        onion  BOOLEAN ,
+        ham BOOLEAN,
+        corn BOOLEAN,
+        cheese BOOLEAN,
+        pepper BOOLEAN,
+        mushroom BOOLEAN,
+        italiansausage BOOLEAN
       )`),
       // Add more create table statements here
   ]

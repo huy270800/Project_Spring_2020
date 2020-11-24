@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid } from "@material-ui/core/";
-import LoginButton from "../userRoute/LoginButton";
+import LoginButton from "../User/LoginButton";
 
 export default function Navbar() {
   return (
@@ -28,9 +28,6 @@ export default function Navbar() {
           </Grid>
         </Grid>
         <Grid item>
-          {/* <Button>
-            <Link to="/"> Register/ Login</Link>
-          </Button> */}
           <LoginButton></LoginButton>
         </Grid>
       </Grid>

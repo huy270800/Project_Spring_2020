@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Scroll from "../components/Scroll";
 import { Container, Box, Grid, Button, makeStyles } from "@material-ui/core";
 import Navbar from "../components/Navbar";
@@ -51,14 +52,14 @@ export default function Cart() {
                 size="medium"
                 className={classes.margin}
               >
-                Continue shopping
+                <Link to="/">Continue shopping</Link>
               </Button>
               <Button
                 variant="outlined"
                 size="medium"
                 className={classes.margin}
               >
-                Check out
+                <Link to="/checkout"> Check out</Link>
               </Button>
             </Grid>
           </Box>
