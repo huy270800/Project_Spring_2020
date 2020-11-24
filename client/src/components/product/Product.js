@@ -8,9 +8,11 @@ import {
   CardMedia,
   Typography,
   Box,
-  Grid
+  Grid,
+  Button
 } from "@material-ui/core/";
-import Detail from "./Detail";
+import { Link } from "react-router-dom";
+// import Detail from "./Detail";
 
 const useStyles = makeStyles({
   card: {
@@ -21,14 +23,14 @@ const useStyles = makeStyles({
 export default function Product(props) {
   const classes = useStyles();
   return (
-    <Box m={2} style={{ marginBottom: "10vh" }}>
-      <Card className={classes.card} style={{ height: "45vh" }}>
+    <Box m={2} style={{ marginBottom: "30vh" }}>
+      <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
             component="img"
-            alt="Contemplative Reptile"
+            alt="Product"
             height="160"
-            src="../assets/img/salad.jpg"
+            src={props.img}
           />
           <CardContent style={{ height: "10vh" }}>
             <Typography gutterBottom variant="h5" component="h2">
@@ -39,7 +41,7 @@ export default function Product(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions style={{ padding: "5vh 3vh" }}>
           <Grid
             container
             direction="row"
@@ -50,16 +52,12 @@ export default function Product(props) {
               <Typography variant="body1" color="textSecondary" component="p">
                 From
               </Typography>
-              <Typography variant="h5">{props.price} e</Typography>
+              <Typography variant="h5">{props.price} </Typography>
             </Grid>
             <Grid item>
-              <Detail
-                open={props.open}
-                handleOpenClose={props.handleOpenClose}
-                name={props.name}
-                description={props.description}
-                price={props.price}
-              ></Detail>
+              <Button>
+                <Link to={"/salad/" + props.id}>see more</Link>
+              </Button>
             </Grid>
           </Grid>
         </CardActions>
