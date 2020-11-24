@@ -1,95 +1,95 @@
- {
-    "drinks": [
-        {
-            "id": 1,
-            "name": "Tiger Beer",
-            "price": "3,5€",
-            "img": "../assets/img/tiger_beer.png",
-            "description": "Tiger can"
-        },
-        {
-            "id": 2,
-            "name": "Heineken Beer",
-            "price": "3,5€",
-            "img": "../assets/img/heineken_beer.png",
-            "description": "Heineken Bear"
-        },
-        {
-            "id": 3,
-            "name": "7 Up",
-            "price": "2€",
-            "img": "../assets/img/7up_can.jpeg",
-            "description": "7 Up Can"
-        },
-        {
-            "id": 4,
-            "name": "7 Up",
-            "price": "4€",
-            "img": "../assets/img/7up_1l.jpeg",
-            "description": "7 Up 1,5L"
-        },
-        {
-            "id": 5,
-            "name": "Pepsi",
-            "price": "4€",
-            "img": "../assets/img/pepsi_1.5l.jpeg",
-            "description": "Pepsi 1,5l"
-        },
-        {
-            "id": 6,
-            "name": "Pepsi Black Can",
-            "price": "2€",
-            "img": "../assets/img/pepsi_black.jpeg",
-            "description": "Pepsi black can"
-        },
-        {
-            "id": 7,
-            "name": "Pepsi",
-            "price": "2€",
-            "img": "../assets/img/pepsi.jpeg",
-            "description": "Pepsi can"
-        },
-        {
-            "id": 8,
-            "name": "Pepsi Black Lime",
-            "price": "2€",
-            "img": "../assets/img/pepsi_black_lime.png",
-            "description": "Pepsi black Lime can"
-        },
-        {
-            "id": 9,
-            "name": "333 Beer",
-            "price": "3,5€",
-            "img": "../assets/img/333_beer.png",
-            "description": "333 beer can"
-        },
-        {
-            "id": 10,
-            "name": "Strongbow Dark Fruit",
-            "price": "3€",
-            "img": "../assets/img/strongbow_dark_fruit.png",
-            "description": ""
-        },
-        {
-            "id": 11,
-            "name": "Strongbow Bow Apple",
-            "price": "3€",
-            "img": "../assets/img/strongbow_gold_apple.png",
-            "description": ""
-        },
-        {
-            "id": 12,
-            "name": "Strongbow Honey",
-            "price": "3€",
-            "img": "../asssets/img/strongbow_honey.jpeg",
-            "description": ""
-        },
-        {
-            "id": 13,
-            "name": "Strongbow Red Berries",
-            "price": "3€",
-            "img": "../asssets/img/strongbow_red_berries.png",
-            "description": ""
-        }
-    ]
+{
+  "drinks": [
+    {
+      "id": 1,
+      "name": "Tiger Beer",
+      "price": "3,5€",
+      "img": "../assets/img/tiger_beer.png",
+      "description": "Tiger can"
+    },
+    {
+      "id": 2,
+      "name": "Heineken Beer",
+      "price": "3,5€",
+      "img": "../assets/img/heineken_beer.png",
+      "description": "Heineken Bear"
+    },
+    {
+      "id": 3,
+      "name": "7 Up",
+      "price": "2€",
+      "img": "../assets/img/7up_can.jpeg",
+      "description": "7 Up Can"
+    },
+    {
+      "id": 4,
+      "name": "7 Up",
+      "price": "4€",
+      "img": "../assets/img/7up_1l.jpeg",
+      "description": "7 Up 1,5L"
+    },
+    {
+      "id": 5,
+      "name": "Pepsi",
+      "price": "4€",
+      "img": "../assets/img/pepsi_1.5l.jpeg",
+      "description": "Pepsi 1,5l"
+    },
+    {
+      "id": 6,
+      "name": "Pepsi Black Can",
+      "price": "2€",
+      "img": "../assets/img/pepsi_black.jpeg",
+      "description": "Pepsi black can"
+    },
+    {
+      "id": 7,
+      "name": "Pepsi",
+      "price": "2€",
+      "img": "../assets/img/pepsi.jpeg",
+      "description": "Pepsi can"
+    },
+    {
+      "id": 8,
+      "name": "Pepsi Black Lime",
+      "price": "2€",
+      "img": "../assets/img/pepsi_black_lime.png",
+      "description": "Pepsi black Lime can"
+    },
+    {
+      "id": 9,
+      "name": "333 Beer",
+      "price": "3,5€",
+      "img": "../assets/img/333_beer.png",
+      "description": "333 beer can"
+    },
+    {
+      "id": 10,
+      "name": "Strongbow Dark Fruit",
+      "price": "3€",
+      "img": "../assets/img/strongbow_dark_fruit.png",
+      "description": ""
+    },
+    {
+      "id": 11,
+      "name": "Strongbow Bow Apple",
+      "price": "3€",
+      "img": "../assets/img/strongbow_gold_apple.png",
+      "description": ""
+    },
+    {
+      "id": 12,
+      "name": "Strongbow Honey",
+      "price": "3€",
+      "img": "../assets/img/strongbow_honey.jpeg",
+      "description": ""
+    },
+    {
+      "id": 13,
+      "name": "Strongbow Red Berries",
+      "price": "3€",
+      "img": "../assets/img/strongbow_red_berries.png",
+      "description": ""
+    }
+  ]
 }
