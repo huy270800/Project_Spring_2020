@@ -85,6 +85,7 @@
       "name": "Aloha Pizza",
       "size": ["Small", "Medium", "Large"],
       "description": "ham, sausage,pineapple and Thousand Island sauce",
+
       "price": "11",
       "spicy": false,
       "seafood": false,
@@ -133,6 +134,7 @@
       "name": "3 Special Meats And Vegetables",
       "size": ["Small", "Medium", "Large"],
       "description": "3 kind of meats, vegetables and traditional tomatoe sauce",
+
       "price": "11",
       "spicy": false,
       "seafood": false,
