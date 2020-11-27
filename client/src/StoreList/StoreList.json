@@ -5,48 +5,48 @@
             "name": "Pizza Palace Uusikatu",
             "address":"Uusikatu 34, 90100 Oulu",
             "delivery": true,
-            "latitue": 65.010640,
-            "longtitue": 25.473830
+            "latitude": 65.010640,
+            "longitude": 25.473830
         },
         {
             "id": 2,
             "name": "Pizza Palace Nalikari",
             "address":"Holstinsalmentie 29, 90510 Oulu",
             "delivery": false,
-            "latitue": 65.028084,
-            "longtitue": 25.414298  
+            "latitude": 65.028084,
+            "longitude": 25.414298  
         },
         {
             "id": 3,
             "name": "Pizza Palace Halituskatu",
             "address":"Halituskatu 25, 90100 Oulu",
             "delivery": true,
-            "latitue": 65.011703,
-            "longtitue": 25.479186  
+            "latitude": 65.011703,
+            "longitude": 25.479186  
         },
         {
             "id": 4,
             "name": "Pizza Palace Oulun Lentoasema",
             "address":"Lentokentäntie 720, 90410 Oulu ",
             "delivery": false,
-            "latitue": 64.930780,
-            "longtitue": 25.361405
+            "latitude": 64.930780,
+            "longitude": 25.361405
         },
         {
             "id": 5,
             "name": "Pizza Palace Linmingantulli",
             "address":"Linmingantulli 25, 90400 Oulu",
             "delivery": true,
-            "latitue": 64.996406,
-            "longtitue": 25.456704
+            "latitude": 64.996406,
+            "longitude": 25.456704
         },
         {
             "id": 6,
             "name": "Pizza Palace Valkea",
             "address":"Isokatu 25, 90100 Oulu",
             "delivery": true,
-            "latitue": 65.011712,
-            "longtitue": 25.470407
+            "latitude": 65.011712,
+            "longitude": 25.470407
         }
     ]
 }

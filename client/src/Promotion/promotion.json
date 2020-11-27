@@ -1,0 +1,91 @@
+{
+    "promotion1":[
+        {
+            "id": 1 ,
+            "name": "Cool party",
+            "notes": "Applied from 20/11/2020 to 19/01/2021 when buying at stores or ordering delivery through Hotline 12345678 or website. This coupon is not apply to others discount",
+            "price": "40",
+            "img": "../assets/img/cool_party.png",
+            "code": "29DUQOP20",
+            "selected": false
+        }
+    ],
+    "promotion2": [
+        {
+            "id":2 , 
+            "name": "Fun Party",
+            "notes": "Applied from 20/11/2020 to 19/01/2021 when buying at stores or ordering delivery through Hotline 12345678 or website. This coupon is not apply to others discount",
+            "price": "25",
+            "img": "../assets/img/fun_party.png",
+            "code": "79WRUWD20",
+            "selected": false
+        }
+    ],
+    "promotion3": [
+        {
+            "id":3, 
+            "name": "Lemom Meal",
+            "notes": "Preferential combo discount for 20% suitable for 4-6 people",
+            "price": "40",
+            "img": "../assets/img/lemon_meal.png",
+            "code": "1DU7VQNX",
+            "selected": false
+        }
+    ],
+    "promotion4": [
+        {
+            "id":4, 
+            "name": "Luxury Meal",
+            "notes": "Preferential combo discount for 35% suitable for 2-3 people",
+            "price": "20",
+            "img": "../assets/img/luxury_meal.png",
+            "code": "33RGXCVE",
+            "selected": false
+        }
+    ],
+    "promotion5": [
+        {
+            "id":5, 
+            "name": "Tuesday Deal",
+            "notes": "Buy 1 pizza size L, offer 1 pizza (thick/slight bottom) classic line with the same size ",
+            "price": "16",
+            "img": "../assets/img/tuesday_deal.png",
+            "code": "OU0YZVHD",
+            "selected": false
+        }
+    ],
+    "promotion6": [
+        {
+            "id":6, 
+            "name": "Combo Sandwich Pizza",
+            "notes": "Combo 5 eur for 1 people",
+            "price": "5",
+            "img": "../assets/img/combo_sandwich.png",
+            "code": "Z27QXZ0H",
+            "selected": false
+        }
+    ],
+    "promotion7": [
+        {
+            "id":7, 
+            "name": "Delicious Meal",
+            "notes":  "Preferential combo discount for 35% suitable for 2-3 people" ,
+            "price": "25",
+            "img": "../assets/img/delicious_meal.png",
+            "code": "VY75VEOT",
+            "selected": false
+        }
+    ],
+    "promotion8": [
+        {
+            "id":8, 
+            "name": "Monday Deal",
+            "notes":  "Save 50% for pizza on Monday when you buy drink" ,
+            "price": "15",
+            "img": "../assets/img/monday_deal.png",
+            "code": "VY75VEOT",
+            "selected": false
+        }
+    ]
+
+}

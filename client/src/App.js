@@ -39,10 +39,16 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
-  state = {
-    salads: [],
-    pizzas: [],
-    beverages: []
+  constructor(props){
+    super(props);
+    this.state = {
+      location: [],
+      salads: [],
+      pizzas: [],
+      beverages: [],
+      selectedLocation: null , 
+      searchResults: []
+  }
   };
   componentDidMount() {
     axios
@@ -69,7 +75,23 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       });
+      axios.get("http://localhost:4000/storeList")
+      .then((res) => {
+        this.setState({location: res.data});
+        this.setState({searchResults: res.data});
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
+  SetSearchResults = (parameter) => {
+    this.setState({ searchResults: parameter })
+  };
+  
+  setSelectedLocation = (parameter) => {
+    this.setState({ selectedLocation: parameter })
+  }
+
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -106,7 +128,13 @@ class App extends Component {
               <Drink beverages={this.state.beverages}></Drink>
             </Route>
             <Route path="/promotion" component={Promotion}></Route>
-            <Route path="/storelist" component={StoreList}></Route>
+            <Route path="/storelist">
+              <StoreList location={this.state.location}   
+                          selectedLocation={this.state.selectedLocation}
+                          searchResults={this.state.searchResults}
+                          SetSearchResults={this.SetSearchResults}
+                          setSelectedLocation={this.setSelectedLocation}
+               ></StoreList></Route>
             <Route path="/cart" component={Cart}></Route>
             <Route path="/user" component={User} />
             <Route path="/checkout" component={Checkout}></Route>

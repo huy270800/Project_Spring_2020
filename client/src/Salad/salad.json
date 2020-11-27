@@ -6,21 +6,7 @@
       "size": ["Small", "Medium", "Large"],
       "description": "fresh vegetables with Caesar sauce",
       "price": "7€",
-      "seafood": false,
-      "bacon": false,
-      "tomatoes": false,
-      "chicken": false,
-      "shrimp": false,
-      "sausage": false,
-      "pineapple": false,
-      "pepperoni": false,
-      "onion": false,
-      "ham": false,
-      "corn": false,
-      "cheese": false,
-      "pepper": false,
-      "mushroom": false,
-      "italian sausage": false
+      "img": "../assets/img/Caesar_Salad.png"
     },
     {
       "id": 2,
@@ -28,21 +14,8 @@
       "size": ["Small", "Medium", "Large"],
       "description": "fresh vegetables with vinegar",
       "price": "6€",
-      "seafood": false,
-      "bacon": false,
-      "tomatoes": false,
-      "chicken": false,
-      "shrimp": false,
-      "sausage": false,
-      "pineapple": false,
-      "pepperoni": false,
-      "onion": false,
-      "ham": false,
-      "corn": false,
-      "cheese": false,
-      "pepper": false,
-      "mushroom": false,
-      "italian sausage": false
+      "img": "../assets/img/Vinegar_Salad.png"
+     
     },
     {
       "id": 3,
@@ -50,21 +23,7 @@
       "size": ["Small", "Medium", "Large"],
       "description": "Special salad with brocolli, apple, salad, eggs and special sauce",
       "price": "7€",
-      "seafood": false,
-      "bacon": false,
-      "tomatoes": false,
-      "chicken": false,
-      "shrimp": false,
-      "sausage": false,
-      "pineapple": false,
-      "pepperoni": false,
-      "onion": false,
-      "ham": false,
-      "corn": false,
-      "cheese": false,
-      "pepper": false,
-      "mushroom": false,
-      "italian sausage": false
+      "img": "../assets/img/Special_Salad.png"
     }
   ]
 }
