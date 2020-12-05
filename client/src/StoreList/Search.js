@@ -1,15 +1,32 @@
 import React, { Component } from "react";
-import * as data from "./StoreList.json";
 
 export default class Search extends Component {
-  searchForIt(event) {
-    this.props.SetSearchResult(event.target.value);
-    event.preventDefault();
-  }
+  searchIt = (event) => {
+    this.props.SetSearchResults(event.target.value);
+    if (event.target.value == "<empty string>" || event.target.value == "0") {
+      this.props.SetSearchResults(this.props.location);
+    } else {
+      let array = [];
+      this.props.location.map((item) => {
+        if (
+          item.name.includes(event.target.value) ||
+          item.address.includes(event.target.value)
+        ) {
+          array.push(item);
+        }
+      });
+      this.props.SetSearchResults(array);
+    }
+    console.log(this.props.searchResult);
+  };
   render() {
     return (
       <div>
-        Looking for sth ?<input type="text" onChange={this.searchForIt}></input>
+        <input
+          type={"text"}
+          onChange={this.searchIt}
+          placeholder="Search for location here"
+        ></input>
       </div>
     );
   }

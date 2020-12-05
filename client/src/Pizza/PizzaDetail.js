@@ -82,15 +82,8 @@ class PizzaDetail extends Component {
   chooseTopping = (event) => {
     if (!choseTop.includes(event.target.value)) {
       choseTop.push(event.target.value);
-
-      // this.state.selected_topping.push(event.target.value);
     } else {
       choseTop.splice(choseTop.indexOf(event.target.value), 1);
-
-      // this.state.selected_topping.splice(
-      //   this.state.selected_topping.indexOf(event.target.value),
-      //   1
-      // );
     }
     this.setState({ selected_topping: choseTop });
   };
