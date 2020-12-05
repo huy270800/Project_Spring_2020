@@ -1,10 +1,9 @@
 import React from "react";
 import Map from "./Map";
-import LeftMenu from "./LeftMenu"
+import LeftMenu from "./LeftMenu";
 import { Container, Box } from "@material-ui/core";
 import Scroll from "../components/Scroll";
 import Navbar from "../components/Navbar";
-
 
 const defaultProps = {
   border: 1
@@ -18,25 +17,25 @@ export default function StoreList(props) {
   let output;
   let CharData;
   output = (
-    <div >
     <div>
+      <div>
         <LeftMenu
-            location={props.location}
-            selectedLocation={props.selectedLocation}
-            CharData={CharData}
-            setSelectedLocation={props.setSelectedLocation}
-            searchResults={props.searchResults}
-            SetSearchResults={props.SetSearchResults}
+          location={props.location}
+          selectedLocation={props.selectedLocation}
+          CharData={CharData}
+          setSelectedLocation={props.setSelectedLocation}
+          searchResults={props.searchResults}
+          SetSearchResults={props.SetSearchResults}
         />
         <Map
-            location={props.location}
-            CharData={CharData}
-            searchResults={props.searchResults}
-            setSelectedLocation={props.setSelectedLocation}
+          location={props.location}
+          CharData={CharData}
+          searchResults={props.searchResults}
+          setSelectedLocation={props.setSelectedLocation}
         />
+      </div>
     </div>
-</div>
-)
+  );
   return (
     <div>
       <Scroll showBelow={250} />
@@ -46,7 +45,7 @@ export default function StoreList(props) {
           <Box {...border} borderTop={1}>
             <h3>Store List</h3>
           </Box>
-         {output}
+          {output}
         </Box>
       </Container>
     </div>
