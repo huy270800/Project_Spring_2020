@@ -1,8 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Container, Grid, CircularProgress, Box } from "@material-ui/core";
 import PizzaCard from "./PizzaCard";
+import { addToCart } from "../actions/index";
 
-export default function PizzaList(props) {
+function PizzaList(props) {
   return (
     <Container>
       {props.isLoading ? (
@@ -25,8 +27,7 @@ export default function PizzaList(props) {
           {props.pizzas.map((item) => {
             return (
               <PizzaCard
-                handleOpenClose={props.handleOpenClose}
-                open={props.open}
+                addToCart={props.addToCart}
                 name={item.name}
                 img={item.img}
                 size={item.size}
@@ -42,3 +43,11 @@ export default function PizzaList(props) {
     </Container>
   );
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (product) => {
+      dispatch(addToCart(product));
+    }
+  };
+};
+export default connect(null, mapDispatchToProps)(PizzaList);

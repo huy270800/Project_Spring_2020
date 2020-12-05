@@ -62,23 +62,6 @@ export default function Account(props) {
   };
 
   return (
-    // <div className={styles.container}>
-    //   <div className={styles.flex}>
-    //     <h2> {isLogged.username} </h2>
-    //     <Link className={styles.button2} to="/">
-    //       <button> close </button>
-    //     </Link>
-    //   </div>
-    //   <div> Email: {userEmail} </div>
-    //   <div className={styles.flex}>
-    //     <Link to="/user/changeEmail">
-    //       <button> change email </button>
-    //     </Link>
-    //     <Link to="/user/changePw">
-    //       <button> change password </button>
-    //     </Link>
-    //   </div>
-    // </div>
     <div>
       <Scroll showBelow={250} />
       <Container>

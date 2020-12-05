@@ -1,17 +1,25 @@
 import React from "react";
 import { Grid, Button, TextField, Box } from "@material-ui/core";
 
-export default function CartProduct() {
+export default function CartProduct(props) {
+  const { img, size, name, price, quantity } = props.cart;
+  const handleDeleteCart = () => {
+    if (window.confirm("Are you sure?")) {
+      props.deleteCart(props.cart.id_cart);
+    }
+  };
+  const handleChangeQuantity = (event) => {
+    if (Number(event.target.value) === 0) {
+      return props.deleteCart(props.cart.id_cart);
+    }
+    props.updateCart(props.cart.id_cart, event.target.value);
+  };
   return (
     <Box>
       <Box marginTop={5} marginBottom={5}>
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item md={3}>
-            <img
-              style={{ maxWidth: "90%" }}
-              src="../assets/img/salad.jpg"
-              alt="product img"
-            ></img>
+            <img style={{ maxWidth: "90%" }} src={img} alt="product img"></img>
           </Grid>
           <Grid item md={9}>
             <Grid
@@ -20,19 +28,23 @@ export default function CartProduct() {
               justify="space-between"
               alignItems="center"
             >
-              <Grid item>
-                <h4>Name </h4>
-                <p>Size - </p>
+              <Grid item md={6}>
+                <h4>{name} </h4>
+                <p>Size - {size} </p>
                 <p>Topping</p>
               </Grid>
               <Grid item>
-                <TextField type="number"></TextField>
+                <TextField
+                  type="number"
+                  value={quantity}
+                  onChange={handleChangeQuantity}
+                ></TextField>
               </Grid>
               <Grid item>
-                <p>Price</p>
+                <p>{price * quantity} €</p>
               </Grid>
               <Grid item>
-                <Button>Delete</Button>
+                <Button onClick={handleDeleteCart}>Delete</Button>
               </Grid>
             </Grid>
           </Grid>

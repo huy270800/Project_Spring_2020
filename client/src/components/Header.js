@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   Box,
   Button,
@@ -9,7 +10,6 @@ import {
   makeStyles
 } from "@material-ui/core/";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-
 import "./Header.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +33,7 @@ const StyledBadge = withStyles((theme) => ({
   }
 }))(Badge);
 
-export default function Header() {
+function Header(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -81,7 +81,7 @@ export default function Header() {
             <Link to="/cart">
               <StyledBadge
                 style={{ color: "white" }}
-                badgeContent={4}
+                badgeContent={props.quantity}
                 color="secondary"
               >
                 <ShoppingCartIcon />
@@ -93,3 +93,12 @@ export default function Header() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  const quantity = state.cart.cart.reduce((count, pic) => {
+    return (count = count + pic.quantity);
+  }, 0);
+  return {
+    quantity: quantity
+  };
+};
+export default connect(mapStateToProps, null)(Header);

@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   makeStyles,
   Button,
   Grid,
   Typography,
   Box,
-  FormControlLabel,
-  Checkbox
+  FormControlLabel
 } from "@material-ui/core";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
 const useStyles = makeStyles((theme) => ({
   mar: {
@@ -20,15 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Topping(props) {
   const classes = useStyles();
-  // const handleChange = (event) => {
-  //   setState({ ...state, [event.target.name]: event.target.checked });
-  // };
-  // const [state, setState] = useState({
-  //   checkedA: false,
-  //   checkedB: false,
-  //   checkedC: false,
-  //   checkedD: false
-  // });
+
   return (
     <Grid container direction="row" justify="space-between" alignItems="center">
       {props.topping.map((top) => {
@@ -47,13 +36,13 @@ export default function Topping(props) {
                     <img src={top.img} alt={top.name}></img>
                     <Typography align="center">{top.name}</Typography>
                     <Typography>+ {top.price} €</Typography>
-                    {/* <Checkbox
-                      icon={<RadioButtonUncheckedIcon />}
-                      checkedIcon={<CheckCircleIcon />}
-                      checked={top.selected}
-                      name="checkedA"
-                    /> */}
-                    <input type="checkbox" value={top.name}></input>
+
+                    <input
+                      className="topping"
+                      type="checkbox"
+                      value={top.name}
+                      onChange={props.chooseTopping}
+                    ></input>
                   </Box>
                 }
               />

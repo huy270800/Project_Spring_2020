@@ -43,30 +43,6 @@ export default function ChangeEmail(props) {
       });
   };
   return (
-    // <div className={styles.container}>
-    //   <div className={styles.flex}>
-    //     <h2>Change Email </h2>
-    //     <Link className={styles.button2} to="/user/account">
-    //       <button> close </button>
-    //     </Link>
-    //   </div>
-    //   <form onSubmit={changeEmail}>
-    //     <div>
-    //       New Email:
-    //       <input className={styles.textfield} type="email" name="email" />
-    //     </div>
-    //     <div>
-    //       Your Password:
-    //       <input className={styles.textfield} type="password" name="password" />
-    //     </div>
-    //     <div>
-    //       Change email:
-    //       <button className={styles.button} type="submit">
-    //         confirm
-    //       </button>
-    //     </div>
-    //   </form>
-    // </div>
     <Container>
       <Scroll showBelow={250}></Scroll>
       <Box {...defaultProps} borderTop={0} textAlign="center">
