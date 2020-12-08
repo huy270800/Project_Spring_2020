@@ -18,9 +18,12 @@ const CartProduct = (props) =>  {
   const { img, size, name, price, quantity, id_product } = props.cart;
 
   const handleDeleteCart = () => {
-    if (window.confirm("Are you sure?")) {
-      props.deleteCart(props.cart.id_cart);
-    }
+    // if (window.confirm("Are you sure?")) {
+    //   props.deleteCart(props.cart.id_cart);
+    // }
+    if (window.confirm("Are you sure ? ")){
+      console.log(dispatch(deleteCart()))
+    } 
   };
 
   const handleChangeQuantity = (event) => {
@@ -72,8 +75,8 @@ const CartProduct = (props) =>  {
                 <p>€{price * quantity}</p>
               </Grid>
               <Grid item>
-                <Button onClick={(handleDeleteCart)}>Delete</Button>
-            {/* <Button onClick={() => dispatch(deleteCart({productId:  id_product}))}>Delete</Button> */}
+                {/* <Button onClick={(handleDeleteCart)}>Delete</Button> */}
+            <Button onClick={() => dispatch(deleteCart({productId: id_cart}))}>Delete</Button>
               </Grid>
             </Grid>
           </Grid>
