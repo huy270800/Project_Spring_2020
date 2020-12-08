@@ -53,7 +53,7 @@ export default function SaladCard(props) {
               <Typography variant="body1" color="textSecondary" component="p">
                 From
               </Typography>
-              <Typography variant="h5">{props.price} </Typography>
+              <Typography variant="h5">€{props.price} </Typography>
             </Grid>
             <Grid item>
               <Button>
