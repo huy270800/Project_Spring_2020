@@ -1,4 +1,3 @@
-import { decrease } from "../actions";
 
 const initState = {
   cart: [
@@ -85,6 +84,9 @@ const cart = (state = initState, action) => {
        if (find_product >= 0 && new_cart[find_product].quantity >= 1 ){
         new_cart[find_product].quantity-- 
        }
+       else {
+        console.log("Product not found")
+      }
       return {
         ...state,
         cart: new_cart

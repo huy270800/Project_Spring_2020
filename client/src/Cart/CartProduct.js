@@ -51,7 +51,7 @@ export default function CartProduct(props) {
                 <button onClick={handleIncreaseQuantity}>+</button>
               </Grid>
               <Grid item>
-                <p>{price * quantity} €</p>
+                <p>€{price * quantity}</p>
               </Grid>
               <Grid item>
                 <Button onClick={handleDeleteCart}>Delete</Button>
