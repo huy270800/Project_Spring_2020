@@ -1,6 +1,19 @@
+import { decrease } from "../actions";
 
 const initState = {
-  cart: []
+  cart: [
+    {
+      id_cart: "cart_16073577248070.4606123465718026",
+      id_product: 2,
+      img: "../assets/img/Tropical_Seafood_Pizza.png ",
+      name: "Tropical Seafood Pizza ",
+      price: "14",
+      quantity: 1,
+      size: "Small",
+      toppings: (2) ["pepperoni", "onion"]
+    }
+    
+  ]
 };
 // pic = product in cart
 const cart = (state = initState, action) => {
@@ -48,7 +61,35 @@ const cart = (state = initState, action) => {
         cart: new_cart
       };
     }
-    
+    case "INCREASE": {
+      const find_product = state.cart.findIndex((product)  => {
+        return product.id_cart == action.payload.id_cart
+      })
+      const new_cart = [...state.cart]
+       if (find_product >= 0 ){
+        new_cart[find_product].quantity++ 
+       }
+       else {
+         console.log("Product not found")
+       }
+      return {
+        ...state,
+        cart: new_cart
+      };
+    }
+    case "DECREASE": {
+      const find_product = state.cart.findIndex((product)  => {
+        return product.id_cart == action.payload.id_cart
+      })
+      const new_cart = [...state.cart]
+       if (find_product >= 0 && new_cart[find_product].quantity >= 1 ){
+        new_cart[find_product].quantity-- 
+       }
+      return {
+        ...state,
+        cart: new_cart
+      };
+    }
     default:
       return state;
   }
