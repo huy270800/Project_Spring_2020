@@ -5,8 +5,8 @@ import Scroll from "../components/Scroll";
 import { Container, Box, Grid, Button, makeStyles } from "@material-ui/core";
 import Navbar from "../components/Navbar";
 import CartProduct from "./CartProduct";
-import { updateCart, deleteCart } from "../actions/index";
-
+import { updateCart, deleteCart, increase, decrease } from "../actions/index";
+import { useSelector, useDispatch } from 'react-redux';
 const defaultProps = {
   border: 1
 };
@@ -21,9 +21,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Cart(props) {
+const Cart = (props) =>  {
+  const dispatch = useDispatch();
+  const cart_data = useSelector(
+   (state) => state.cart
+ )
+  
+ console.log(cart_data.cart)
+// function Cart(props) {
   const classes = useStyles();
-  const total = props.cart_data.cart.reduce((total, pic) => {
+  const total = cart_data.cart.reduce((total, pic) => {
     return (total = total + +pic.quantity * pic.price);
   }, 0);
   return (
@@ -34,16 +41,18 @@ function Cart(props) {
           <Navbar></Navbar>
           <Box {...border} borderTop={1}>
             <h3>Product</h3>
-            {props.cart_data.cart.length === 0 ? (
+            {cart_data.cart.length === 0 ? (
               <p>Cart is empty</p>
             ) : (
               <Box>
-                {props.cart_data.cart.map((cart_item) => {
+                {cart_data.cart.map((cart_item) => {
                   return (
                     <Box m={3}>
                       <CartProduct
-                        updateCart={props.updateCart}
-                        deleteCart={props.deleteCart}
+                        updateCart={dispatch(updateCart)}
+                        deleteCart={dispatch(deleteCart())}
+                        // increase={props.increase}
+                        // decrease={props.decrease}
                         cart={cart_item}
                         key={cart_item.id}
                       ></CartProduct>
@@ -58,10 +67,10 @@ function Cart(props) {
                     alignItems="center"
                   >
                     <Grid item className={classes.margin}>
-                      <h2>Total: </h2>
+                      <h2>Total:</h2>
                     </Grid>
                     <Grid item className={classes.margin}>
-                      <h2>€ {total}</h2>
+                      <h2>€{total}</h2>
                     </Grid>
                   </Grid>
                   <Grid container direction="row" justify="flex-end">
@@ -89,19 +98,26 @@ function Cart(props) {
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    cart_data: state.cart
-  };
-};
-const mapDispatchToProps = (dispatch) => {
+// const mapStateToProps = (state) => {
+//   return {
+//     cart_data: state.cart
+//   };
+// };
+const mapDispatchToProps = (dispatch,state) => {
   return {
     updateCart: (id_cart, value) => {
       dispatch(updateCart(id_cart, value));
     },
     deleteCart: (id_cart) => {
       dispatch(deleteCart(id_cart));
-    }
+    },
+    // increase: () => {
+    //   dispatch({ type: "INCREASE", payload: {}})
+    // },
+    // decrease: () => {
+    //   dispatch({ type: "DECREASE", payload: {}})
+    // }
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+// export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart

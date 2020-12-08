@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   GoogleMap,
-  InfoWindow,
   LoadScript,
   Marker
 } from "@react-google-maps/api";

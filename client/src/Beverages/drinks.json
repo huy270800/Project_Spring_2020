@@ -5,6 +5,8 @@
       "name": "Tiger Beer",
       "price": 3.5,
       "img": "../assets/img/tiger_beer.png",
+      "alcohol": true ,  
+      "coke": false,
       "description": "Tiger can"
     },
     {
@@ -12,6 +14,8 @@
       "name": "Heineken Beer",
       "price": 3.5,
       "img": "../assets/img/heineken_beer.png",
+      "alcohol": true , 
+      "coke": false,
       "description": "Heineken Bear"
     },
     {
@@ -19,6 +23,8 @@
       "name": "7 Up",
       "price": 2,
       "img": "../assets/img/7up_can.jpeg",
+      "alcohol": false , 
+      "coke": true, 
       "description": "7 Up Can"
     },
     {
@@ -26,6 +32,8 @@
       "name": "7 Up",
       "price": 4,
       "img": "../assets/img/7up_1l.jpeg",
+      "alcohol": false , 
+      "coke": true,
       "description": "7 Up 1,5L"
     },
     {
@@ -33,6 +41,8 @@
       "name": "Pepsi",
       "price": 4,
       "img": "../assets/img/pepsi_1.5l.jpeg",
+      "alcohol": false , 
+      "coke": true,
       "description": "Pepsi 1,5l"
     },
     {
@@ -40,6 +50,8 @@
       "name": "Pepsi Black Can",
       "price": 2,
       "img": "../assets/img/pepsi_black.jpeg",
+      "alcohol": false , 
+      "coke": true,
       "description": "Pepsi black can"
     },
     {
@@ -47,6 +59,8 @@
       "name": "Pepsi",
       "price": 2,
       "img": "../assets/img/pepsi.jpeg",
+      "alcohol": false , 
+      "coke": true,
       "description": "Pepsi can"
     },
     {
@@ -54,6 +68,8 @@
       "name": "Pepsi Black Lime",
       "price": 2,
       "img": "../assets/img/pepsi_black_lime.png",
+      "alcohol": false , 
+      "coke": true,
       "description": "Pepsi black Lime can"
     },
     {
@@ -61,6 +77,8 @@
       "name": "333 Beer",
       "price": 3.5,
       "img": "../assets/img/333_beer.png",
+      "alcohol": true , 
+      "coke": false,
       "description": "333 beer can"
     },
     {
@@ -68,6 +86,8 @@
       "name": "Strongbow Dark Fruit",
       "price": 3,
       "img": "../assets/img/strongbow_dark_fruit.png",
+      "alcohol": true , 
+      "coke": false,
       "description": ""
     },
     {
@@ -75,6 +95,8 @@
       "name": "Strongbow Bow Apple",
       "price": 3,
       "img": "../assets/img/strongbow_gold_apple.png",
+      "alcohol": true , 
+      "coke": false,
       "description": ""
     },
     {
@@ -82,6 +104,8 @@
       "name": "Strongbow Honey",
       "price": 3,
       "img": "../assets/img/strongbow_honey.jpeg",
+      "alcohol": true , 
+      "coke": false,
       "description": ""
     },
     {
@@ -89,6 +113,8 @@
       "name": "Strongbow Red Berries",
       "price": 3,
       "img": "../assets/img/strongbow_red_berries.png",
+      "alcohol": true, 
+      "coke": false,
       "description": ""
     }
   ]

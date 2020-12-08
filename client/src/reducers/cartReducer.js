@@ -1,3 +1,4 @@
+
 const initState = {
   cart: []
 };
@@ -47,6 +48,7 @@ const cart = (state = initState, action) => {
         cart: new_cart
       };
     }
+    
     default:
       return state;
   }

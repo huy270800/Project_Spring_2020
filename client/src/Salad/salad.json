@@ -4,9 +4,8 @@
       "id": 1,
       "name": "Caesar Salad",
       "size": ["Small", "Medium", "Large"],
-<<<<<<< HEAD
       "description": "Fresh vegetables with Caesar sauce",
-      "price": 4,
+      "price": 4, 
       "seafood": false,
       "bacon": false,
       "tomatoes": false,
@@ -21,23 +20,18 @@
       "cheese": false,
       "pepper": false,
       "mushroom": false,
-      "italian sausage": false
-=======
-      "description": "fresh vegetables with Caesar sauce",
-      "price": "7€",
+      "italian sausage": false,
       "img": "../assets/img/Caesar_Salad.png"
->>>>>>> e9a9b7be8b1cc47d3a89b481fad9dc75af27e4cc
     },
     {
       "id": 2,
       "name": "Vinegar Salad",
       "size": ["Small", "Medium", "Large"],
-<<<<<<< HEAD
       "description": "Fresh vegetables with vinegar",
       "price": 5,
       "seafood": false,
       "bacon": false,
-      "tomatoes": false,
+      "tomatoes": false,      
       "chicken": false,
       "shrimp": false,
       "sausage": false,
@@ -49,25 +43,32 @@
       "cheese": false,
       "pepper": false,
       "mushroom": false,
-      "italian sausage": false
-=======
-      "description": "fresh vegetables with vinegar",
-      "price": "6€",
+      "italian sausage": false,
       "img": "../assets/img/Vinegar_Salad.png"
-     
->>>>>>> e9a9b7be8b1cc47d3a89b481fad9dc75af27e4cc
     },
     {
       "id": 3,
       "name": "Special Salad",
       "size": ["Small", "Medium", "Large"],
       "description": "Special salad with brocolli, apple, salad, eggs and special sauce",
-<<<<<<< HEAD
-      "price": 7
-=======
-      "price": "7€",
+      "price": 7,
+      "seafood": false,
+      "bacon": false,
+      "tomatoes": false,      
+      "chicken": false,
+      "shrimp": false,
+      "sausage": false,
+      "pineapple": false,
+      "pepperoni": false,
+      "onion": false,
+      "ham": false,
+      "corn": false,
+      "cheese": false,
+      "pepper": false,
+      "mushroom": false,
+      "italian sausage": false,
       "img": "../assets/img/Special_Salad.png"
->>>>>>> e9a9b7be8b1cc47d3a89b481fad9dc75af27e4cc
+
     }
   ]
 }

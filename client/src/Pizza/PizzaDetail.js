@@ -23,6 +23,8 @@ import Scroll from "../components/Scroll";
 import Topping from "../components/product/Topping.js";
 import Size from "../components/product/Size.js";
 
+import { addToCart } from '../features/cart/cartSlice';
+
 const styles = (theme) => ({
   pad: {
     padding: "16px 24px"
@@ -76,7 +78,7 @@ class PizzaDetail extends Component {
 
   changeSize = (event) => {
     this.setState({ selected_size: event.target.value });
-    console.log(this.state.selected_size);
+    console.log(this.state.selected_size);  
   };
 
   chooseTopping = (event) => {
@@ -150,7 +152,7 @@ class PizzaDetail extends Component {
                   className={this.props.classes.pic}
                 ></img>
                 <Typography variant="h6" align="center">
-                  {this.state.price} €
+                €{this.state.price} 
                 </Typography>
               </Grid>
               <Grid item xs={6}>
@@ -221,7 +223,8 @@ class PizzaDetail extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product) => {
-      dispatch({ type: "ADD_TO_CART", payload: product });
+      // dispatch({ type: "ADD_TO_CART", payload: product });
+      dispatch(addToCart(product));
     }
   };
 };

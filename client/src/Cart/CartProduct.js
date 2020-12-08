@@ -1,19 +1,40 @@
 import React from "react";
 import { Grid, Button, TextField, Box } from "@material-ui/core";
+import {connect} from "react-redux"
+// import { decrease } from "../actions";
 
-export default function CartProduct(props) {
-  const { img, size, name, price, quantity } = props.cart;
+import { useSelector, useDispatch } from 'react-redux';
+import { increase, decrease, removeAllQuantity,deleteCart } from '../features/cart/cartSlice';
+
+const CartProduct = (props) =>  {
+
+  const dispatch = useDispatch();
+  const cart_data = useSelector(
+   (state) => state.cart
+ )
+
+ console.log(cart_data.cart)
+
+  const { img, size, name, price, quantity, id_product } = props.cart;
+
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
       props.deleteCart(props.cart.id_cart);
     }
   };
+
   const handleChangeQuantity = (event) => {
     if (Number(event.target.value) === 0) {
       return props.deleteCart(props.cart.id_cart);
     }
     props.updateCart(props.cart.id_cart, event.target.value);
   };
+  // const increase = () => {
+  //   console.log("adasdasdasd")
+  // }
+  // const decrease = () => {
+  //   console.log("adasdasasdasssssssssssssssss")
+  // }
   return (
     <Box>
       <Box marginTop={5} marginBottom={5}>
@@ -34,17 +55,25 @@ export default function CartProduct(props) {
                 <p>Topping</p>
               </Grid>
               <Grid item>
-                <TextField
+                <div >
+                  {console.log(props.cart)}
+                  <button onClick={() => dispatch(removeAllQuantity({ productId: id_product }))}>Remove quantity</button>
+                  <button  onClick={() => dispatch(decrease({ productId: id_product }))}>-</button>
+                  {quantity} 
+                  <button onClick={() => dispatch(increase({ productId: id_product }))}>+</button>
+                </div>
+                {/* <TextField
                   type="number"
                   value={quantity}
                   onChange={handleChangeQuantity}
-                ></TextField>
+                ></TextField> */}
               </Grid>
               <Grid item>
-                <p>{price * quantity} €</p>
+                <p>€{price * quantity}</p>
               </Grid>
               <Grid item>
-                <Button onClick={handleDeleteCart}>Delete</Button>
+                <Button onClick={(handleDeleteCart)}>Delete</Button>
+            {/* <Button onClick={() => dispatch(deleteCart({productId:  id_product}))}>Delete</Button> */}
               </Grid>
             </Grid>
           </Grid>
@@ -53,3 +82,14 @@ export default function CartProduct(props) {
     </Box>
   );
 }
+
+  // const mapDispatchToProps = (dispatch,ownProps) => {
+  //   console.log(ownProps.cart); 
+  //   return{
+  //     increase: () => dispatch( {type: "INCREASE", payload: {id:1}}),
+  //     decrease: () => dispatch( {type: "DECREASE", payload: {id:1}})
+  //   }
+  // }
+// export default connect(null,mapDispatchToProps)(CartProduct);
+
+export default CartProduct;
