@@ -3,6 +3,7 @@ import { Grid, Button, TextField, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
   const { img, size, name, price, quantity } = props.cart;
+  console.log(props)
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
       props.deleteCart(props.cart.id_cart);
@@ -14,6 +15,12 @@ export default function CartProduct(props) {
     }
     props.updateCart(props.cart.id_cart, event.target.value);
   };
+  const handleDecreaseQuantity = () => {
+      props.decrease(props.cart.id_cart)
+  }
+  const handleIncreaseQuantity = () => {
+    props.increase(props.cart.id_cart)
+  }
   return (
     <Box>
       <Box marginTop={5} marginBottom={5}>
@@ -34,11 +41,14 @@ export default function CartProduct(props) {
                 <p>Topping</p>
               </Grid>
               <Grid item>
-                <TextField
+                {/* <TextField
                   type="number"
                   value={quantity}
                   onChange={handleChangeQuantity}
-                ></TextField>
+                ></TextField> */}
+                <button onClick={handleDecreaseQuantity}>-</button>
+                {quantity}
+                <button onClick={handleIncreaseQuantity}>+</button>
               </Grid>
               <Grid item>
                 <p>{price * quantity} €</p>

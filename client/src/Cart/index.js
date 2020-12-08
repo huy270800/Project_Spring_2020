@@ -5,7 +5,7 @@ import Scroll from "../components/Scroll";
 import { Container, Box, Grid, Button, makeStyles } from "@material-ui/core";
 import Navbar from "../components/Navbar";
 import CartProduct from "./CartProduct";
-import { updateCart, deleteCart } from "../actions/index";
+import { updateCart, deleteCart, increase, decrease } from "../actions/index";
 
 const defaultProps = {
   border: 1
@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Cart(props) {
+  console.log(props.cart_data)
   const classes = useStyles();
   const total = props.cart_data.cart.reduce((total, pic) => {
     return (total = total + +pic.quantity * pic.price);
@@ -44,6 +45,8 @@ function Cart(props) {
                       <CartProduct
                         updateCart={props.updateCart}
                         deleteCart={props.deleteCart}
+                        increase={props.increase}
+                        decrease={props.decrease}
                         cart={cart_item}
                         key={cart_item.id}
                       ></CartProduct>
@@ -101,6 +104,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteCart: (id_cart) => {
       dispatch(deleteCart(id_cart));
+    },
+    increase: (id_cart) => {
+      dispatch(increase(id_cart))
+    },
+    decrease: (id_cart) => {
+      dispatch(decrease(id_cart))
     }
   };
 };
