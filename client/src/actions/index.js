@@ -31,3 +31,17 @@ export const deleteCart = (id_cart) => {
     payload: { id_cart }
   };
 };
+
+export const increase = (id_cart) => {
+  return {
+    type: "INCREASE",
+    payload: { id_cart }
+  };
+};
+
+export const decrease = (id_cart) => {
+  return {
+    type: "DECREASE",
+    payload: { id_cart }
+  };
+};
