@@ -51,42 +51,6 @@ export default function ChangePw(props) {
       });
   };
   return (
-    // <div className={styles.container}>
-    //   <div className={styles.flex}>
-    //     <h2>Change Password </h2>
-    //     <Link className={styles.button2} to="/user/account">
-    //       <button> close </button>
-    //     </Link>
-    //   </div>
-    //   <form onSubmit={changePassword}>
-    //     <div>
-    //       Your old Password:
-    //       <input className={styles.textfield} type="password" name="password" />
-    //     </div>
-    //     <div>
-    //       Your new Password:
-    //       <input
-    //         className={styles.textfield}
-    //         type="password"
-    //         name="password2"
-    //       />
-    //     </div>
-    //     <div>
-    //       Repeat new Password:
-    //       <input
-    //         className={styles.textfield}
-    //         type="password"
-    //         name="password3"
-    //       />
-    //     </div>
-    //     <div>
-    //       Change password:
-    //       <button className={styles.button} type="submit">
-    //         confirm
-    //       </button>
-    //     </div>
-    //   </form>
-    // </div>
     <Container>
       <Scroll showBelow={250}></Scroll>
       <Box {...defaultProps} borderTop={0} textAlign="center">

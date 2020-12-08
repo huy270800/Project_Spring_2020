@@ -21,12 +21,10 @@ import User from "./User/User";
 import Validation from "./components/Validation";
 import ConfirmEmail from "./User/ConfirmEmail";
 import Checkout from "./Checkout";
-
 import ChangePw from "./User/ChangePw";
 import SaladDetail from "./Salad/SaladDetail";
 import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
-import Drink from "./Beverages/index";
 
 const theme = createMuiTheme({
   palette: {
@@ -125,7 +123,7 @@ class App extends Component {
               )}
             ></Route>
             <Route path="/beverages">
-              <Drink beverages={this.state.beverages}></Drink>
+              <Beverages beverages={this.state.beverages}></Beverages>
             </Route>
             <Route path="/promotion" component={Promotion}></Route>
             <Route path="/storelist">

@@ -14,7 +14,7 @@ import {
 
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-import topping from "../Pizza/top.json";
+import topping from "../Pizza/Toppings.json";
 
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";

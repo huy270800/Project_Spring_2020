@@ -5,6 +5,7 @@ import Drink from "./DrinkCard";
 export default function DrinkList(props) {
   return (
     <Container>
+      {<h1>Coke</h1>}
       {props.isLoading ? (
         <Box
           width="100%"
@@ -22,7 +23,8 @@ export default function DrinkList(props) {
           justify="space-around"
           alignItems="center"
         >
-          {props.beverages.map((item) => {
+          
+          {props.beverages.filter(item => item.coke === true).map((item) => {
             return (
               <Drink
                 name={item.name}
@@ -35,6 +37,26 @@ export default function DrinkList(props) {
           })}
         </Grid>
       )}
+      {<h1>Beer</h1>}
+      <Grid
+          container
+          direction="row"
+          justify="space-around"
+          alignItems="center"
+        >
+          
+          {props.beverages.filter(item => item.alcohol === true).map((item) => {
+            return (
+              <Drink
+                name={item.name}
+                price={item.price}
+                key={item.id}
+                id={item.id}
+                img={item.img}
+              ></Drink>
+            );
+          })}
+        </Grid>
     </Container>
   );
 }

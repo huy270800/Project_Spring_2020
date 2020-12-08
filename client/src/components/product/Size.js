@@ -56,8 +56,14 @@ function StyledRadio(props) {
 
 export default function Size(props) {
   return (
-    <FormControl component="fieldset">
-      <RadioGroup defaultValue="small" aria-label="size" name="size-radios">
+    <FormControl id="size" component="fieldset">
+      <RadioGroup
+        defaultValue="small"
+        aria-label="size"
+        name="size-radios"
+        value={props.size}
+        onChange={props.changeSize}
+      >
         <Grid
           container
           direction="row"
@@ -69,6 +75,7 @@ export default function Size(props) {
               return (
                 <Grid item xs={3}>
                   <FormControlLabel
+                    className="size"
                     key={s.id}
                     value={s}
                     control={<StyledRadio />}
