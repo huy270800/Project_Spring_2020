@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import {
   makeStyles,
+  Typography,
   Radio,
   RadioGroup,
   FormControlLabel,
@@ -56,37 +57,40 @@ function StyledRadio(props) {
 
 export default function Size(props) {
   return (
-    <FormControl id="size" component="fieldset">
-      <RadioGroup
-        defaultValue="small"
-        aria-label="size"
-        name="size-radios"
-        value={props.size}
-        onChange={props.changeSize}
-      >
-        <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center"
+    <div>
+      <Typography variant="h6">SIZE</Typography>
+      <FormControl id="size" component="fieldset">
+        <RadioGroup
+          defaultValue="small"
+          aria-label="size"
+          name="size-radios"
+          value={props.size}
+          onChange={props.changeSize}
         >
-          {props.size &&
-            props.size.map((s) => {
-              return (
-                <Grid item xs={3}>
-                  <FormControlLabel
-                    className="size"
-                    key={s.id}
-                    value={s}
-                    control={<StyledRadio />}
-                    label={s}
-                    labelPlacement="bottom"
-                  ></FormControlLabel>
-                </Grid>
-              );
-            })}
-        </Grid>
-      </RadioGroup>
-    </FormControl>
+          <Grid
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+          >
+            {props.size &&
+              props.size.map((s) => {
+                return (
+                  <Grid item xs={3}>
+                    <FormControlLabel
+                      className="size"
+                      key={s.id}
+                      value={s}
+                      control={<StyledRadio />}
+                      label={s}
+                      labelPlacement="bottom"
+                    ></FormControlLabel>
+                  </Grid>
+                );
+              })}
+          </Grid>
+        </RadioGroup>
+      </FormControl>
+    </div>
   );
 }
