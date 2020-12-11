@@ -150,7 +150,7 @@ Promise.all(
         cheese BOOLEAN,
         pepper BOOLEAN,
         mushroom BOOLEAN,
-        italiansausage BOOLEAN
+        italiansausage BOOLEAN,
         img VARCHAR(256)
       )`),
       db.query(`CREATE TABLE IF NOT EXISTS public.drinks_table(
