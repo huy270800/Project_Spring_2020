@@ -10,9 +10,9 @@ router.post('/', passport.authenticate('basic', {session : false}), (req, res) =
         return;
     }
 
-    //so the coords can be saved as INT. spelling mistakes are intentional, since they're used in code
-    var int_lat = Math.floor(req.body.latitue * 1000000);
-    var int_long = Math.floor(req.body.longtitue * 1000000);
+    //so the coords can be saved as INT.
+    var int_lat = Math.floor(req.body.latitude * 1000000);
+    var int_long = Math.floor(req.body.longitude * 1000000);
 
     db.query('insert into locations_table (name, address, delivery, latitude, longitude) values($1, $2, $3, $4, $5)',
         [req.body.name, req.body.address, req.body.delivery, int_lat, int_long])
@@ -33,8 +33,6 @@ router.get('/', (req, res) => {
             //get coords from the INT values
             result.rows[i].latitude = result.rows[i].latitude / 1000000;
             result.rows[i].longitude = result.rows[i].longitude / 1000000;
-            result.rows[i].latitue = result.rows[i].latitude
-            result.rows[i].longtitue = result.rows[i].longitude
         }
         res.json(result.rows);
     })

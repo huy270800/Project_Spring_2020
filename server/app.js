@@ -118,8 +118,8 @@ Promise.all(
         id SERIAL PRIMARY KEY,
         name VARCHAR(64) UNIQUE,
         size VARCHAR(32),
-        ingredients VARCHAR(512),
-        price VARCHAR(32),
+        description VARCHAR(512),
+        price INT,
         spicy BOOLEAN,
         seafood BOOLEAN,
         mixed BOOLEAN,
@@ -135,7 +135,7 @@ Promise.all(
         name VARCHAR(64) UNIQUE,
         size VARCHAR(32),
         description VARCHAR(512),
-        price VARCHAR(32),
+        price INT,
         seafood BOOLEAN,
         bacon BOOLEAN,
         tomatoes BOOLEAN,
@@ -151,6 +151,23 @@ Promise.all(
         pepper BOOLEAN,
         mushroom BOOLEAN,
         italiansausage BOOLEAN
+        img VARCHAR(256)
+      )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.drinks_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(64) UNIQUE,
+        price INT,
+        img VARCHAR(256),
+        alcohol BOOLEAN,
+        coke BOOLEAN,
+        description VARCHAR(512)        
+      )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.toppings_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(64) UNIQUE,
+        price INT,
+        img VARCHAR(256),
+        selected BOOLEAN       
       )`),
       // Add more create table statements here
   ]
