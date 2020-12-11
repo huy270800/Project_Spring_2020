@@ -18,7 +18,7 @@ import Topping from "../components/product/Topping.js";
 import Size from "../components/product/Size.js";
 import AddToCart from "../components/product/AddToCart";
 import ProductDetail from "../components/product/ProductDetail";
-import * as constant from "./constants.json"
+import * as constant from "../constants.json"
 var chooseTop = [];
 
 const styles = (theme) => ({
@@ -45,10 +45,11 @@ class PizzaDetail extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props.match.params.id);
     axios
-      .get( constant.baseAddress + `/pizzas/${this.props.match.params.id}`)
+      .get( constant.baseAddress + `/products/pizzas?id=${this.props.match.params.id}`)
       .then((res) => {
-        const { id, name, price, size, img, description } = res.data;
+        const { id, name, price, size, img, description } = res.data[0];
         this.setState({
           id,
           name,

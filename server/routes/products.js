@@ -166,7 +166,7 @@ router.post('/salads', passport.authenticate('basic', {session : false}), (req, 
     }
     var int_price = Math.floor(req.body.price * 100);
     db.query(`insert into salads_table
-        (name, size, description, price, seafood, bacon, tomatoes, chicken, shrimp, sausage, pineapple, pepperoni, onion, ham, corn, cheese, pepper, mushroom, italiansausage)
+        (name, size, description, price, seafood, bacon, tomatoes, chicken, shrimp, sausage, pineapple, pepperoni, onion, ham, corn, cheese, pepper, mushroom, italiansausage, img)
         values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)`,
         [req.body.name, req.body.size.toString(), req.body.description, int_price, req.body.seafood, req.body.bacon, req.body.tomatoes,
         req.body.chicken, req.body.shrimp, req.body.sausage, req.body.pineapple, req.body.pepperoni, req.body.onion, req.body.ham,

@@ -116,7 +116,7 @@ Promise.all(
       )`),
       db.query(`CREATE TABLE IF NOT EXISTS public.pizzas_table(
         id SERIAL PRIMARY KEY,
-        name VARCHAR(64) UNIQUE,
+        name VARCHAR(64),
         size VARCHAR(32),
         description VARCHAR(512),
         price INT,
@@ -132,7 +132,7 @@ Promise.all(
       )`),
       db.query(`CREATE TABLE IF NOT EXISTS public.salads_table(
         id SERIAL PRIMARY KEY,
-        name VARCHAR(64) UNIQUE,
+        name VARCHAR(64),
         size VARCHAR(32),
         description VARCHAR(512),
         price INT,
@@ -155,7 +155,7 @@ Promise.all(
       )`),
       db.query(`CREATE TABLE IF NOT EXISTS public.drinks_table(
         id SERIAL PRIMARY KEY,
-        name VARCHAR(64) UNIQUE,
+        name VARCHAR(64),
         price INT,
         img VARCHAR(256),
         alcohol BOOLEAN,
@@ -164,7 +164,7 @@ Promise.all(
       )`),
       db.query(`CREATE TABLE IF NOT EXISTS public.toppings_table(
         id SERIAL PRIMARY KEY,
-        name VARCHAR(64) UNIQUE,
+        name VARCHAR(64),
         price INT,
         img VARCHAR(256),
         selected BOOLEAN       
