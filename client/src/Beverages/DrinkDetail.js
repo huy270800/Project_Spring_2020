@@ -16,6 +16,8 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";
 
+import * as constant from "../constants.json"
+
 const style = (theme) => ({
   pad: {
     padding: "16px 24px"
@@ -35,10 +37,10 @@ class DrinkDetail extends Component {
   state = {};
   componentDidMount() {
     axios
-      .get(`http://localhost:4000/drinks/${this.props.match.params.id}`)
+      .get(constant.baseAddress + `/products/drinks?id=${this.props.match.params.id}`)
       .then((res) => {
         console.log(this.props);
-        const { id, name, price, img, description } = res.data;
+        const { id, name, price, img, description } = res.data[0];
         this.setState({
           id,
           name,
