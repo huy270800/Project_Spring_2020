@@ -17,84 +17,84 @@
     {
       "id": 3,
       "name": "bacon",
-      "price": "3",
+      "price": 3,
       "img": "../assets/img/bacon.png",
       "selected": false
     },
     {
       "id": 4,
       "name": "grilled chicken",
-      "price": "3",
+      "price": 3,
       "img": "../assets/img/grill_chicken.png",
       "selected": false
     },
     {
       "id": 5,
       "name": "cheese",
-      "price": "3",
+      "price": 3,
       "img": "../assets/img/cheese.png",
       "selected": false
     },
     {
       "id": 6,
       "name": "onion",
-      "price": "1",
+      "price": 1,
       "img": "../assets/img/onion.png",
       "selected": false
     },
     {
       "id": 7,
       "name": "corn",
-      "price": "1",
+      "price": 1,
       "img": "../assets/img/corn.png",
       "selected": false
     },
     {
       "id": 8,
       "name": "mushroom",
-      "price": "1",
+      "price": 1,
       "img": "../assets/img/mushroom.png",
       "selected": false
     },
     {
       "id": 9,
       "name": "pepper",
-      "price": "1",
+      "price": 1,
       "img": "../assets/img/capsicum.png",
       "selected": false
     },
     {
       "id": 10,
       "name": "pineapple",
-      "price": "1",
+      "price": 1,
       "img": "../assets/img/pineapple.png",
       "selected": false
     },
     {
       "id": 11,
       "name": "tomatoe",
-      "price": "1",
+      "price": 1,
       "img": "../assets/img/tomatoe.png",
       "selected": false
     },
     {
       "id": 12,
       "name": "seafood",
-      "price": "3",
+      "price": 3,
       "img": "../assets/img/seafood.png",
       "selected": false
     },
     {
       "id": 13,
       "name": "crab stick",
-      "price": "2",
+      "price": 2,
       "img": "../assets/img/crab_stick.png",
       "selected": false
     },
     {
       "id": 14,
       "name": "italian sausage",
-      "price": "5",
+      "price": 5,
       "img": "../assets/img/italian_sausage.png",
       "selected": false
     }
