@@ -2,8 +2,10 @@ import React from "react";
 import { Grid, Button, TextField, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
-  const { img, size, name, price, quantity } = props.cart;
+  const { img, size, name, price, quantity  } = props.cart;
+  
   console.log(props)
+
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
       props.deleteCart(props.cart.id_cart);
@@ -46,12 +48,12 @@ export default function CartProduct(props) {
                   value={quantity}
                   onChange={handleChangeQuantity}
                 ></TextField> */}
-                <button onClick={handleDecreaseQuantity}>-</button>
+                <button onChange={handleChangeQuantity} onClick={handleDecreaseQuantity}>-</button>
                 {quantity}
                 <button onClick={handleIncreaseQuantity}>+</button>
               </Grid>
               <Grid item>
-                <p>€{price * quantity}</p>
+                <p>€{price * quantity }</p>
               </Grid>
               <Grid item>
                 <Button onClick={handleDeleteCart}>Delete</Button>

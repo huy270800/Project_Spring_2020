@@ -25,6 +25,7 @@ import ChangePw from "./User/ChangePw";
 import SaladDetail from "./Salad/SaladDetail";
 import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
+import * as constant from "./constants.json"
 
 const theme = createMuiTheme({
   palette: {
@@ -54,7 +55,7 @@ class App extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:4000/salads")
+      .get(constant.baseAddress + "/salads")
       .then((res) => {
         this.setState({ salads: res.data });
       })
@@ -62,7 +63,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get("http://localhost:4000/pizzas")
+      .get(constant.baseAddress + "/pizzas")
       .then((res) => {
         this.setState({ pizzas: res.data });
       })
@@ -70,7 +71,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get("http://localhost:4000/drinks")
+      .get(constant.baseAddress + "/drinks")
       .then((res) => {
         this.setState({ beverages: res.data });
       })
@@ -78,7 +79,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get("http://localhost:4000/storeList")
+      .get(constant.baseAddress + "/storeList")
       .then((res) => {
         this.setState({ location: res.data });
         this.setState({ searchResults: res.data });
@@ -88,7 +89,7 @@ class App extends Component {
       });
 
     axios
-      .get("http://localhost:4000/topping")
+      .get(constant.baseAddress + "/topping")
       .then((res) => {
         this.setState({ topping: res.data });
       })

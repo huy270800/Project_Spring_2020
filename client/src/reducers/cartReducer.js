@@ -1,16 +1,7 @@
 
 const initState = {
   cart: [
-    {
-      id_cart: "cart_16073577248070.4606123465718026",
-      id_product: 2,
-      img: "../assets/img/Tropical_Seafood_Pizza.png ",
-      name: "Tropical Seafood Pizza ",
-      price: "14",
-      quantity: 1,
-      size: "Small",
-      toppings: (2) ["pepperoni", "onion"]
-    }
+    
     
   ]
 };

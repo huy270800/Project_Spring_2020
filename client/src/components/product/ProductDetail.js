@@ -28,6 +28,7 @@ const useStyles = makeStyles({
 });
 
 export default function ProductDetail(props) {
+  console.log(props)
   const classes = useStyles();
   return (
     <div>
@@ -48,7 +49,7 @@ export default function ProductDetail(props) {
         <Grid item xs={6}>
           <img src={props.img} alt="Products" className={classes.pic}></img>
           <Typography variant="h6" align="center">
-            {props.price} €
+          €{props.price} 
           </Typography>
         </Grid>
         <Grid item xs={6}>

@@ -42,7 +42,7 @@ export default function Topping(props) {
                     <Box height="20vh">
                       <img src={top.img} alt={top.name}></img>
                       <Typography align="center">{top.name}</Typography>
-                      <Typography>+ {top.price} €</Typography>
+                      <Typography>+ €{top.price} </Typography>
 
                       <input
                         className="topping"
