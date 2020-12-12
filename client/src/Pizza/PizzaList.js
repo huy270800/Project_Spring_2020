@@ -5,7 +5,6 @@ import PizzaCard from "./PizzaCard";
 import { addToCart } from "../actions/index";
 
 function PizzaList(props) {
-  console.log(props)
   return (
     <Container>
       {<h1>Seafood Pizza</h1>}
@@ -26,32 +25,34 @@ function PizzaList(props) {
           justify="space-around"
           alignItems="center"
         >
-         
-          {props.pizzas.filter(item => item.seafood === true).map((item) => {
-            return (
-              <PizzaCard
-                addToCart={props.addToCart}
-                name={item.name}
-                img={item.img}
-                size={item.size}
-                description={item.description}
-                price={item.price}
-                key={item.id}
-                id={item.id}
-              ></PizzaCard>
-            );
-          })}
+          {props.pizzas
+            .filter((item) => item.seafood === true)
+            .map((item) => {
+              return (
+                <PizzaCard
+                  addToCart={props.addToCart}
+                  name={item.name}
+                  img={item.img}
+                  size={item.size}
+                  description={item.description}
+                  price={item.price}
+                  key={item.id}
+                  id={item.id}
+                ></PizzaCard>
+              );
+            })}
         </Grid>
       )}
       {<h1>Mixed Pizza</h1>}
       <Grid
-          container
-          direction="row"
-          justify="space-around"
-          alignItems="center"
-        >
-         
-          {props.pizzas.filter(item => item.mixed === true).map((item) => {
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
+      >
+        {props.pizzas
+          .filter((item) => item.mixed === true)
+          .map((item) => {
             return (
               <PizzaCard
                 addToCart={props.addToCart}
@@ -65,16 +66,17 @@ function PizzaList(props) {
               ></PizzaCard>
             );
           })}
-        </Grid>
-        {<h1>Traditional Pizza</h1>}
+      </Grid>
+      {<h1>Traditional Pizza</h1>}
       <Grid
-          container
-          direction="row"
-          justify="space-around"
-          alignItems="center"
-        >
-         
-          {props.pizzas.filter(item => item.traditional === true).map((item) => {
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
+      >
+        {props.pizzas
+          .filter((item) => item.traditional === true)
+          .map((item) => {
             return (
               <PizzaCard
                 addToCart={props.addToCart}
@@ -88,16 +90,17 @@ function PizzaList(props) {
               ></PizzaCard>
             );
           })}
-        </Grid>
-        {<h1>Filled Pizza</h1>}
+      </Grid>
+      {<h1>Filled Pizza</h1>}
       <Grid
-          container
-          direction="row"
-          justify="space-around"
-          alignItems="center"
-        >
-         
-          {props.pizzas.filter(item => item.filling === true).map((item) => {
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
+      >
+        {props.pizzas
+          .filter((item) => item.filling === true)
+          .map((item) => {
             return (
               <PizzaCard
                 addToCart={props.addToCart}
@@ -111,7 +114,7 @@ function PizzaList(props) {
               ></PizzaCard>
             );
           })}
-        </Grid>
+      </Grid>
     </Container>
   );
 }

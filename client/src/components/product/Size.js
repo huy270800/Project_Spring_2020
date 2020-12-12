@@ -81,7 +81,7 @@ export default function Size(props) {
                       className="size"
                       key={s.id}
                       value={s}
-                      control={<StyledRadio />}
+                      control={<StyledRadio required />}
                       label={s}
                       labelPlacement="bottom"
                     ></FormControlLabel>

@@ -12,7 +12,6 @@ import {
   Button
 } from "@material-ui/core/";
 import { Link } from "react-router-dom";
-// import Detail from "./Detail";
 
 const useStyles = makeStyles({
   card: {
@@ -53,7 +52,7 @@ export default function PizzaCard(props) {
               <Typography variant="body1" color="textSecondary" component="p">
                 From
               </Typography>
-              <Typography variant="h5">€{props.price}  </Typography>
+              <Typography variant="h5">€{props.price} </Typography>
             </Grid>
             <Grid item>
               <Button>

@@ -22,10 +22,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Cart(props) {
-  console.log(props.cart_data)
   const classes = useStyles();
   const total = props.cart_data.cart.reduce((total, pic) => {
-    console.log(pic)
+    console.log(pic);
     return (total = total + +pic.quantity * pic.price);
   }, 0);
   return (
@@ -68,7 +67,12 @@ function Cart(props) {
                       <h2>€ {total}</h2>
                     </Grid>
                   </Grid>
-                  <Grid container direction="row" justify="flex-end">
+                  <Grid
+                    container
+                    direction="row"
+                    justify="flex-end"
+                    alignItems="flex-start"
+                  >
                     <Button
                       variant="outlined"
                       size="medium"
@@ -76,13 +80,27 @@ function Cart(props) {
                     >
                       <Link to="/">Continue shopping</Link>
                     </Button>
-                    <Button
-                      variant="outlined"
-                      size="medium"
-                      className={classes.margin}
-                    >
-                      <Link to="/checkout"> Check out</Link>
-                    </Button>
+                    {props.isLogged.username == "" ? (
+                      <div>
+                        <Button
+                          variant="outlined"
+                          size="medium"
+                          className={classes.margin}
+                          disabled
+                        >
+                          <Link to="/checkout"> Check out</Link>
+                        </Button>
+                        <p style={{ color: "#e84118" }}>You have to login</p>
+                      </div>
+                    ) : (
+                      <Button
+                        variant="outlined"
+                        size="medium"
+                        className={classes.margin}
+                      >
+                        <Link to="/checkout">Check out</Link>
+                      </Button>
+                    )}
                   </Grid>
                 </Box>
               </Box>
@@ -95,7 +113,8 @@ function Cart(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    cart_data: state.cart
+    cart_data: state.cart,
+    isLogged: state.isLogged
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -107,10 +126,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(deleteCart(id_cart));
     },
     increase: (id_cart) => {
-      dispatch(increase(id_cart))
+      dispatch(increase(id_cart));
     },
     decrease: (id_cart) => {
-      dispatch(decrease(id_cart))
+      dispatch(decrease(id_cart));
     }
   };
 };

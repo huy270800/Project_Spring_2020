@@ -25,7 +25,7 @@ import ChangePw from "./User/ChangePw";
 import SaladDetail from "./Salad/SaladDetail";
 import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
-import * as constant from "./constants.json"
+import * as constant from "./constants.json";
 
 const theme = createMuiTheme({
   palette: {
@@ -36,8 +36,6 @@ const theme = createMuiTheme({
     }
   }
 });
-
-var chooseTop = [];
 
 class App extends Component {
   constructor(props) {
@@ -55,7 +53,7 @@ class App extends Component {
   }
   componentDidMount() {
     axios
-      .get(constant.baseAddress + "/products/salads")
+      .get(constant.baseAddress + "/salads")
       .then((res) => {
         this.setState({ salads: res.data });
       })
@@ -63,7 +61,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/products/pizzas")
+      .get(constant.baseAddress + "/pizzas")
       .then((res) => {
         this.setState({ pizzas: res.data });
       })
@@ -71,7 +69,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/products/drinks")
+      .get(constant.baseAddress + "/drinks")
       .then((res) => {
         this.setState({ beverages: res.data });
       })
@@ -89,7 +87,7 @@ class App extends Component {
       });
 
     axios
-      .get(constant.baseAddress + "/products/toppings")
+      .get(constant.baseAddress + "/toppings")
       .then((res) => {
         this.setState({ topping: res.data });
       })
@@ -138,31 +136,35 @@ class App extends Component {
               <Pizza pizzas={this.state.pizzas}></Pizza>
             </Route>
             <Route
-              path="/salad/:id"
+              path="/salads/:id"
               render={(props) => (
-                <SaladDetail 
-                salads={this.state.salads}
-                topping={this.state.topping}
+                <SaladDetail
+                  salads={this.state.salads}
                   open={this.state.open}
                   handleClickOpen={this.handleClickOpen}
                   handleClose={this.handleClose}
                 ></SaladDetail>
               )}
             ></Route>
-            <Route path="/salad">
+            <Route path="/salads">
               <Salad salads={this.state.salads}></Salad>
             </Route>
             <Route
-              path="/beverages/:id"
+              path="/drinks/:id"
               render={(props) => (
-                <DrinkDetail beverages={this.state.beverages}></DrinkDetail>
+                <DrinkDetail
+                  beverages={this.state.beverages}
+                  open={this.state.open}
+                  handleClickOpen={this.handleClickOpen}
+                  handleClose={this.handleClose}
+                ></DrinkDetail>
               )}
             ></Route>
-            <Route path="/beverages">
+            <Route path="/drinks">
               <Beverages beverages={this.state.beverages}></Beverages>
             </Route>
             <Route path="/promotion" component={Promotion}></Route>
-            <Route path="/storelist">
+            <Route path="/locations">
               <StoreList
                 location={this.state.location}
                 selectedLocation={this.state.selectedLocation}

@@ -4,8 +4,8 @@ import SaladCard from "./SaladCard";
 import { connect } from "react-redux";
 import { addToCart } from "../actions/index";
 
- function SaladList(props) {
-  console.log(props)
+function SaladList(props) {
+  console.log(props);
   return (
     <Container>
       {props.isLoading ? (
@@ -28,7 +28,6 @@ import { addToCart } from "../actions/index";
           {props.salads.map((item) => {
             return (
               <SaladCard
-                handleOpenClose={props.handleOpenClose}
                 open={props.open}
                 name={item.name}
                 img={item.img}
@@ -52,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
 };
-export default connect(null,mapDispatchToProps)(SaladList);
+export default connect(null, mapDispatchToProps)(SaladList);
