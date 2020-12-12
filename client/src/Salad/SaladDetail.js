@@ -22,7 +22,11 @@ import Topping from "../components/product/Topping.js";
 import Size from "../components/product/Size.js";
 import ProductDetail from "../components/product/ProductDetail";
 
+
 var chooseTop = [];
+
+
+
 const style = (theme) => ({
   pad: {
     padding: "16px 24px"
@@ -49,11 +53,11 @@ class SaladDetail extends Component {
 
   componentDidMount() {
     axios
-      .get(constant.baseAddress + `/salads/${this.props.match.params.id}`)
+      .get(constant.baseAddress + `/products/salads?id=${this.props.match.params.id}`)
       .then((res) => {
         console.log(this.props);
-        const { id, name, price, size, img, description } = res.data;
-        console.log(res.data)
+        const { id, name, price, size, img, description } = res.data[0];
+
         this.setState({
           id,
           name,

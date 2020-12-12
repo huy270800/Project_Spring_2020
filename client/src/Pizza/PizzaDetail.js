@@ -45,10 +45,11 @@ class PizzaDetail extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props.match.params.id);
     axios
-      .get( constant.baseAddress + `/pizzas/${this.props.match.params.id}`)
+      .get( constant.baseAddress + `/products/pizzas?id=${this.props.match.params.id}`)
       .then((res) => {
-        const { id, name, price, size, img, description } = res.data;
+        const { id, name, price, size, img, description } = res.data[0];
         this.setState({
           id,
           name,
