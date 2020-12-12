@@ -49,8 +49,8 @@ const Cart = (props) =>  {
                   return (
                     <Box m={3}>
                       <CartProduct
-                        updateCart={dispatch(updateCart)}
-                        deleteCart={dispatch(deleteCart())}
+                        updateCart={dispatch(updateCart({id_cart:cart_data.id_cart, value:cart_data.value}))}
+                        deleteCart={dispatch(deleteCart({id_cart:cart_data.id_cart}))}
                         // increase={props.increase}
                         // decrease={props.decrease}
                         cart={cart_item}
@@ -98,11 +98,11 @@ const Cart = (props) =>  {
     </div>
   );
 }
-// const mapStateToProps = (state) => {
-//   return {
-//     cart_data: state.cart
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    cart_data: state.cart
+  };
+};
 const mapDispatchToProps = (dispatch,state) => {
   return {
     updateCart: (id_cart, value) => {
@@ -119,5 +119,5 @@ const mapDispatchToProps = (dispatch,state) => {
     // }
   };
 };
-// export default connect(mapStateToProps, mapDispatchToProps)(Cart);
-export default Cart
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+// export default Cart
