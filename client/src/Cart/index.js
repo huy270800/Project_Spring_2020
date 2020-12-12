@@ -6,7 +6,7 @@ import { Container, Box, Grid, Button, makeStyles } from "@material-ui/core";
 import Navbar from "../components/Navbar";
 import CartProduct from "./CartProduct";
 import { updateCart, deleteCart, increase, decrease } from "../actions/index";
-import { useSelector, useDispatch } from 'react-redux';
+
 const defaultProps = {
   border: 1
 };
@@ -21,16 +21,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Cart = (props) =>  {
-  const dispatch = useDispatch();
-  const cart_data = useSelector(
-   (state) => state.cart
- )
-  
- console.log(cart_data.cart)
-// function Cart(props) {
+function Cart(props) {
+  console.log(props.cart_data)
   const classes = useStyles();
-  const total = cart_data.cart.reduce((total, pic) => {
+  const total = props.cart_data.cart.reduce((total, pic) => {
+    console.log(pic)
     return (total = total + +pic.quantity * pic.price);
   }, 0);
   return (
@@ -41,18 +36,18 @@ const Cart = (props) =>  {
           <Navbar></Navbar>
           <Box {...border} borderTop={1}>
             <h3>Product</h3>
-            {cart_data.cart.length === 0 ? (
+            {props.cart_data.cart.length === 0 ? (
               <p>Cart is empty</p>
             ) : (
               <Box>
-                {cart_data.cart.map((cart_item) => {
+                {props.cart_data.cart.map((cart_item) => {
                   return (
                     <Box m={3}>
                       <CartProduct
-                        updateCart={dispatch(updateCart({id_cart:cart_data.id_cart, value:cart_data.value}))}
-                        deleteCart={dispatch(deleteCart({id_cart:cart_data.id_cart}))}
-                        // increase={props.increase}
-                        // decrease={props.decrease}
+                        updateCart={props.updateCart}
+                        deleteCart={props.deleteCart}
+                        increase={props.increase}
+                        decrease={props.decrease}
                         cart={cart_item}
                         key={cart_item.id}
                       ></CartProduct>
@@ -67,10 +62,10 @@ const Cart = (props) =>  {
                     alignItems="center"
                   >
                     <Grid item className={classes.margin}>
-                      <h2>Total:</h2>
+                      <h2>Total: </h2>
                     </Grid>
                     <Grid item className={classes.margin}>
-                      <h2>€{total}</h2>
+                      <h2>€ {total}</h2>
                     </Grid>
                   </Grid>
                   <Grid container direction="row" justify="flex-end">
@@ -103,7 +98,7 @@ const mapStateToProps = (state) => {
     cart_data: state.cart
   };
 };
-const mapDispatchToProps = (dispatch,state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     updateCart: (id_cart, value) => {
       dispatch(updateCart(id_cart, value));
@@ -111,13 +106,12 @@ const mapDispatchToProps = (dispatch,state) => {
     deleteCart: (id_cart) => {
       dispatch(deleteCart(id_cart));
     },
-    // increase: () => {
-    //   dispatch({ type: "INCREASE", payload: {}})
-    // },
-    // decrease: () => {
-    //   dispatch({ type: "DECREASE", payload: {}})
-    // }
+    increase: (id_cart) => {
+      dispatch(increase(id_cart))
+    },
+    decrease: (id_cart) => {
+      dispatch(decrease(id_cart))
+    }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
-// export default Cart

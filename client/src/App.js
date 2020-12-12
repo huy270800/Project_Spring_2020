@@ -25,6 +25,7 @@ import ChangePw from "./User/ChangePw";
 import SaladDetail from "./Salad/SaladDetail";
 import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
+import * as constant from "./constants.json"
 
 const theme = createMuiTheme({
   palette: {
@@ -36,21 +37,25 @@ const theme = createMuiTheme({
   }
 });
 
+var chooseTop = [];
+
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       location: [],
       salads: [],
       pizzas: [],
       beverages: [],
-      selectedLocation: null , 
-      searchResults: []
+      topping: [],
+      selectedLocation: null,
+      searchResults: [],
+      open: false
+    };
   }
-  };
   componentDidMount() {
     axios
-      .get("http://localhost:4000/salads")
+      .get(constant.baseAddress + "/products/salads")
       .then((res) => {
         this.setState({ salads: res.data });
       })
@@ -58,7 +63,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get("http://localhost:4000/pizzas")
+      .get(constant.baseAddress + "/products/pizzas")
       .then((res) => {
         this.setState({ pizzas: res.data });
       })
@@ -66,29 +71,48 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get("http://localhost:4000/drinks")
+      .get(constant.baseAddress + "/products/drinks")
       .then((res) => {
         this.setState({ beverages: res.data });
       })
       .catch((err) => {
         console.log(err);
       });
-      axios.get("http://localhost:4000/storeList")
+    axios
+      .get(constant.baseAddress + "/locations")
       .then((res) => {
-        this.setState({location: res.data});
-        this.setState({searchResults: res.data});
+        this.setState({ location: res.data });
+        this.setState({ searchResults: res.data });
       })
       .catch((err) => {
         console.log(err);
+      });
+
+    axios
+      .get(constant.baseAddress + "/products/toppings")
+      .then((res) => {
+        this.setState({ topping: res.data });
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-  SetSearchResults = (parameter) => {
-    this.setState({ searchResults: parameter })
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
   };
-  
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  SetSearchResults = (parameter) => {
+    this.setState({ searchResults: parameter });
+  };
+
   setSelectedLocation = (parameter) => {
-    this.setState({ selectedLocation: parameter })
-  }
+    this.setState({ selectedLocation: parameter });
+  };
 
   render() {
     return (
@@ -101,7 +125,13 @@ class App extends Component {
             <Route
               path="/pizza/:id"
               render={(props) => (
-                <PizzaDetail pizzas={this.state.pizzas}></PizzaDetail>
+                <PizzaDetail
+                  pizzas={this.state.pizzas}
+                  topping={this.state.topping}
+                  open={this.state.open}
+                  handleClickOpen={this.handleClickOpen}
+                  handleClose={this.handleClose}
+                ></PizzaDetail>
               )}
             ></Route>
             <Route path="/pizza">
@@ -110,7 +140,13 @@ class App extends Component {
             <Route
               path="/salad/:id"
               render={(props) => (
-                <SaladDetail salads={this.state.salads}></SaladDetail>
+                <SaladDetail 
+                salads={this.state.salads}
+                topping={this.state.topping}
+                  open={this.state.open}
+                  handleClickOpen={this.handleClickOpen}
+                  handleClose={this.handleClose}
+                ></SaladDetail>
               )}
             ></Route>
             <Route path="/salad">
@@ -127,12 +163,14 @@ class App extends Component {
             </Route>
             <Route path="/promotion" component={Promotion}></Route>
             <Route path="/storelist">
-              <StoreList location={this.state.location}   
-                          selectedLocation={this.state.selectedLocation}
-                          searchResults={this.state.searchResults}
-                          SetSearchResults={this.SetSearchResults}
-                          setSelectedLocation={this.setSelectedLocation}
-               ></StoreList></Route>
+              <StoreList
+                location={this.state.location}
+                selectedLocation={this.state.selectedLocation}
+                searchResults={this.state.searchResults}
+                SetSearchResults={this.SetSearchResults}
+                setSelectedLocation={this.setSelectedLocation}
+              ></StoreList>
+            </Route>
             <Route path="/cart" component={Cart}></Route>
             <Route path="/user" component={User} />
             <Route path="/checkout" component={Checkout}></Route>

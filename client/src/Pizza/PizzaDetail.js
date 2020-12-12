@@ -5,25 +5,21 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {
   withStyles,
-  Button,
   Container,
   Grid,
   Typography,
   Box,
-  TextField,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogActions
+  TextField
 } from "@material-ui/core";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import topping from "./Toppings.json";
+
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";
 import Topping from "../components/product/Topping.js";
 import Size from "../components/product/Size.js";
-
-import { addToCart } from '../features/cart/cartSlice';
+import AddToCart from "../components/product/AddToCart";
+import ProductDetail from "../components/product/ProductDetail";
+import * as constant from "../constants.json"
+var chooseTop = [];
 
 const styles = (theme) => ({
   pad: {
@@ -33,12 +29,6 @@ const styles = (theme) => ({
     maxWidth: "100%",
     margin: "0 auto",
     display: "block"
-  },
-  closeButton: {
-    position: "absolute",
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500]
   }
 });
 
@@ -46,22 +36,20 @@ const border = {
   p: 3
 };
 
-var choseTop = [];
-
 class PizzaDetail extends Component {
   state = {
-    topping: topping.topping,
     selected_size: "",
     selected_topping: [],
     quantity: 1,
-    alert: false
+    open: false
   };
 
   componentDidMount() {
+    console.log(this.props.match.params.id);
     axios
-      .get(`http://localhost:4000/pizzas/${this.props.match.params.id}`)
+      .get( constant.baseAddress + `/products/pizzas?id=${this.props.match.params.id}`)
       .then((res) => {
-        const { id, name, price, size, img, description } = res.data;
+        const { id, name, price, size, img, description } = res.data[0];
         this.setState({
           id,
           name,
@@ -78,17 +66,17 @@ class PizzaDetail extends Component {
 
   changeSize = (event) => {
     this.setState({ selected_size: event.target.value });
-    console.log(this.state.selected_size);  
   };
 
   chooseTopping = (event) => {
-    if (!choseTop.includes(event.target.value)) {
-      choseTop.push(event.target.value);
+    if (!chooseTop.includes(event.target.value)) {
+      chooseTop.push(event.target.value);
     } else {
-      choseTop.splice(choseTop.indexOf(event.target.value), 1);
+      chooseTop.splice(chooseTop.indexOf(event.target.value), 1);
     }
-    this.setState({ selected_topping: choseTop });
+    this.setState({ selected_topping: chooseTop });
   };
+
   handleAddToCart = () => {
     const {
       id,
@@ -110,20 +98,12 @@ class PizzaDetail extends Component {
       toppings: selected_topping
     });
   };
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-  clearInput = () => {
-    document.getElementsByClassName("note").value = "";
-  };
+
   buttonOnClick = () => {
-    this.handleClickOpen();
+    this.props.handleClickOpen();
     this.handleAddToCart();
-    this.clearInput();
   };
+ 
   render() {
     return (
       <div>
@@ -131,89 +111,21 @@ class PizzaDetail extends Component {
         <Container>
           <Box borderBottom={1}>
             <Navbar></Navbar>
-            <Box {...border} borderTop={1}>
-              <Link to="/pizza">
-                <h3>
-                  <ArrowBackIosIcon></ArrowBackIosIcon>
-                </h3>
-              </Link>
-            </Box>
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-              style={{ padding: "10vh " }}
-              spacing={6}
-            >
-              <Grid item xs={6}>
-                <img
-                  src={this.state.img}
-                  alt="Products"
-                  className={this.props.classes.pic}
-                ></img>
-                <Typography variant="h6" align="center">
-                €{this.state.price} 
-                </Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Box className={this.props.classes.pad}>
-                  <Typography variant="h5">{this.state.name}</Typography>
-                </Box>
-                <Box className={this.props.classes.pad}></Box>
-                <Box className={this.props.classes.pad}>
-                  <Typography>{this.state.description}</Typography>
-                </Box>
-                <Box className={this.props.classes.pad}>
-                  <Typography variant="h6">SIZE</Typography>
-                  <Size
-                    size={this.state.size}
-                    selected_size={this.state.selected_size}
-                    changeSize={this.changeSize}
-                  ></Size>
-                </Box>
-                <Box className={this.props.classes.pad}>
-                  <Typography variant="h6">TOPPINGS</Typography>
-
-                  <Topping
-                    topping={this.state.topping}
-                    chooseTopping={this.chooseTopping}
-                  ></Topping>
-                </Box>
-                <Box className={this.props.classes.pad}>
-                  <Typography variant="h6">NOTE</Typography>
-                  <form noValidate autoComplete="off">
-                    <TextField
-                      className="note"
-                      fullWidth
-                      multiline
-                      rows={4}
-                      variant="outlined"
-                    />
-                  </form>
-                </Box>
-                <Button fullWidth onClick={this.buttonOnClick}>
-                  Add to cart
-                </Button>
-                <Dialog
-                  open={this.state.open}
-                  onClose={this.handleClose}
-                  aria-describedby="alert-dialog-description"
-                  maxWidth="sm"
-                  fullWidth
-                >
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      Your item has added to cart!
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={this.handleClose} color="primary">
-                      Ok!
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </Grid>
-            </Grid>
+            {console.log(this.state)}
+            <ProductDetail
+              img={this.state.img}
+              price={this.state.price}
+              name={this.state.name}
+              description={this.state.description}
+              size={this.state.size}
+              selected_size={this.state.selected_size}
+              changeSize={this.changeSize}
+              topping={this.props.topping}
+              chooseTopping={this.chooseTopping}
+              open={this.props.open}
+              buttonOnClick={this.buttonOnClick}
+              handleClose={this.props.handleClose}
+            ></ProductDetail>
           </Box>
         </Container>
       </div>
@@ -223,8 +135,7 @@ class PizzaDetail extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product) => {
-      // dispatch({ type: "ADD_TO_CART", payload: product });
-      dispatch(addToCart(product));
+      dispatch({ type: "ADD_TO_CART", payload: product });
     }
   };
 };
