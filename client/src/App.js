@@ -140,7 +140,13 @@ class App extends Component {
             <Route
               path="/salad/:id"
               render={(props) => (
-                <SaladDetail salads={this.state.salads}></SaladDetail>
+                <SaladDetail 
+                salads={this.state.salads}
+                topping={this.state.topping}
+                  open={this.state.open}
+                  handleClickOpen={this.handleClickOpen}
+                  handleClose={this.handleClose}
+                ></SaladDetail>
               )}
             ></Route>
             <Route path="/salad">

@@ -12,7 +12,7 @@ import {
   TextField
 } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-
+import * as constant from "../constants.json"
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";
 
@@ -35,7 +35,7 @@ class DrinkDetail extends Component {
   state = {};
   componentDidMount() {
     axios
-      .get(`http://localhost:4000/drinks/${this.props.match.params.id}`)
+      .get(  constant.baseAddress + `/drinks/${this.props.match.params.id}`)
       .then((res) => {
         console.log(this.props);
         const { id, name, price, img, description } = res.data;

@@ -18,7 +18,7 @@ import Topping from "../components/product/Topping.js";
 import Size from "../components/product/Size.js";
 import AddToCart from "../components/product/AddToCart";
 import ProductDetail from "../components/product/ProductDetail";
-import * as constant from "./constants.json"
+import * as constant from "../constants.json"
 var chooseTop = [];
 
 const styles = (theme) => ({
@@ -102,7 +102,7 @@ class PizzaDetail extends Component {
     this.props.handleClickOpen();
     this.handleAddToCart();
   };
-
+ 
   render() {
     return (
       <div>
@@ -110,6 +110,7 @@ class PizzaDetail extends Component {
         <Container>
           <Box borderBottom={1}>
             <Navbar></Navbar>
+            {console.log(this.state)}
             <ProductDetail
               img={this.state.img}
               price={this.state.price}

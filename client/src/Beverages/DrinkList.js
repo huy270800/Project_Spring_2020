@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Grid, CircularProgress, Box } from "@material-ui/core";
 import Drink from "./DrinkCard";
+import { addToCart } from "../actions/index";
 
 export default function DrinkList(props) {
   return (

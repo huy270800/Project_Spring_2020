@@ -1,8 +1,11 @@
 import React from "react";
 import { Container, Grid, CircularProgress, Box } from "@material-ui/core";
 import SaladCard from "./SaladCard";
+import { connect } from "react-redux";
+import { addToCart } from "../actions/index";
 
-export default function SaladList(props) {
+ function SaladList(props) {
+  console.log(props)
   return (
     <Container>
       {props.isLoading ? (
@@ -42,3 +45,11 @@ export default function SaladList(props) {
     </Container>
   );
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (product) => {
+      dispatch(addToCart(product));
+    }
+  };
+};
+export default connect(null,mapDispatchToProps)(SaladList);
