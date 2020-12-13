@@ -16,6 +16,7 @@ const border = {
 export default function StoreList(props) {
   let output;
   let CharData;
+ 
   output = (
     <div>
       <div>

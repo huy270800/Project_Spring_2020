@@ -52,7 +52,7 @@ function Header(props) {
           </Box>
           <Box m={2}>
             <Button>
-              <Link to="/salad">Salad</Link>
+              <Link to="/salads">Salad</Link>
             </Button>
           </Box>
           <Box m={2}>
@@ -62,7 +62,7 @@ function Header(props) {
           </Box>
           <Box m={2}>
             <Button>
-              <Link to="/beverages">Beverages</Link>
+              <Link to="/drinks">Beverages</Link>
             </Button>
           </Box>
           <Box m={2}>
@@ -72,7 +72,7 @@ function Header(props) {
           </Box>
           <Box m={2}>
             <Button>
-              <Link to="/storelist">Store List</Link>
+              <Link to="/locations">Store List</Link>
             </Button>
           </Box>
         </Box>

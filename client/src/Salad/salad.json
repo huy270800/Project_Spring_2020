@@ -1,11 +1,11 @@
 {
   "salad": [
     {
-      "id": 1,
+      "id": 31,
       "name": "Caesar Salad",
       "size": ["Small", "Medium", "Large"],
       "description": "Fresh vegetables with Caesar sauce",
-      "price": 4, 
+      "price": 4,
       "seafood": false,
       "bacon": false,
       "tomatoes": false,
@@ -24,14 +24,14 @@
       "img": "../assets/img/Caesar_Salad.png"
     },
     {
-      "id": 2,
+      "id": 32,
       "name": "Vinegar Salad",
       "size": ["Small", "Medium", "Large"],
       "description": "Fresh vegetables with vinegar",
       "price": 5,
       "seafood": false,
       "bacon": false,
-      "tomatoes": false,      
+      "tomatoes": false,
       "chicken": false,
       "shrimp": false,
       "sausage": false,
@@ -47,14 +47,14 @@
       "img": "../assets/img/Vinegar_Salad.png"
     },
     {
-      "id": 3,
+      "id": 33,
       "name": "Special Salad",
       "size": ["Small", "Medium", "Large"],
       "description": "Special salad with brocolli, apple, salad, eggs and special sauce",
       "price": 7,
       "seafood": false,
       "bacon": false,
-      "tomatoes": false,      
+      "tomatoes": false,
       "chicken": false,
       "shrimp": false,
       "sausage": false,
@@ -68,7 +68,6 @@
       "mushroom": false,
       "italian sausage": false,
       "img": "../assets/img/Special_Salad.png"
-
     }
   ]
 }

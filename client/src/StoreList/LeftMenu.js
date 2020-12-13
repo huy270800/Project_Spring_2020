@@ -1,6 +1,6 @@
-import TimerSharp from "@material-ui/icons";
 import React, { Component } from "react";
 import Search from "./Search";
+import { Container } from "@material-ui/core";
 
 export default class Leftmenu extends Component {
   check(array) {
@@ -10,29 +10,27 @@ export default class Leftmenu extends Component {
 
   render() {
     let output = (
-      <div>
+      <Container style={{ textAlign: "center", paddingBottom: "5vh" }}>
+        <h1>Find a store</h1>
         <Search
           location={this.props.location}
           searchResults={this.props.searchResults}
           SetSearchResults={this.props.SetSearchResults}
         />
-        <h1>Name:</h1>
-        <h3>Address:</h3>
-        <h3>Delivery:</h3>
-      </div>
+      </Container>
     );
     if (this.props.selectedLocation != null) {
       output = (
-        <div>
+        <Container style={{ textAlign: "center" }}>
           <Search
             location={this.props.location}
             searchResults={this.props.searchResults}
             SetSearchResults={this.props.SetSearchResults}
           />
-          <h1> Name: {this.props.selectedLocation.name}</h1>
-          <h3> Address: {this.props.selectedLocation.address}</h3>
-          <h3> Delivery: {this.check(this.props.selectedLocation)}</h3>
-        </div>
+          <h3> Name: {this.props.selectedLocation.name}</h3>
+          <p> Address: {this.props.selectedLocation.address}</p>
+          <p> Delivery: {this.check(this.props.selectedLocation)}</p>
+        </Container>
       );
     }
     console.log(this.props.location);

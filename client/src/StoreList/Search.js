@@ -1,4 +1,12 @@
 import React, { Component } from "react";
+import {
+  Container,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  FormControl
+} from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
 export default class Search extends Component {
   searchIt = (event) => {
@@ -21,13 +29,29 @@ export default class Search extends Component {
   };
   render() {
     return (
-      <div>
-        <input
-          type={"text"}
+      <Container>
+        <FormControl fullWidth onChange={this.searchIt} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-amount">
+            Find a store
+          </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon></SearchIcon>
+              </InputAdornment>
+            }
+            labelWidth={60}
+          />
+        </FormControl>
+
+        {/* 
+        <TextField
+          type="text"
           onChange={this.searchIt}
           placeholder="Search for location here"
-        ></input>
-      </div>
+        ></TextField> */}
+      </Container>
     );
   }
 }

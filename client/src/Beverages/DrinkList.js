@@ -23,29 +23,31 @@ export default function DrinkList(props) {
           justify="space-around"
           alignItems="center"
         >
-          
-          {props.beverages.filter(item => item.coke === true).map((item) => {
-            return (
-              <Drink
-                name={item.name}
-                price={item.price}
-                key={item.id}
-                id={item.id}
-                img={item.img}
-              ></Drink>
-            );
-          })}
+          {props.beverages
+            .filter((item) => item.coke === true)
+            .map((item) => {
+              return (
+                <Drink
+                  name={item.name}
+                  price={item.price}
+                  key={item.id}
+                  id={item.id}
+                  img={item.img}
+                ></Drink>
+              );
+            })}
         </Grid>
       )}
       {<h1>Beer</h1>}
       <Grid
-          container
-          direction="row"
-          justify="space-around"
-          alignItems="center"
-        >
-          
-          {props.beverages.filter(item => item.alcohol === true).map((item) => {
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
+      >
+        {props.beverages
+          .filter((item) => item.alcohol === true)
+          .map((item) => {
             return (
               <Drink
                 name={item.name}
@@ -56,7 +58,7 @@ export default function DrinkList(props) {
               ></Drink>
             );
           })}
-        </Grid>
+      </Grid>
     </Container>
   );
 }

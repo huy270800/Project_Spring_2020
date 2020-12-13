@@ -1,25 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {
-  withStyles,
-  Container,
-  Grid,
-  Typography,
-  Box,
-  TextField
-} from "@material-ui/core";
+import { withStyles, Container, Box } from "@material-ui/core";
 
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";
-import Topping from "../components/product/Topping.js";
-import Size from "../components/product/Size.js";
-import AddToCart from "../components/product/AddToCart";
 import ProductDetail from "../components/product/ProductDetail";
-import * as constant from "../constants.json"
-var chooseTop = [];
+import * as constant from "../constants.json";
 
 const styles = (theme) => ({
   pad: {
@@ -31,11 +19,7 @@ const styles = (theme) => ({
     display: "block"
   }
 });
-
-const border = {
-  p: 3
-};
-
+var chooseTop = [];
 class PizzaDetail extends Component {
   state = {
     selected_size: "",
@@ -45,11 +29,10 @@ class PizzaDetail extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
     axios
-      .get( constant.baseAddress + `/products/pizzas?id=${this.props.match.params.id}`)
+      .get(constant.baseAddress + `/pizzas/${this.props.match.params.id}`)
       .then((res) => {
-        const { id, name, price, size, img, description } = res.data[0];
+        const { id, name, price, size, img, description } = res.data;
         this.setState({
           id,
           name,
@@ -61,6 +44,9 @@ class PizzaDetail extends Component {
       })
       .catch((err) => {
         console.log(err);
+        console.log(
+          constant.baseAddress + `pizzas/${this.props.match.params.id}`
+        );
       });
   }
 
@@ -69,12 +55,15 @@ class PizzaDetail extends Component {
   };
 
   chooseTopping = (event) => {
-    if (!chooseTop.includes(event.target.value)) {
-      chooseTop.push(event.target.value);
+    if (!this.state.selected_topping.includes(event.target.value)) {
+      this.state.selected_topping.push(event.target.value);
     } else {
-      chooseTop.splice(chooseTop.indexOf(event.target.value), 1);
+      this.state.selected_topping.splice(
+        this.state.selected_topping.indexOf(event.target.value),
+        1
+      );
     }
-    this.setState({ selected_topping: chooseTop });
+    this.setState({ selected_topping: this.state.selected_topping });
   };
 
   handleAddToCart = () => {
@@ -111,6 +100,7 @@ class PizzaDetail extends Component {
         <Container>
           <Box borderBottom={1}>
             <Navbar></Navbar>
+            {/* {console.log(this.state)} */}
             <ProductDetail
               img={this.state.img}
               price={this.state.price}
