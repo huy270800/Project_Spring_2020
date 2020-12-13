@@ -12,6 +12,7 @@ export default function DropdownMenu(props) {
       <button className={styles.sdropbtn}>Dropdown</button>
       <div className={styles.dropdownContent}>
         <Link to="/user/account">Account</Link>
+        <Link to="/user/history">History</Link>
         <Link to="/" onClick={() => dispatch(sign_out())}>
           Log out
         </Link>

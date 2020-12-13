@@ -18,6 +18,7 @@ var loginRouter = require('./routes/login');
 var productsRouter = require('./routes/products');
 var locationsRouter = require('./routes/locations');
 var promotionsRouter = require('./routes/promotions');
+var ordersRouter = require('./routes/orders');
 /* ---------------- routers done ---------------- */
 
 var app = express();
@@ -43,6 +44,7 @@ app.use('/login', loginRouter);
 app.use('/products', productsRouter);
 app.use('/locations', locationsRouter);
 app.use('/promotions', promotionsRouter);
+app.use('/orders', ordersRouter);
 /* ---------------- routes done -------------------- */
 
 //Authorization need username & hashed password in Auth field of request
@@ -180,6 +182,13 @@ Promise.all(
         code VARCHAR(256),
         selected BOOLEAN       
       )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.orders_table(
+        id SERIAL PRIMARY KEY,
+        userId INT,
+        date VARCHAR(128),
+        detail TEXT,
+        status VARCHAR(64)
+      )`)
       // Add more create table statements here
   ]
 ).then(() => {

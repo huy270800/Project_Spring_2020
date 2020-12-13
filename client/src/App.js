@@ -25,7 +25,9 @@ import ChangePw from "./User/ChangePw";
 import SaladDetail from "./Salad/SaladDetail";
 import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
+
 import * as constant from "./constants.json";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const theme = createMuiTheme({
   palette: {
@@ -189,7 +191,7 @@ class App extends Component {
             </Route>
             <Route path="/cart" component={Cart}></Route>
             <Route path="/user" component={User} />
-            <Route path="/checkout" component={Checkout}></Route>
+            <ProtectedRoute path="/checkout" component={Checkout} />
             <Route path="/*/validation" component={Validation} />
             <Route path="/confirmEmail" component={ConfirmEmail} />
             <Route path="/change" component={ChangePw}></Route>
