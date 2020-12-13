@@ -46,6 +46,7 @@ class App extends Component {
       pizzas: [],
       beverages: [],
       topping: [],
+      promotion: [],
       selectedLocation: null,
       searchResults: [],
       open: false
@@ -94,7 +95,16 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       });
+    axios
+      .get(constant.baseAddress + "/promotions")
+      .then((res) => {
+        this.setState({ promotion: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+  
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -111,13 +121,12 @@ class App extends Component {
   setSelectedLocation = (parameter) => {
     this.setState({ selectedLocation: parameter });
   };
-
+  
   render() {
     return (
       <ThemeProvider theme={theme}>
         <div>
           <Header></Header>
-
           <Switch>
             <Route exact path="/" component={Home} />
             <Route
@@ -163,7 +172,12 @@ class App extends Component {
             <Route path="/drinks">
               <Beverages beverages={this.state.beverages}></Beverages>
             </Route>
-            <Route path="/promotion" component={Promotion}></Route>
+            <Route path="/promotion" component={Promotion}>
+              <Promotion
+              promotion= {this.state.promotion}
+              >
+              </Promotion>
+            </Route>
             <Route path="/locations">
               <StoreList
                 location={this.state.location}
