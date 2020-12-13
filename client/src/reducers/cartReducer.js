@@ -9,16 +9,23 @@ const cart = (state = initState, action) => {
         return pic.id_product === action.payload.id_product;
       });
       const new_cart = [...state.cart];
-
-      if (state.cart[0].toppings === action.payload.toppings) {
-      }
-      console.log(state.cart);
       if (
         available_product_index >= 0 &&
         action.payload.size === new_cart[available_product_index].size
       ) {
         new_cart[available_product_index].quantity =
           new_cart[available_product_index].quantity + action.payload.quantity;
+          for (let  i = 0 ; i <= state.cart[i].lenghth ; i ++) {
+                if (state.cart[i].toppings === action.payload.toppings)
+                {
+                  new_cart[i].quantity++
+                }
+                else if (state.cart[i].toppings !== action.payload.toppings) {
+                  const cart2 = [] ;
+                  new_cart = cart2.push(action.payload.toppings)
+                }
+                
+          }
         // var a = arraysEqual(new_cart[available_product_index].toppings, b);
         // console.log(new_cart[available_product_index].toppings);
         // console.log(a);

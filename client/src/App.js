@@ -77,7 +77,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/locations")
+      .get(constant.baseAddress + "/storeList")
       .then((res) => {
         this.setState({ location: res.data });
         this.setState({ searchResults: res.data });
