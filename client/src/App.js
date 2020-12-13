@@ -54,7 +54,7 @@ class App extends Component {
   }
   componentDidMount() {
     axios
-      .get(constant.baseAddress + "/salads")
+      .get(constant.baseAddress + "/products/salads")
       .then((res) => {
         this.setState({ salads: res.data });
       })
@@ -62,7 +62,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/pizzas")
+      .get(constant.baseAddress + "/products/pizzas")
       .then((res) => {
         this.setState({ pizzas: res.data });
       })
@@ -70,7 +70,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/drinks")
+      .get(constant.baseAddress + "/products/drinks")
       .then((res) => {
         this.setState({ beverages: res.data });
       })
@@ -78,7 +78,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/storeList")
+      .get(constant.baseAddress + "/locations")
       .then((res) => {
         this.setState({ location: res.data });
         this.setState({ searchResults: res.data });
@@ -88,7 +88,7 @@ class App extends Component {
       });
 
     axios
-      .get(constant.baseAddress + "/toppings")
+      .get(constant.baseAddress + "/products/toppings")
       .then((res) => {
         this.setState({ topping: res.data });
       })

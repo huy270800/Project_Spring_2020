@@ -6,8 +6,13 @@ const totalPrice = (acc, curr) => acc + curr.price * curr.quantity;
 const cartToString = cart => {
   let ret = "";
   for (let i = 0; i < cart.length; ++i) {
-    ret += cart[i].quantity + ' ' + cart[i].size + ' ' + cart[i].name + ' (' + cart[i].toppings.toString() + '), ' + `price: ${cart[i].price * cart[i].quantity}` +'\n';
+    ret += cart[i].quantity + ' ';
+    if(cart[i].size) ret += cart[i].size + ' ';
+    ret += cart[i].name + ' ';
+    if(cart[i].toppings) ret += '(' + cart[i].toppings.toString() + '); '
+    ret += `price: ${cart[i].price * cart[i].quantity}€` +'\n';
   }
+  ret += "total price: " + cart.reduce(totalPrice,0) + '€';
   return ret;
 }
 

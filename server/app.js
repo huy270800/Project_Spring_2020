@@ -17,6 +17,7 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var productsRouter = require('./routes/products');
 var locationsRouter = require('./routes/locations');
+var promotionsRouter = require('./routes/promotions');
 /* ---------------- routers done ---------------- */
 
 var app = express();
@@ -41,6 +42,7 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/products', productsRouter);
 app.use('/locations', locationsRouter);
+app.use('/promotions', promotionsRouter);
 /* ---------------- routes done -------------------- */
 
 //Authorization need username & hashed password in Auth field of request
@@ -167,6 +169,15 @@ Promise.all(
         name VARCHAR(64),
         price INT,
         img VARCHAR(256),
+        selected BOOLEAN       
+      )`),
+      db.query(`CREATE TABLE IF NOT EXISTS public.promotions_table(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(64),
+        notes TEXT,
+        price INT,
+        img VARCHAR(256),
+        code VARCHAR(256),
         selected BOOLEAN       
       )`),
       // Add more create table statements here
