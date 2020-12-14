@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {
   withStyles,
-  Button,
   Container,
   Grid,
   Typography,
@@ -13,19 +13,12 @@ import {
 } from "@material-ui/core";
 
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { connect } from "react-redux";
-import topping from "../Pizza/Toppings.json";
-import * as constant from "../constants.json"
+
+import * as constant from "../constants.json";
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";
-import Topping from "../components/product/Topping.js";
 import Size from "../components/product/Size.js";
-import ProductDetail from "../components/product/ProductDetail";
-
-
-var chooseTop = [];
-
-
+import AddToCart from "../components/product/AddToCart.js";
 
 const style = (theme) => ({
   pad: {
@@ -44,18 +37,16 @@ const border = {
 
 class SaladDetail extends Component {
   state = {
-    topping: topping.topping,
-    selected_size: "",
-    selected_topping: [],
-    quantity: 1,
-    open: false
+    selected_size: "Small",
+    quantity: 1
   };
 
   componentDidMount() {
     axios
-      .get(constant.baseAddress + `/salads/${this.props.match.params.id}`)
+      .get(
+        constant.baseAddress + `/products/salads/${this.props.match.params.id}`
+      )
       .then((res) => {
-        console.log(this.props);
         const { id, name, price, size, img, description } = res.data;
 
         this.setState({
@@ -78,24 +69,8 @@ class SaladDetail extends Component {
     this.props.handleClickOpen();
     this.handleAddToCart();
   };
-  chooseTopping = (event) => {
-    if (!chooseTop.includes(event.target.value)) {
-      chooseTop.push(event.target.value);
-    } else {
-      chooseTop.splice(chooseTop.indexOf(event.target.value), 1);
-    }
-    this.setState({ selected_topping: chooseTop });
-  };
   handleAddToCart = () => {
-    const {
-      id,
-      name,
-      price,
-      selected_size,
-      selected_topping,
-      quantity,
-      img
-    } = this.state;
+    const { id, name, price, selected_size, quantity, img } = this.state;
     this.props.addToCart({
       id_cart: "cart_" + Date.now() + Math.random(),
       id_product: id,
@@ -103,10 +78,10 @@ class SaladDetail extends Component {
       price,
       img,
       size: selected_size,
-      quantity,
-      toppings: selected_topping
+      quantity
     });
-  };s
+  };
+
   render() {
     return (
       <div>
@@ -114,20 +89,64 @@ class SaladDetail extends Component {
         <Container>
           <Box borderBottom={1}>
             <Navbar></Navbar>
-            <ProductDetail
-              img={this.state.img}
-              price={this.state.price}
-              name={this.state.name}
-              description={this.state.description}
-              size={this.state.size}
-              selected_size={this.state.selected_size}
-              changeSize={this.changeSize}
-              topping={this.props.topping}
-              chooseTopping={this.chooseTopping}
-              open={this.props.open}
-              buttonOnClick={this.buttonOnClick}
-              handleClose={this.props.handleClose}
-            ></ProductDetail>
+            <Box {...border} borderTop={1}>
+              <Link to="/salads">
+                <h3>
+                  <ArrowBackIosIcon></ArrowBackIosIcon>
+                </h3>
+              </Link>
+            </Box>
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              style={{ padding: "10vh " }}
+              spacing={6}
+            >
+              <Grid item xs={6}>
+                <img
+                  src={this.state.img}
+                  data-img={this.state.img}
+                  alt="Products"
+                  className={this.props.classes.pic}
+                ></img>
+                <Typography variant="h6" align="center">
+                  {this.state.price} €
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <Box className={this.props.classes.pad}>
+                  <Typography variant="h5">{this.state.name}</Typography>
+                </Box>
+                <Box className={this.props.classes.pad}>
+                  <Typography>{this.state.description}</Typography>
+                </Box>
+                <Box className={this.props.classes.pad}>
+                  <Size
+                    size={this.state.size}
+                    selected_size={this.state.selected_size}
+                    changeSize={this.changeSize}
+                  ></Size>
+                </Box>
+                <Box className={this.props.classes.pad}>
+                  <Typography variant="h6">NOTE</Typography>
+                  <form noValidate autoComplete="off">
+                    <TextField
+                      fullWidth
+                      multiline
+                      rows={4}
+                      variant="outlined"
+                    />
+                  </form>
+                </Box>
+                <AddToCart
+                  buttonOnClick={this.buttonOnClick}
+                  open={this.props.open}
+                  handleClose={this.props.handleClose}
+                  size={this.state.selected_size}
+                ></AddToCart>
+              </Grid>
+            </Grid>
           </Box>
         </Container>
       </div>
@@ -141,4 +160,7 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
 };
-export default connect(null,mapDispatchToProps)(withRouter(withStyles(style)(SaladDetail)));
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRouter(withStyles(style)(SaladDetail)));

@@ -57,7 +57,7 @@ export default function DrinkCard(props) {
             </Grid>
             <Grid item>
               <Button>
-                <Link to={"/beverages/" + props.id}>see more</Link>
+                <Link to={"/drinks/" + props.id}>see more</Link>
               </Button>
             </Grid>
           </Grid>

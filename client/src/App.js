@@ -25,7 +25,11 @@ import ChangePw from "./User/ChangePw";
 import SaladDetail from "./Salad/SaladDetail";
 import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
-import * as constant from "./constants.json"
+
+import * as constant from "./constants.json";
+import ProtectedRoute from "./components/ProtectedRoute";
+import demo from "./components/product/demo";
+import Demo from "./components/product/demo";
 
 const theme = createMuiTheme({
   palette: {
@@ -37,8 +41,6 @@ const theme = createMuiTheme({
   }
 });
 
-var chooseTop = [];
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +50,7 @@ class App extends Component {
       pizzas: [],
       beverages: [],
       topping: [],
+      promotion: [],
       selectedLocation: null,
       searchResults: [],
       open: false
@@ -96,6 +99,14 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       });
+    axios
+      .get(constant.baseAddress + "/promotions")
+      .then((res) => {
+        this.setState({ promotion: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleClickOpen = () => {
@@ -119,9 +130,12 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <div>
           <Header></Header>
-
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route
+              path="/demo"
+              render={(props) => <Demo topping={this.state.topping}></Demo>}
+            ></Route>
             <Route
               path="/pizza/:id"
               render={(props) => (
@@ -138,31 +152,37 @@ class App extends Component {
               <Pizza pizzas={this.state.pizzas}></Pizza>
             </Route>
             <Route
-              path="/salad/:id"
+              path="/salads/:id"
               render={(props) => (
-                <SaladDetail 
-                salads={this.state.salads}
-                topping={this.state.topping}
+                <SaladDetail
+                  salads={this.state.salads}
                   open={this.state.open}
                   handleClickOpen={this.handleClickOpen}
                   handleClose={this.handleClose}
                 ></SaladDetail>
               )}
             ></Route>
-            <Route path="/salad">
+            <Route path="/salads">
               <Salad salads={this.state.salads}></Salad>
             </Route>
             <Route
-              path="/beverages/:id"
+              path="/drinks/:id"
               render={(props) => (
-                <DrinkDetail beverages={this.state.beverages}></DrinkDetail>
+                <DrinkDetail
+                  beverages={this.state.beverages}
+                  open={this.state.open}
+                  handleClickOpen={this.handleClickOpen}
+                  handleClose={this.handleClose}
+                ></DrinkDetail>
               )}
             ></Route>
-            <Route path="/beverages">
+            <Route path="/drinks">
               <Beverages beverages={this.state.beverages}></Beverages>
             </Route>
-            <Route path="/promotion" component={Promotion}></Route>
-            <Route path="/storelist">
+            <Route path="/promotion" component={Promotion}>
+              <Promotion promotion={this.state.promotion}></Promotion>
+            </Route>
+            <Route path="/locations">
               <StoreList
                 location={this.state.location}
                 selectedLocation={this.state.selectedLocation}
@@ -173,7 +193,7 @@ class App extends Component {
             </Route>
             <Route path="/cart" component={Cart}></Route>
             <Route path="/user" component={User} />
-            <Route path="/checkout" component={Checkout}></Route>
+            <ProtectedRoute path="/checkout" component={Checkout} />
             <Route path="/*/validation" component={Validation} />
             <Route path="/confirmEmail" component={ConfirmEmail} />
             <Route path="/change" component={ChangePw}></Route>

@@ -6,6 +6,7 @@ const salads = require('./salad.json');
 const stores = require('./StoreList.json');
 const drinks = require('./drinks.json');
 const toppings = require('./Toppings.json');
+const promotions = require('./promotion.json');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -97,6 +98,21 @@ new Promise((resolve, reject) => {
 })
 .then((response) => {
     console.log('locations done!');
+    //do promotions
+    return Promise.all(promotions.promotions.map(promo =>
+        axios({
+            method: "post",
+            url: server.address + "/promotions",
+            auth: {
+                username: 'Admin',
+                password: inputPassword
+            },
+            data: promo
+        })
+    ))
+})
+.then((response) => {
+    console.log('promotions done!');
 })
 .catch(error => {
     console.error(error);

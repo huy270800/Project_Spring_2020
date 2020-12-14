@@ -1,15 +1,16 @@
 import React from "react";
-import { Grid, Button, TextField, Box } from "@material-ui/core";
+import { Grid, Button, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
-  const { img, size, name, price, quantity  } = props.cart;
-  
+  const { img, size, name, price, quantity, toppings } = props.cart;
+
+  console.log(props);
 
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
       props.deleteCart(props.cart.id_cart);
     }
-  }
+  };
   const handleChangeQuantity = (event) => {
     if (Number(event.target.value) === 0) {
       return props.deleteCart(props.cart.id_cart);
@@ -17,11 +18,11 @@ export default function CartProduct(props) {
     props.updateCart(props.cart.id_cart, event.target.value);
   };
   const handleDecreaseQuantity = () => {
-      props.decrease(props.cart.id_cart)
-  }
+    props.decrease(props.cart.id_cart);
+  };
   const handleIncreaseQuantity = () => {
-    props.increase(props.cart.id_cart)
-  }
+    props.increase(props.cart.id_cart);
+  };
   return (
     <Box>
       <Box marginTop={5} marginBottom={5}>
@@ -38,21 +39,21 @@ export default function CartProduct(props) {
             >
               <Grid item md={6}>
                 <h4>{name} </h4>
-                <p>Size - {size} </p>
-                <p>Topping</p>
+                <p> {size} </p>
+                <p>{toppings}</p>
               </Grid>
               <Grid item>
-                {/* <TextField
-                  type="number"
-                  value={quantity}
+                <Button
                   onChange={handleChangeQuantity}
-                ></TextField> */}
-                <button onChange={handleChangeQuantity} onClick={handleDecreaseQuantity}>-</button>
+                  onClick={handleDecreaseQuantity}
+                >
+                  -
+                </Button>
                 {quantity}
-                <button onClick={handleIncreaseQuantity}>+</button>
+                <Button onClick={handleIncreaseQuantity}>+</Button>
               </Grid>
               <Grid item>
-                <p>€{price * quantity }</p>
+                <p>{price * quantity}€</p>
               </Grid>
               <Grid item>
                 <Button onClick={handleDeleteCart}>Delete</Button>

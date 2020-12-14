@@ -14,7 +14,8 @@ router.get('/pizzas', (req, res) => {
                 result.rows[i].size = result.rows[i].size.split(',');
                 result.rows[i].price = result.rows[i].price/100;
             }
-            res.json(result.rows);
+            if(result.rows.length === 1) res.json(result.rows[0]);
+            else res.json({})
         })
         .catch(err => {
             console.error(err);
@@ -120,7 +121,8 @@ router.get('/salads', (req, res) => {
                 result.rows[i]['italian sausage'] = result.rows[i].italiansausage;
                 result.rows[i].price = result.rows[i].price/100;
             }
-            res.json(result.rows);
+            if(result.rows.length === 1) res.json(result.rows[0]);
+            else res.json({})
         })
         .catch(err => {
             console.error(err);
@@ -229,7 +231,8 @@ router.get('/drinks', (req, res) => {
             for (let i = 0; i < result.rows.length; ++i){
                 result.rows[i].price = result.rows[i].price/100;
             }
-            res.json(result.rows);
+            if(result.rows.length === 1) res.json(result.rows[0]);
+            else res.json({})
         })
         .catch(err => {
             console.error(err);
@@ -329,7 +332,8 @@ router.get('/toppings', (req, res) => {
             for (let i = 0; i < result.rows.length; ++i){
                 result.rows[i].price = result.rows[i].price/100;
             }
-            res.json(result.rows);
+            if(result.rows.length === 1) res.json(result.rows[0]);
+            else res.json({})
         })
         .catch(err => {
             console.error(err);

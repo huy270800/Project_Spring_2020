@@ -30,8 +30,7 @@ const useStyles = makeStyles({
 });
    
 
- function ProductDetail(props) {
-  console.log(props)
+export default function ProductDetail(props) {
   const classes = useStyles();
 //   const handleDecreaseQuantity = () => {
     
@@ -60,20 +59,13 @@ const useStyles = makeStyles({
         <Grid item xs={6}>
           <img src={props.img} alt="Products" className={classes.pic}></img>
           <Typography variant="h6" align="center">
-          €{props.price}
-          { <>
-            {/* <button onClick={handleIncreaseQuantity}>+</button>
-            <div>{props.cart_data.cart[0].quantity}</div>
-            <button onClick={handleDecreaseQuantity}>-</button> */}
-           
-          </>}
+            €{props.price}
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Box className={classes.pad}>
             <Typography variant="h5">{props.name}</Typography>
           </Box>
-          <Box className={classes.pad}></Box>
           <Box className={classes.pad}>
             <Typography>{props.description}</Typography>
           </Box>
@@ -88,6 +80,8 @@ const useStyles = makeStyles({
             <Topping
               topping={props.topping}
               chooseTopping={props.chooseTopping}
+              handleCheck={props.handleCheck}
+              selected_topping={props.selected_topping}
             ></Topping>
           </Box>
           <Box className={classes.pad}>
@@ -127,4 +121,3 @@ const useStyles = makeStyles({
 //     }
 //   };
 // };
-export default ProductDetail

@@ -57,7 +57,7 @@ export default function SaladCard(props) {
             </Grid>
             <Grid item>
               <Button>
-                <Link to={"/salad/" + props.id}>see more</Link>
+                <Link to={"/salads/" + props.id}>see more</Link>
               </Button>
             </Grid>
           </Grid>
