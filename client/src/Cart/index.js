@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 function Cart(props) {
   const classes = useStyles();
   const total = props.cart_data.cart.reduce((total, pic) => {
-    console.log(pic);
     return (total = total + pic.quantity * pic.price);
   }, 0);
   return (

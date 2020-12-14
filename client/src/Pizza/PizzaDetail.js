@@ -218,6 +218,7 @@ class PizzaDetail extends Component {
             </Grid>
             {/* <ProductDetail
               img={this.state.img}
+              id={this.state.id}
               price={this.state.price}
               name={this.state.name}
               description={this.state.description}
@@ -225,6 +226,7 @@ class PizzaDetail extends Component {
               selected_size={this.state.selected_size}
               changeSize={this.changeSize}
               topping={this.props.topping}
+              quantity={this.state.quantity}
               chooseTopping={this.chooseTopping}
               selected_topping={this.state.selected_topping}
               open={this.props.open}
@@ -238,14 +240,15 @@ class PizzaDetail extends Component {
     );
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product) => {
       dispatch({ type: "ADD_TO_CART", payload: product });
-    }
+    },
   };
 };
 export default connect(
-  null,
+ null,
   mapDispatchToProps
 )(withRouter(withStyles(styles)(PizzaDetail)));

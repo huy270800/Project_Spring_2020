@@ -11,6 +11,8 @@ import {
 import Topping from "./Topping";
 import Size from "./Size";
 import AddToCart from "./AddToCart";
+import { connect } from "react-redux";
+import {increase,decrease} from "../../actions/index"
 
 const border = {
   p: 3
@@ -26,9 +28,18 @@ const useStyles = makeStyles({
     display: "block"
   }
 });
+   
 
 export default function ProductDetail(props) {
   const classes = useStyles();
+//   const handleDecreaseQuantity = () => {
+    
+//     props.decrease(props.cart_data.cart[0].id_cart)
+// }
+// const handleIncreaseQuantity = () => {
+
+//   props.increase(props.cart_data.cart[0].id_cart)
+// }
   return (
     <div>
       <Box {...border} borderTop={1}>
@@ -95,3 +106,18 @@ export default function ProductDetail(props) {
     </div>
   );
 }
+// const mapStateToProps = (state) => {
+//   return {
+//     cart_data: state.cart
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     increase: (id_cart) => {
+//       dispatch(increase(id_cart))
+//     },
+//     decrease: (id_cart) => {
+//       dispatch(decrease(id_cart))
+//     }
+//   };
+// };
