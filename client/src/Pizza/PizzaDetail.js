@@ -19,6 +19,9 @@ import Size from "../components/product/Size.js";
 import AddToCart from "../components/product/AddToCart";
 import ProductDetail from "../components/product/ProductDetail";
 import * as constant from "../constants.json"
+import {increase,decrease} from "../actions/index"
+
+
 var chooseTop = [];
 
 const styles = (theme) => ({
@@ -47,9 +50,9 @@ class PizzaDetail extends Component {
   componentDidMount() {
     console.log(this.props.match.params.id);
     axios
-      .get( constant.baseAddress + `/products/pizzas?id=${this.props.match.params.id}`)
+      .get( constant.baseAddress + `/pizzas/${this.props.match.params.id}`)
       .then((res) => {
-        const { id, name, price, size, img, description } = res.data[0];
+        const { id, name, price, size, img, description } = res.data;
         this.setState({
           id,
           name,
@@ -111,9 +114,9 @@ class PizzaDetail extends Component {
         <Container>
           <Box borderBottom={1}>
             <Navbar></Navbar>
-            {console.log(this.state)}
             <ProductDetail
               img={this.state.img}
+              id={this.state.id}
               price={this.state.price}
               name={this.state.name}
               description={this.state.description}
@@ -121,6 +124,7 @@ class PizzaDetail extends Component {
               selected_size={this.state.selected_size}
               changeSize={this.changeSize}
               topping={this.props.topping}
+              quantity={this.state.quantity}
               chooseTopping={this.chooseTopping}
               open={this.props.open}
               buttonOnClick={this.buttonOnClick}
@@ -132,14 +136,15 @@ class PizzaDetail extends Component {
     );
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product) => {
       dispatch({ type: "ADD_TO_CART", payload: product });
-    }
+    },
   };
 };
 export default connect(
-  null,
+ null,
   mapDispatchToProps
 )(withRouter(withStyles(styles)(PizzaDetail)));

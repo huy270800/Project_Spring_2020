@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Cart(props) {
-  console.log(props.cart_data)
+ 
   const classes = useStyles();
   const total = props.cart_data.cart.reduce((total, pic) => {
-    console.log(pic)
+   console.log(props.cart_data)
     return (total = total + +pic.quantity * pic.price);
   }, 0);
   return (

@@ -1,7 +1,15 @@
 
 const initState = {
   cart: [
-    
+    {
+      id_cart: "cart_16077902970160.059402944888255815",
+id_product: 1,
+img: "../assets/img/Seafood_Green_Pesto_Pizza.png",
+name: " Seafood Green Pesto Pizza",
+price: 18,
+quantity: 1,
+size: "Medium"
+    }
     
   ]
 };

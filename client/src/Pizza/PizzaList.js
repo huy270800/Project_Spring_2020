@@ -5,7 +5,7 @@ import PizzaCard from "./PizzaCard";
 import { addToCart } from "../actions/index";
 
 function PizzaList(props) {
-  console.log(props)
+  
   return (
     <Container>
       {<h1>Seafood Pizza</h1>}

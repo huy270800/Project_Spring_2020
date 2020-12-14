@@ -4,7 +4,6 @@ import { Grid, Button, TextField, Box } from "@material-ui/core";
 export default function CartProduct(props) {
   const { img, size, name, price, quantity  } = props.cart;
   
-  console.log(props)
 
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
