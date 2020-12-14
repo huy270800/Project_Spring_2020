@@ -185,6 +185,7 @@ Promise.all(
       db.query(`CREATE TABLE IF NOT EXISTS public.orders_table(
         id SERIAL PRIMARY KEY,
         userId INT,
+        userName VARCHAR(32),
         date VARCHAR(128),
         detail TEXT,
         status VARCHAR(64)
