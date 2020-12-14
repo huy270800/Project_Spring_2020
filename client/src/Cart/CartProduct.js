@@ -3,9 +3,15 @@ import { Grid, Button, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
   const { img, size, name, price, quantity, toppings } = props.cart;
-
-  console.log(props);
-
+  const checkSize = (string) => {
+    if (string === "Small") {
+        return <> Small (free)</>
+    }
+    else if (string == "Medium"){
+      return <> Medium (2€)</>
+    }
+    else return <>Large (4€)</>
+  }
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
       props.deleteCart(props.cart.id_cart);
@@ -38,9 +44,9 @@ export default function CartProduct(props) {
               alignItems="center"
             >
               <Grid item md={6}>
-                <h4>{name} </h4>
-                <p> {size} </p>
-                <p>{toppings}</p>
+                <h4>Name: {name} </h4>
+                <p>Size: {checkSize(size)}</p>
+               <p>Your toppings:  {toppings.toString()} </p>
               </Grid>
               <Grid item>
                 <Button
@@ -53,7 +59,8 @@ export default function CartProduct(props) {
                 <Button onClick={handleIncreaseQuantity}>+</Button>
               </Grid>
               <Grid item>
-                <p>{price * quantity}€</p>
+                <p>€{price * quantity }</p>
+               
               </Grid>
               <Grid item>
                 <Button onClick={handleDeleteCart}>Delete</Button>

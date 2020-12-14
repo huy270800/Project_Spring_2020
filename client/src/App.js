@@ -58,7 +58,7 @@ class App extends Component {
   }
   componentDidMount() {
     axios
-      .get(constant.baseAddress + "/salads")
+      .get(constant.baseAddress + "/products/salads")
       .then((res) => {
         this.setState({ salads: res.data });
       })
@@ -66,7 +66,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/pizzas")
+      .get(constant.baseAddress + "/products/pizzas")
       .then((res) => {
         this.setState({ pizzas: res.data });
       })
@@ -74,7 +74,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/drinks")
+      .get(constant.baseAddress + "/products/drinks")
       .then((res) => {
         this.setState({ beverages: res.data });
       })
@@ -82,7 +82,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/storeList")
+      .get(constant.baseAddress + "/products/storeList")
       .then((res) => {
         this.setState({ location: res.data });
         this.setState({ searchResults: res.data });
@@ -92,7 +92,7 @@ class App extends Component {
       });
 
     axios
-      .get(constant.baseAddress + "/toppings")
+      .get(constant.baseAddress + "/products/toppings")
       .then((res) => {
         this.setState({ topping: res.data });
       })
@@ -100,7 +100,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/promotions")
+      .get(constant.baseAddress + "/products/promotions")
       .then((res) => {
         this.setState({ promotion: res.data });
       })
@@ -191,7 +191,12 @@ class App extends Component {
                 setSelectedLocation={this.setSelectedLocation}
               ></StoreList>
             </Route>
-            <Route path="/cart" component={Cart}></Route>
+            <Route path="/cart" >
+              <Cart
+              topping = {this.state.topping}
+              >
+              </Cart>
+            </Route>
             <Route path="/user" component={User} />
             <ProtectedRoute path="/checkout" component={Checkout} />
             <Route path="/*/validation" component={Validation} />

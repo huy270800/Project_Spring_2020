@@ -22,11 +22,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Cart(props) {
- 
+  
   const classes = useStyles();
   const total = props.cart_data.cart.reduce((total, pic) => {
-   console.log(props.cart_data)
-    return (total = total + +pic.quantity * pic.price);
+    let toppingChosen = []
+    let toppingsPrices;
+    props.topping.map((product) => {
+      pic.toppings.map((topping) => {
+        if (product.name == topping) {
+          toppingChosen.push(product);
+          toppingsPrices = toppingChosen.reduce((prev,curr) => {
+            return prev + curr.price
+        },0)
+        }
+      })
+    })
+    let sizePrice; 
+   if (pic.size === "Small"){    
+      sizePrice = 0 ;
+   }
+    else if (pic.size === "Medium"){
+      sizePrice = 2 ;
+    }
+    else {
+      sizePrice = 4 
+    }
+    return (total = total + pic.quantity * pic.price + sizePrice * pic.quantity + toppingsPrices * pic.quantity );
   }, 0);
   return (
     <div>
@@ -48,6 +69,7 @@ function Cart(props) {
                         deleteCart={props.deleteCart}
                         increase={props.increase}
                         decrease={props.decrease}
+                        topping ={props.topping}
                         cart={cart_item}
                         key={cart_item.id}
                       ></CartProduct>
