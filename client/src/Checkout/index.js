@@ -1,7 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Container, Box, Button } from "@material-ui/core";
+
 import axios from "axios";
 import constants from "../constants.json";
+import Scroll from "../components/Scroll.js";
+import Navbar from "../components/Navbar.js";
 
 const totalPrice = (acc, curr) => acc + curr.price * curr.quantity;
 
@@ -14,8 +18,16 @@ const cartToString = (cart) => {
     if (cart[i].toppings) ret += "(" + cart[i].toppings.toString() + ") ";
     ret += `- ${cart[i].price * cart[i].quantity}€` + "; ";
   }
-  ret += "total price: " + cart.reduce(totalPrice, 0) + "€";
+  ret += "Total price: " + cart.reduce(totalPrice, 0) + "€";
   return ret;
+};
+
+const defaultProps = {
+  border: 1
+};
+
+const border = {
+  p: 3
 };
 
 export default function Checkout(props) {
@@ -49,12 +61,23 @@ export default function Checkout(props) {
 
   return (
     <div>
-      <div>You have selected:</div>
-      <div>{cartToString(cart.cart)}</div>
-      <div>
-        If this is correct: &nbsp;
-        <button onClick={postOrder}>post order</button>
-      </div>
+      <Scroll showBelow={250} />
+      <Container>
+        <Box {...defaultProps} borderTop={0}>
+          <Navbar></Navbar>
+          <Box {...border} borderTop={1}>
+            <Box textAlign="center">
+              <h2>CONFIRMATION</h2>
+            </Box>
+
+            <h4>You have selected:</h4>
+            <p>{cartToString(cart.cart)}</p>
+            <Box textAlign="center">
+              <Button onClick={postOrder}>confirm</Button>
+            </Box>
+          </Box>
+        </Box>
+      </Container>
     </div>
   );
 }
