@@ -9,9 +9,6 @@ const cart = (state = initState, action) => {
         return pic.id_product === action.payload.id_product;
       });
       const new_cart = [...state.cart];
-      console.log("action");
-      console.log(action.payload);
-      console.log(state.cart);
       var sameToppings;
       var index;
       if (
@@ -19,21 +16,16 @@ const cart = (state = initState, action) => {
         action.payload.size === new_cart[available_product_index].size
       ) {
         for (var i = 0; i <= state.cart.length - 1; i++) {
-          console.log(state.cart[i].toppings);
           if (
             arraysEqual(state.cart[i].toppings, action.payload.toppings) ===
             true
           ) {
-            console.log("true");
             sameToppings = true;
             index = i;
-            console.log(i);
+
             break;
           } else {
-            console.log("false");
             sameToppings = false;
-            index = i;
-            console.log(i);
           }
         }
         if (sameToppings === true) {
@@ -79,7 +71,7 @@ const cart = (state = initState, action) => {
     }
     case "INCREASE": {
       const find_product = state.cart.findIndex((product) => {
-        return product.id_cart == action.payload.id_cart;
+        return product.id_cart === action.payload.id_cart;
       });
       const new_cart = [...state.cart];
       if (find_product >= 0) {
@@ -94,7 +86,7 @@ const cart = (state = initState, action) => {
     }
     case "DECREASE": {
       const find_product = state.cart.findIndex((product) => {
-        return product.id_cart == action.payload.id_cart;
+        return product.id_cart === action.payload.id_cart;
       });
       const new_cart = [...state.cart];
       if (find_product >= 0 && new_cart[find_product].quantity >= 1) {

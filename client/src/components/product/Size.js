@@ -64,8 +64,8 @@ export default function Size(props) {
           defaultValue="Small"
           aria-label="size"
           name="size-radios"
-          value={props.size}
           onChange={props.changeSize}
+          value={props.selected_size}
         >
           <Grid
             container
@@ -78,11 +78,12 @@ export default function Size(props) {
                 return (
                   <Grid item xs={3}>
                     <FormControlLabel
+                      key={s}
                       labelPlacement="bottom"
                       value={s}
                       label={s}
                       required={true}
-                      control={<StyledRadio key={s.id} />}
+                      control={<StyledRadio />}
                     ></FormControlLabel>
                   </Grid>
                 );

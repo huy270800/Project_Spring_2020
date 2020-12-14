@@ -39,7 +39,8 @@ class PizzaDetail extends Component {
   state = {
     selected_size: "Small",
     selected_topping: [],
-    quantity: 1
+    quantity: 1,
+    valueSize: ""
   };
 
   componentDidMount() {
@@ -76,17 +77,6 @@ class PizzaDetail extends Component {
         : [...state.selected_topping, x]
     }));
   }
-  // chooseTopping = (event) => {
-  //   if (!this.state.selected_topping.includes(event.target.value)) {
-  //     this.state.selected_topping.push(event.target.value);
-  //   } else {
-  //     this.state.selected_topping.splice(
-  //       this.state.selected_topping.indexOf(event.target.value),
-  //       1
-  //     );
-  //   }
-  //   this.setState({ selected_topping: this.state.selected_topping });
-  // };
 
   handleAddToCart = () => {
     const {
@@ -161,6 +151,7 @@ class PizzaDetail extends Component {
                     size={this.state.size}
                     selected_size={this.state.selected_size}
                     changeSize={this.changeSize}
+                    valueSize={this.state.valueSize}
                   ></Size>
                 </Box>
                 <Box className={this.props.classes.pad}>
