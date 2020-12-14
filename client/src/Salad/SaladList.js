@@ -22,7 +22,7 @@ function SaladList(props) {
         <Grid
           container
           direction="row"
-          justify="space-around"
+          justify="flex-start"
           alignItems="center"
         >
           {props.salads.map((item) => {

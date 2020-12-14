@@ -22,7 +22,7 @@ function PizzaList(props) {
         <Grid
           container
           direction="row"
-          justify="space-around"
+          justify="flex-start"
           alignItems="center"
         >
           {props.pizzas
@@ -44,12 +44,7 @@ function PizzaList(props) {
         </Grid>
       )}
       {<h1>Mixed Pizza</h1>}
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="center"
-      >
+      <Grid container direction="row" justify="flex-start" alignItems="center">
         {props.pizzas
           .filter((item) => item.mixed === true)
           .map((item) => {
@@ -68,12 +63,7 @@ function PizzaList(props) {
           })}
       </Grid>
       {<h1>Traditional Pizza</h1>}
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="center"
-      >
+      <Grid container direction="row" justify="flex-start" alignItems="center">
         {props.pizzas
           .filter((item) => item.traditional === true)
           .map((item) => {
@@ -92,12 +82,7 @@ function PizzaList(props) {
           })}
       </Grid>
       {<h1>Filled Pizza</h1>}
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="center"
-      >
+      <Grid container direction="row" justify="flex-start" alignItems="center">
         {props.pizzas
           .filter((item) => item.filling === true)
           .map((item) => {
