@@ -103,7 +103,7 @@ function Cart(props) {
                     >
                       <Link to="/">Continue shopping</Link>
                     </Button>
-                    {props.isLogged.username == "" ? (
+                    {props.isLogged.username !== "" ? (
                       <div>
                         <Button
                           variant="outlined"

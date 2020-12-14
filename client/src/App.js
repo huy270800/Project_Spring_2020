@@ -27,9 +27,7 @@ import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
 
 import * as constant from "./constants.json";
-import ProtectedRoute from "./components/ProtectedRoute";
-import demo from "./components/product/demo";
-import Demo from "./components/product/demo";
+// import ProtectedRoute from "./components/ProtectedRoute";
 
 const theme = createMuiTheme({
   palette: {
@@ -133,10 +131,6 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route
-              path="/demo"
-              render={(props) => <Demo topping={this.state.topping}></Demo>}
-            ></Route>
-            <Route
               path="/pizza/:id"
               render={(props) => (
                 <PizzaDetail
@@ -198,7 +192,8 @@ class App extends Component {
               </Cart>
             </Route>
             <Route path="/user" component={User} />
-            <ProtectedRoute path="/checkout" component={Checkout} />
+            <Route path="/checkout" component={Checkout}></Route>
+            {/* <ProtectedRoute path="/checkout" component={Checkout} /> */}
             <Route path="/*/validation" component={Validation} />
             <Route path="/confirmEmail" component={ConfirmEmail} />
             <Route path="/change" component={ChangePw}></Route>
