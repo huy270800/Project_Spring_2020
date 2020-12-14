@@ -37,13 +37,15 @@ const border = {
 
 class SaladDetail extends Component {
   state = {
-    selected_size: "",
+    selected_size: "Small",
     quantity: 1
   };
 
   componentDidMount() {
     axios
-      .get(constant.baseAddress + `/products/salads?id=${this.props.match.params.id}`)
+      .get(
+        constant.baseAddress + `/products/salads/${this.props.match.params.id}`
+      )
       .then((res) => {
         const { id, name, price, size, img, description } = res.data;
 

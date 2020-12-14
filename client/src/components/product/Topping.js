@@ -1,11 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   makeStyles,
   Button,
   Grid,
   Typography,
   Box,
-  FormControlLabel
+  FormControlLabel,
+  Checkbox
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,19 +38,25 @@ export default function Topping(props) {
                 style={{ width: "100%" }}
               >
                 <FormControlLabel
+                  className="toppings"
                   style={{ margin: "0 0" }}
                   control={
                     <Box height="20vh">
                       <img src={top.img} alt={top.name}></img>
                       <Typography align="center">{top.name}</Typography>
                       <Typography>+ €{top.price} </Typography>
+                      <Checkbox
+                        value={top.name}
+                        checked={top.selected}
+                        onChange={props.handleCheckbox}
+                        // onChange={props.chooseTopping}
+                      ></Checkbox>
+                      {/* <input
 
-                      <input
-                        className="topping"
                         type="checkbox"
                         value={top.name}
                         onChange={props.chooseTopping}
-                      ></input>
+                      ></input> */}
                     </Box>
                   }
                 />

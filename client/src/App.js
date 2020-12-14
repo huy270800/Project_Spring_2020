@@ -28,6 +28,8 @@ import DrinkDetail from "./Beverages/DrinkDetail";
 
 import * as constant from "./constants.json";
 import ProtectedRoute from "./components/ProtectedRoute";
+import demo from "./components/product/demo";
+import Demo from "./components/product/demo";
 
 const theme = createMuiTheme({
   palette: {
@@ -106,7 +108,6 @@ class App extends Component {
         console.log(err);
       });
   }
-  
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -123,7 +124,7 @@ class App extends Component {
   setSelectedLocation = (parameter) => {
     this.setState({ selectedLocation: parameter });
   };
-  
+
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -131,6 +132,10 @@ class App extends Component {
           <Header></Header>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route
+              path="/demo"
+              render={(props) => <Demo topping={this.state.topping}></Demo>}
+            ></Route>
             <Route
               path="/pizza/:id"
               render={(props) => (
@@ -175,10 +180,7 @@ class App extends Component {
               <Beverages beverages={this.state.beverages}></Beverages>
             </Route>
             <Route path="/promotion" component={Promotion}>
-              <Promotion
-              promotion= {this.state.promotion}
-              >
-              </Promotion>
+              <Promotion promotion={this.state.promotion}></Promotion>
             </Route>
             <Route path="/locations">
               <StoreList

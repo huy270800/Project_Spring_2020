@@ -69,6 +69,8 @@ export default function ProductDetail(props) {
             <Topping
               topping={props.topping}
               chooseTopping={props.chooseTopping}
+              handleCheck={props.handleCheck}
+              selected_topping={props.selected_topping}
             ></Topping>
           </Box>
           <Box className={classes.pad}>

@@ -9,30 +9,47 @@ const cart = (state = initState, action) => {
         return pic.id_product === action.payload.id_product;
       });
       const new_cart = [...state.cart];
+      console.log("action");
+      console.log(action.payload);
+      console.log(state.cart);
+      var sameToppings;
+      var index;
       if (
         available_product_index >= 0 &&
         action.payload.size === new_cart[available_product_index].size
       ) {
-        new_cart[available_product_index].quantity =
-          new_cart[available_product_index].quantity + action.payload.quantity;
-          for (let  i = 0 ; i <= state.cart[i].lenghth ; i ++) {
-                if (state.cart[i].toppings === action.payload.toppings)
-                {
-                  new_cart[i].quantity++
-                }
-                else if (state.cart[i].toppings !== action.payload.toppings) {
-                  const cart2 = [] ;
-                  new_cart = cart2.push(action.payload.toppings)
-                }
-                
+        for (var i = 0; i <= state.cart.length - 1; i++) {
+          console.log(state.cart[i].toppings);
+          if (
+            arraysEqual(state.cart[i].toppings, action.payload.toppings) ===
+            true
+          ) {
+            console.log("true");
+            sameToppings = true;
+            index = i;
+            console.log(i);
+            break;
+          } else {
+            console.log("false");
+            sameToppings = false;
+            index = i;
+            console.log(i);
           }
-        // var a = arraysEqual(new_cart[available_product_index].toppings, b);
-        // console.log(new_cart[available_product_index].toppings);
-        // console.log(a);
-        return {
-          ...state,
-          cart: new_cart
-        };
+        }
+        if (sameToppings === true) {
+          new_cart[index].quantity =
+            new_cart[index].quantity + action.payload.quantity;
+
+          return {
+            ...state,
+            cart: new_cart
+          };
+        } else {
+          return {
+            ...state,
+            cart: [...state.cart, action.payload]
+          };
+        }
       } else {
         return {
           ...state,

@@ -61,7 +61,7 @@ export default function Size(props) {
       <Typography variant="h6">SIZE</Typography>
       <FormControl id="size" component="fieldset">
         <RadioGroup
-          defaultValue="small"
+          defaultValue="Small"
           aria-label="size"
           name="size-radios"
           value={props.size}
@@ -78,12 +78,11 @@ export default function Size(props) {
                 return (
                   <Grid item xs={3}>
                     <FormControlLabel
-                      className="size"
-                      key={s.id}
-                      value={s}
-                      control={<StyledRadio required />}
-                      label={s}
                       labelPlacement="bottom"
+                      value={s}
+                      label={s}
+                      required={true}
+                      control={<StyledRadio key={s.id} />}
                     ></FormControlLabel>
                   </Grid>
                 );

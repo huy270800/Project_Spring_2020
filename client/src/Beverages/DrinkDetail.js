@@ -37,7 +37,9 @@ class DrinkDetail extends Component {
   state = { quantity: 1 };
   componentDidMount() {
     axios
-      .get(constant.baseAddress + `/products/drinks?id=${this.props.match.params.id}`)
+      .get(
+        constant.baseAddress + `/products/drinks/${this.props.match.params.id}`
+      )
       .then((res) => {
         const { id, name, price, img, description } = res.data;
         this.setState({

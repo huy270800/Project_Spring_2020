@@ -1,12 +1,24 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { withStyles, Container, Box } from "@material-ui/core";
+import { withRouter, Link } from "react-router-dom";
+import {
+  withStyles,
+  Container,
+  Box,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  FormControlLabel,
+  Checkbox
+} from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
+import AddToCart from "../components/product/AddToCart";
+import Size from "../components/product/Size";
 import Navbar from "../components/Navbar";
 import Scroll from "../components/Scroll";
-import ProductDetail from "../components/product/ProductDetail";
 import * as constant from "../constants.json";
 
 const styles = (theme) => ({
@@ -17,20 +29,24 @@ const styles = (theme) => ({
     maxWidth: "100%",
     margin: "0 auto",
     display: "block"
+  },
+  mar: {
+    marginTop: 6,
+    padding: theme.spacing(1)
   }
 });
-var chooseTop = [];
 class PizzaDetail extends Component {
   state = {
-    selected_size: "",
+    selected_size: "Small",
     selected_topping: [],
-    quantity: 1,
-    open: false
+    quantity: 1
   };
 
   componentDidMount() {
     axios
-      .get(constant.baseAddress + `/products/pizzas?id=${this.props.match.params.id}`)
+      .get(
+        constant.baseAddress + `/products/pizzas/${this.props.match.params.id}`
+      )
       .then((res) => {
         const { id, name, price, size, img, description } = res.data;
         this.setState({
@@ -53,18 +69,24 @@ class PizzaDetail extends Component {
   changeSize = (event) => {
     this.setState({ selected_size: event.target.value });
   };
-
-  chooseTopping = (event) => {
-    if (!this.state.selected_topping.includes(event.target.value)) {
-      this.state.selected_topping.push(event.target.value);
-    } else {
-      this.state.selected_topping.splice(
-        this.state.selected_topping.indexOf(event.target.value),
-        1
-      );
-    }
-    this.setState({ selected_topping: this.state.selected_topping });
-  };
+  handleCheck(e, x) {
+    this.setState((state) => ({
+      selected_topping: state.selected_topping.includes(x)
+        ? state.selected_topping.filter((c) => c !== x)
+        : [...state.selected_topping, x]
+    }));
+  }
+  // chooseTopping = (event) => {
+  //   if (!this.state.selected_topping.includes(event.target.value)) {
+  //     this.state.selected_topping.push(event.target.value);
+  //   } else {
+  //     this.state.selected_topping.splice(
+  //       this.state.selected_topping.indexOf(event.target.value),
+  //       1
+  //     );
+  //   }
+  //   this.setState({ selected_topping: this.state.selected_topping });
+  // };
 
   handleAddToCart = () => {
     const {
@@ -87,10 +109,13 @@ class PizzaDetail extends Component {
       toppings: selected_topping
     });
   };
-
   buttonOnClick = () => {
     this.props.handleClickOpen();
     this.handleAddToCart();
+    this.setState({
+      selected_size: "Small",
+      selected_topping: []
+    });
   };
 
   render() {
@@ -100,8 +125,107 @@ class PizzaDetail extends Component {
         <Container>
           <Box borderBottom={1}>
             <Navbar></Navbar>
-            {/* {console.log(this.state)} */}
-            <ProductDetail
+            <Box>
+              <Link to="/pizza">
+                <h3>
+                  <ArrowBackIosIcon></ArrowBackIosIcon>
+                </h3>
+              </Link>
+            </Box>
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              style={{ padding: "10vh " }}
+              spacing={6}
+            >
+              <Grid item xs={6}>
+                <img
+                  src={this.state.img}
+                  alt="Products"
+                  className={this.props.classes.pic}
+                ></img>
+                <Typography variant="h6" align="center">
+                  €{this.state.price}
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <Box className={this.props.classes.pad}>
+                  <Typography variant="h5">{this.state.name}</Typography>
+                </Box>
+                <Box className={this.props.classes.pad}>
+                  <Typography>{this.state.description}</Typography>
+                </Box>
+                <Box className={this.props.classes.pad}>
+                  <Size
+                    size={this.state.size}
+                    selected_size={this.state.selected_size}
+                    changeSize={this.changeSize}
+                  ></Size>
+                </Box>
+                <Box className={this.props.classes.pad}>
+                  <Typography variant="h6">TOPPINGS</Typography>
+                  <Grid
+                    container
+                    direction="row"
+                    justify="space-between"
+                    alignItems="center"
+                  >
+                    {this.props.topping.map((x) => {
+                      return (
+                        <Grid item xs={4} className={this.props.classes.mar}>
+                          <Button
+                            variant="outlined"
+                            color="primary"
+                            style={{ width: "100%" }}
+                          >
+                            <FormControlLabel
+                              style={{ margin: "0 0" }}
+                              control={
+                                <Box height="20vh">
+                                  <img src={x.img} alt={x.name}></img>
+                                  <Typography align="center">
+                                    {x.name}
+                                  </Typography>
+                                  <Typography>+ €{x.price} </Typography>
+                                  <Checkbox
+                                    key={x.name.toString()}
+                                    onChange={(e) =>
+                                      this.handleCheck(e, x.name)
+                                    }
+                                    checked={this.state.selected_topping.includes(
+                                      x.name
+                                    )}
+                                  ></Checkbox>
+                                </Box>
+                              }
+                            ></FormControlLabel>
+                          </Button>
+                        </Grid>
+                      );
+                    })}
+                  </Grid>
+                </Box>
+                <Box className={this.props.classes.pad}>
+                  <Typography variant="h6">NOTE</Typography>
+                  <form noValidate autoComplete="off">
+                    <TextField
+                      className="note"
+                      fullWidth
+                      multiline
+                      rows={4}
+                      variant="outlined"
+                    />
+                  </form>
+                </Box>
+                <AddToCart
+                  buttonOnClick={this.buttonOnClick}
+                  open={this.props.open}
+                  handleClose={this.props.handleClose}
+                ></AddToCart>
+              </Grid>
+            </Grid>
+            {/* <ProductDetail
               img={this.state.img}
               price={this.state.price}
               name={this.state.name}
@@ -111,10 +235,12 @@ class PizzaDetail extends Component {
               changeSize={this.changeSize}
               topping={this.props.topping}
               chooseTopping={this.chooseTopping}
+              selected_topping={this.state.selected_topping}
               open={this.props.open}
               buttonOnClick={this.buttonOnClick}
               handleClose={this.props.handleClose}
-            ></ProductDetail>
+              handleCheck={this.handleCheck}
+            ></ProductDetail> */}
           </Box>
         </Container>
       </div>

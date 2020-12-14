@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Button, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
-  const { img, size, name, price, quantity } = props.cart;
+  const { img, size, name, price, quantity, toppings } = props.cart;
 
   console.log(props);
 
@@ -40,7 +40,7 @@ export default function CartProduct(props) {
               <Grid item md={6}>
                 <h4>{name} </h4>
                 <p> {size} </p>
-                <p>Topping</p>
+                <p>{toppings}</p>
               </Grid>
               <Grid item>
                 <Button
