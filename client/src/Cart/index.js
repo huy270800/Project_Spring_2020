@@ -105,7 +105,7 @@ function Cart(props) {
                         deleteCart={props.deleteCart}
                         increase={props.increase}
                         decrease={props.decrease}
-                        topping ={props.topping}
+                        topping={props.topping}
                         cart={cart_item}
                         key={cart_item.id}
                       ></CartProduct>

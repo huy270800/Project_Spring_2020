@@ -20,7 +20,7 @@ export default function DrinkList(props) {
         <Grid
           container
           direction="row"
-          justify="space-around"
+          justify="flex-start"
           alignItems="center"
         >
           {props.beverages
@@ -39,12 +39,7 @@ export default function DrinkList(props) {
         </Grid>
       )}
       {<h1>Beer</h1>}
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="center"
-      >
+      <Grid container direction="row" justify="flex-start" alignItems="center">
         {props.beverages
           .filter((item) => item.alcohol === true)
           .map((item) => {

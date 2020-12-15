@@ -5,13 +5,11 @@ export default function CartProduct(props) {
   const { img, size, name, price, quantity, toppings } = props.cart;
   const checkSize = (string) => {
     if (string === "Small") {
-        return <> Small (free)</>
-    }
-    else if (string == "Medium"){
-      return <> Medium (2€)</>
-    }
-    else return <>Large (4€)</>
-  }
+      return <> Small </>;
+    } else if (string == "Medium") {
+      return <> Medium (+ 2€)</>;
+    } else return <>Large (+ 4€)</>;
+  };
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
       props.deleteCart(props.cart.id_cart);
@@ -59,8 +57,7 @@ export default function CartProduct(props) {
                 <Button onClick={handleIncreaseQuantity}>+</Button>
               </Grid>
               <Grid item>
-                <p>€{price * quantity }</p>
-               
+                <p>€{price * quantity}</p>
               </Grid>
               <Grid item>
                 <Button onClick={handleDeleteCart}>Delete</Button>
