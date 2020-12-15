@@ -80,7 +80,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/products/storeList")
+      .get(constant.baseAddress + "/locations")
       .then((res) => {
         this.setState({ location: res.data });
         this.setState({ searchResults: res.data });
@@ -98,7 +98,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/products/promotions")
+      .get(constant.baseAddress + "/promotions")
       .then((res) => {
         this.setState({ promotion: res.data });
       })
