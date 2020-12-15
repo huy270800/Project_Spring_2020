@@ -34,7 +34,7 @@ class Pizza extends Component {
           <Box {...defaultProps} borderTop={0}>
             <Navbar></Navbar>
             <Box {...border} borderTop={1}>
-              <h3>Pizza</h3>
+              <h2>Pizza</h2>
             </Box>
             <PizzaList pizzas={this.props.pizzas}></PizzaList>
           </Box>

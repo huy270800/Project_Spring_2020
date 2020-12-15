@@ -104,7 +104,7 @@ function Cart(props) {
                     >
                       <Link to="/">Continue shopping</Link>
                     </Button>
-                    {props.isLogged.username !== "" ? (
+                    {props.isLogged.username === "" ? (
                       <div>
                         <Button
                           variant="outlined"
@@ -114,7 +114,7 @@ function Cart(props) {
                         >
                           <Link to="/checkout"> Check out</Link>
                         </Button>
-                        <p style={{ color: "#e84118" }}>You have to login</p>
+                        <p style={{ color: "#e84118" }}>You have to login!</p>
                       </div>
                     ) : (
                       <Button
