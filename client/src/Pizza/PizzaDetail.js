@@ -115,8 +115,8 @@ class PizzaDetail extends Component {
       img,
       size: selected_size,
       quantity,
-      toppings: selected_topping,
-      // totalPrice: totalPrice
+      toppings: selected_topping.sort(),
+      totalPrice: totalPrice
     });
   };
   buttonOnClick = () => {
@@ -277,11 +277,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product) => {
       dispatch({ type: "ADD_TO_CART", payload: product });
-    },
+    }
   };
 };
 export default connect(
- null,
+  null,
   mapDispatchToProps
 )(withRouter(withStyles(styles)(PizzaDetail)));
 
