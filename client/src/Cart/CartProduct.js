@@ -39,7 +39,6 @@ export default function CartProduct(props) {
     else a = false;
     return a;
   };
-  console.log(availableTopping());
   return (
     <Box>
       <Box marginTop={5} marginBottom={5}>
