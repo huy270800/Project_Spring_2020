@@ -77,7 +77,16 @@ class PizzaDetail extends Component {
         : [...state.selected_topping, x]
     }));
   }
-
+  checkSize = () => {
+    if (this.state.selected_size === "Small") {
+      this.setState({ totalPrice: this.state.price });
+    } else if (this.state.selected_size === "Medium") {
+      this.setState({ totalPrice: this.state.price + 2 });
+    } else {
+      this.setState({ totalPrice: this.state.price + 4 });
+    }
+    console.log(this.state.totalPrice);
+  };
   handleAddToCart = () => {
     const {
       id,
@@ -107,7 +116,33 @@ class PizzaDetail extends Component {
       selected_topping: []
     });
   };
-
+  // calculateToppingPrice = () => {
+  //     this.props.topping.map((product) => {
+  //       this.state.selected_topping.map((top) => {
+  //           if (product.name == top){
+  //               this.setState({toppingChosen: product});
+  //             this.state.toppingsPrice = this.state.toppingChosen.reduce((prev,curr) =>{
+  //               return prev + curr.price
+  //             }, 0 )
+  //           }
+  //       })
+  //     })
+  // }
+  // calculatePizzaPrice =() =>{
+  //   this.state.map((top) => {
+  //     this.checkSize(top)
+  //     this.setState({pizzaArray : top})
+  //     this.state.pizzaPrice =  this.state.pizzaArray.reduce((prev,curr) => {
+  //         if (this.curr.selected_topping.length === 0 ){
+  //           this.setState({toppingsPrice: 0 })
+  //         }
+  //         else {
+  //           this.calculateToppingPrice()
+  //         }
+  //         return this.setState({totalPrice: prev + curr.price * curr.quantity + this.sizePrice * curr.quantity + this.toppingsPrice * curr.quantity})
+  //     }, 0 )
+  //   })
+  // }
   render() {
     return (
       <div>
@@ -152,6 +187,7 @@ class PizzaDetail extends Component {
                     selected_size={this.state.selected_size}
                     changeSize={this.changeSize}
                     valueSize={this.state.valueSize}
+                    checkSize={this.checkSize}
                   ></Size>
                 </Box>
                 <Box className={this.props.classes.pad}>
@@ -213,6 +249,9 @@ class PizzaDetail extends Component {
                   buttonOnClick={this.buttonOnClick}
                   open={this.props.open}
                   handleClose={this.props.handleClose}
+                  // calculatePizzaPrice={this.calculatePizzaPrice}
+                  // calculateToppingPrice={this.calculateToppingPrice}
+                  // checkSize={this.checkSize}
                 ></AddToCart>
               </Grid>
             </Grid>
