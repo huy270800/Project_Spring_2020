@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1)
   }
 }));
-    
+
 function Cart(props) {
-  let sizePrice; 
+  let sizePrice;
   let toppingChosen = [];
   let toppingsPrice = 0;
   let saladsPrice = 0;
@@ -30,78 +30,75 @@ function Cart(props) {
   let drinksArray = [];
   let drinksPrice = 0;
   let pizzaArray = [];
-  let pizzaPrice  = 0;
-      function checkSize(pic){
-        if (pic.size === "Small"){    
-          sizePrice = 0 ;
-       }
-        else if (pic.size === "Medium"){
-          sizePrice = 2 ;
-        }
-        else {
-          sizePrice = 4 
-        }
-      }
+  let pizzaPrice = 0;
+  function checkSize(pic) {
+    if (pic.size === "Small") {
+      sizePrice = 0;
+    } else if (pic.size === "Medium") {
+      sizePrice = 2;
+    } else {
+      sizePrice = 4;
+    }
+  }
   props.cart_data.cart.map((pic) => {
-      if (pic.hasOwnProperty("toppings") && pic.hasOwnProperty("size"))
-      {
-        checkSize(pic)
-        props.topping.map((product) => {
-          pic.toppings.map((topping) => {
-            if (product.name == topping) {
-              toppingChosen.push(product);
-              toppingsPrice = toppingChosen.reduce((prev,curr) => {
-                console.log(curr)
-                return prev + curr.price
-            },0)
-            }
-          })
-        })
-        checkSize(pic)
-        pizzaArray.push(pic)
-        pizzaPrice = pizzaArray.reduce((prev,curr) => {
-          if (curr.toppings.length === 0){
-            toppingsPrice = 0 ;
+    if (pic.hasOwnProperty("toppings") && pic.hasOwnProperty("size")) {
+      checkSize(pic);
+      props.topping.map((product) => {
+        pic.toppings.map((topping) => {
+          if (product.name === topping) {
+            toppingChosen.push(product);
+            toppingsPrice = toppingChosen.reduce((prev, curr) => {
+              return prev + curr.price;
+            }, 0);
           }
-          else {
-            props.topping.map((product) => {  
-              curr.toppings.map((topping) => {
-                if (product.name == topping) {
-                  toppingChosen.push(product);
-                  toppingsPrice = toppingChosen.reduce((prev,curr) => {
-                    console.log(curr)
-                    return prev + curr.price
-                },0)
-                }
-              })
-            })
-          }
-          return prev + curr.price * curr.quantity + sizePrice * curr.quantity + toppingsPrice * curr.quantity
-      },0)
-        console.log(pizzaPrice)
-        console.log(toppingsPrice)
-        
-      }
-      else if (pic.hasOwnProperty('size')){ 
-        checkSize(pic)
-      saladsArray.push(pic)
-      saladsPrice = saladsArray.reduce((prev,curr) => {
-        return prev + curr.price * curr.quantity + sizePrice * curr.quantity
-    },0)
-      }
-      else {
-          drinksArray.push(pic)
-          console.log(pic)
-          drinksPrice = drinksArray.reduce((prev,curr) => {
-            return prev + curr.price * curr.quantity
-        },0)
-      }
-      console.log(drinksArray)
-      console.log(drinksPrice)
-  })
+        });
+      });
+      checkSize(pic);
+      pizzaArray.push(pic);
+      pizzaPrice = pizzaArray.reduce((prev, curr) => {
+        if (curr.toppings.length === 0) {
+          toppingsPrice = 0;
+        } else {
+          props.topping.map((product) => {
+            curr.toppings.map((topping) => {
+              if (product.name === topping) {
+                toppingChosen.push(product);
+                toppingsPrice = toppingChosen.reduce((prev, curr) => {
+                  return prev + curr.price;
+                }, 0);
+              }
+            });
+          });
+        }
+        return (
+          prev +
+          curr.price * curr.quantity +
+          sizePrice * curr.quantity +
+          toppingsPrice * curr.quantity
+        );
+      }, 0);
+    } else if (pic.hasOwnProperty("size")) {
+      checkSize(pic);
+      saladsArray.push(pic);
+      saladsPrice = saladsArray.reduce((prev, curr) => {
+        return prev + curr.price * curr.quantity + sizePrice * curr.quantity;
+      }, 0);
+    } else {
+      drinksArray.push(pic);
+
+      drinksPrice = drinksArray.reduce((prev, curr) => {
+        return prev + curr.price * curr.quantity;
+      }, 0);
+    }
+  });
+
   const classes = useStyles();
-  const total = pizzaPrice + saladsPrice + drinksPrice
-    
+  const total = pizzaPrice + saladsPrice + drinksPrice;
+  function checkOut() {
+    props.sum({
+      totalPrice: total
+    });
+  }
   return (
     <div>
       <Scroll showBelow={250}></Scroll>
@@ -125,10 +122,10 @@ function Cart(props) {
                         topping={props.topping}
                         cart={cart_item}
                         key={cart_item.id}
-                        saladsPrice ={saladsPrice}
-                        toppingsPrice ={toppingsPrice}
-                        pizzaPrice ={pizzaPrice}
-                        drinksPrice ={drinksPrice}
+                        saladsPrice={saladsPrice}
+                        toppingsPrice={toppingsPrice}
+                        pizzaPrice={pizzaPrice}
+                        drinksPrice={drinksPrice}
                       ></CartProduct>
                     </Box>
                   );
@@ -177,6 +174,7 @@ function Cart(props) {
                         variant="outlined"
                         size="medium"
                         className={classes.margin}
+                        onClick={checkOut}
                       >
                         <Link to="/checkout">Check out</Link>
                       </Button>
@@ -210,6 +208,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     decrease: (id_cart) => {
       dispatch(decrease(id_cart));
+    },
+    sum: (totalPrice) => {
+      dispatch({ type: "TOTAL_PRICE", payload: totalPrice });
     }
   };
 };

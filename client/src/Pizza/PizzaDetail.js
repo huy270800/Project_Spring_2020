@@ -40,8 +40,7 @@ class PizzaDetail extends Component {
     selected_size: "Small",
     selected_topping: [],
     quantity: 1,
-    valueSize: "",
-    totalPrice: 0
+    valueSize: ""
   };
 
   componentDidMount() {
@@ -87,8 +86,7 @@ class PizzaDetail extends Component {
       selected_size,
       selected_topping,
       quantity,
-      img,
-      totalPrice
+      img
     } = this.state;
     this.props.addToCart({
       id_cart: "cart_" + Date.now() + Math.random(),
@@ -98,8 +96,7 @@ class PizzaDetail extends Component {
       img,
       size: selected_size,
       quantity,
-      toppings: selected_topping.sort(),
-      totalPrice: totalPrice
+      toppings: selected_topping.sort()
     });
   };
   buttonOnClick = () => {
@@ -225,6 +222,11 @@ class PizzaDetail extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    cart_data: state.cart
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -234,6 +236,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withRouter(withStyles(styles)(PizzaDetail)));

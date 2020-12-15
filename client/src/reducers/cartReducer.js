@@ -1,6 +1,7 @@
 const initState = {
   cart: []
 };
+
 // pic = product in cart
 const cart = (state = initState, action) => {
   switch (action.type) {
@@ -99,6 +100,7 @@ const cart = (state = initState, action) => {
         cart: new_cart
       };
     }
+
     default:
       return state;
   }
