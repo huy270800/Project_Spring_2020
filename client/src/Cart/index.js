@@ -42,21 +42,21 @@ function Cart(props) {
           sizePrice = 4 
         }
       }
+      console.log(props.cart_data.cart)
   props.cart_data.cart.map((pic) => {
       if (pic.hasOwnProperty("toppings") && pic.hasOwnProperty("size"))
       {
-        checkSize(pic)
-        props.topping.map((product) => {
-          pic.toppings.map((topping) => {
-            if (product.name == topping) {
-              toppingChosen.push(product);
-              toppingsPrice = toppingChosen.reduce((prev,curr) => {
-                console.log(curr)
-                return prev + curr.price
-            },0)
-            }
-          })
-        })
+        // checkSize(pic)
+        // props.topping.map((product) => {
+        //   pic.toppings.map((topping) => {
+        //     if (product.name == topping) {
+        //       toppingChosen.push(product);
+        //       toppingsPrice = toppingChosen.reduce((prev,curr) => {
+        //         return prev + curr.price
+        //     },0)
+        //     }
+        //   })
+        // })
         checkSize(pic)
         pizzaArray.push(pic)
         pizzaPrice = pizzaArray.reduce((prev,curr) => {
@@ -69,7 +69,6 @@ function Cart(props) {
                 if (product.name == topping) {
                   toppingChosen.push(product);
                   toppingsPrice = toppingChosen.reduce((prev,curr) => {
-                    console.log(curr)
                     return prev + curr.price
                 },0)
                 }
