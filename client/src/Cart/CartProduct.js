@@ -46,7 +46,7 @@ export default function CartProduct(props) {
               <Grid item md={6}>
                 <h4>Name: {name} </h4>
                 <p>Size: {checkSize(size)}</p>
-               <p>Your toppings:  {toppings.toString()} </p>
+               {/* <p>Your toppings:  {toppings.toString()} </p> */}
               </Grid>
               <Grid item>
                 <Button

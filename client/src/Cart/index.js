@@ -20,33 +20,69 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1)
   }
 }));
-
+    
 function Cart(props) {
-  
+  let sizePrice; 
+  let toppingChosen = [];
+  let toppingsPrices = 0;
+  let saladsPrice = 0;
+  let saladsArray = [];
+  let drinksArray = [];
+  let drinksPrice = 0;
+      function checkSize(pic){
+        if (pic.size === "Small"){    
+          sizePrice = 0 ;
+       }
+        else if (pic.size === "Medium"){
+          sizePrice = 2 ;
+        }
+        else {
+          sizePrice = 4 
+        }
+      }
+      function isEmpty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+  props.cart_data.cart.map((pic) => {
+      if (pic.hasOwnProperty("toppings") && pic.hasOwnProperty("size"))
+      {
+        console.log()
+          checkSize(pic)
+          props.topping.map((product) => {
+            pic.toppings.map((topping) => {
+              if (product.name == topping) {
+                toppingChosen.push(product);
+                toppingsPrices = toppingChosen.reduce((prev,curr) => {
+                  return prev + curr.price
+              },0)
+              }
+            })
+          })
+        
+      }
+      else if (pic.hasOwnProperty('size')){ 
+          console.log(pic)
+        checkSize(pic)
+        toppingsPrices = 0 ;
+      saladsArray.push(pic)
+      saladsPrice = saladsArray.reduce((prev,curr) => {
+        return prev + curr.price * curr.quantity + sizePrice * curr.quantity
+    },0)
+      }
+      else {
+          drinksArray.push(pic)
+          
+          drinksPrice = drinksArray.reduce((prev,curr) => {
+            return prev + curr.price * curr.quantity
+        },0)
+        
+      }
+  })
+  console.log(toppingsPrices)
+  console.log(drinksPrice)
+  console.log(saladsPrice)
   const classes = useStyles();
   const total = props.cart_data.cart.reduce((total, pic) => {
-    let toppingChosen = []
-    let toppingsPrices;
-    props.topping.map((product) => {
-      pic.toppings.map((topping) => {
-        if (product.name == topping) {
-          toppingChosen.push(product);
-          toppingsPrices = toppingChosen.reduce((prev,curr) => {
-            return prev + curr.price
-        },0)
-        }
-      })
-    })
-    let sizePrice; 
-   if (pic.size === "Small"){    
-      sizePrice = 0 ;
-   }
-    else if (pic.size === "Medium"){
-      sizePrice = 2 ;
-    }
-    else {
-      sizePrice = 4 
-    }
     return (total = total + pic.quantity * pic.price + sizePrice * pic.quantity + toppingsPrices * pic.quantity );
   }, 0);
   return (
