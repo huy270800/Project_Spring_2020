@@ -27,7 +27,7 @@ import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
 
 import * as constant from "./constants.json";
-// import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const theme = createMuiTheme({
   palette: {
@@ -192,8 +192,13 @@ class App extends Component {
               </Cart>
             </Route>
             <Route path="/user" component={User} />
-            <Route path="/checkout" component={Checkout}></Route>
-            {/* <ProtectedRoute path="/checkout" component={Checkout} /> */}
+            {/*<Route path="/checkout" component={Checkout}></Route>*/}
+            {/* ProtectedRoute here is a precaution. It will cause problems in the server if someone posts an order without username */ }
+            <ProtectedRoute path="/checkout">
+              <Checkout
+                toppings = {this.state.topping}
+              ></Checkout>
+            </ProtectedRoute>
             <Route path="/*/validation" component={Validation} />
             <Route path="/confirmEmail" component={ConfirmEmail} />
             <Route path="/change" component={ChangePw}></Route>
