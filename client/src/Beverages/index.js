@@ -36,7 +36,7 @@ function Drink(props) {
         <Box {...defaultProps} borderTop={0}>
           <Navbar></Navbar>
           <Box {...border} borderTop={1}>
-            <h3>Beverages</h3>
+            <h2>Beverages</h2>
           </Box>
           <DrinkList beverages={props.beverages}></DrinkList>
         </Box>

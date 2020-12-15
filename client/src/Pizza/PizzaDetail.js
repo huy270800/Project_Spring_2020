@@ -40,7 +40,8 @@ class PizzaDetail extends Component {
     selected_size: "Small",
     selected_topping: [],
     quantity: 1,
-    valueSize: ""
+    valueSize: "",
+    totalPrice: 0
   };
 
   componentDidMount() {
@@ -86,7 +87,8 @@ class PizzaDetail extends Component {
       selected_size,
       selected_topping,
       quantity,
-      img
+      img,
+      totalPrice
     } = this.state;
     this.props.addToCart({
       id_cart: "cart_" + Date.now() + Math.random(),
@@ -96,7 +98,8 @@ class PizzaDetail extends Component {
       img,
       size: selected_size,
       quantity,
-      toppings: selected_topping
+      toppings: selected_topping,
+      totalPrice: totalPrice
     });
   };
   buttonOnClick = () => {
@@ -216,24 +219,6 @@ class PizzaDetail extends Component {
                 ></AddToCart>
               </Grid>
             </Grid>
-            {/* <ProductDetail
-              img={this.state.img}
-              id={this.state.id}
-              price={this.state.price}
-              name={this.state.name}
-              description={this.state.description}
-              size={this.state.size}
-              selected_size={this.state.selected_size}
-              changeSize={this.changeSize}
-              topping={this.props.topping}
-              quantity={this.state.quantity}
-              chooseTopping={this.chooseTopping}
-              selected_topping={this.state.selected_topping}
-              open={this.props.open}
-              buttonOnClick={this.buttonOnClick}
-              handleClose={this.props.handleClose}
-              handleCheck={this.handleCheck}
-            ></ProductDetail> */}
           </Box>
         </Container>
       </div>

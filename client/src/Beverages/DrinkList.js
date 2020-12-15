@@ -5,7 +5,7 @@ import Drink from "./DrinkCard";
 export default function DrinkList(props) {
   return (
     <Container>
-      {<h1>Coke</h1>}
+      {<h3>Coke</h3>}
       {props.isLoading ? (
         <Box
           width="100%"
@@ -38,7 +38,7 @@ export default function DrinkList(props) {
             })}
         </Grid>
       )}
-      {<h1>Beer</h1>}
+      {<h3>Beer</h3>}
       <Grid container direction="row" justify="flex-start" alignItems="center">
         {props.beverages
           .filter((item) => item.alcohol === true)
