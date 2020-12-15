@@ -3,6 +3,7 @@ import { Grid, Button, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
   const { img, size, name, price, quantity, toppings } = props.cart;
+  console.log(props)
   const checkSize = (string) => {
     if (string === "Small") {
       return <> Small </>;

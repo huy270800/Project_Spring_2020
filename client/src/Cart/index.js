@@ -24,11 +24,13 @@ const useStyles = makeStyles((theme) => ({
 function Cart(props) {
   let sizePrice; 
   let toppingChosen = [];
-  let toppingsPrices = 0;
+  let toppingsPrice = 0;
   let saladsPrice = 0;
   let saladsArray = [];
   let drinksArray = [];
   let drinksPrice = 0;
+  let pizzaArray = [];
+  let pizzaPrice  = 0;
       function checkSize(pic){
         if (pic.size === "Small"){    
           sizePrice = 0 ;
@@ -40,30 +42,47 @@ function Cart(props) {
           sizePrice = 4 
         }
       }
-      function isEmpty(obj) {
-        return Object.keys(obj).length === 0;
-    }
   props.cart_data.cart.map((pic) => {
       if (pic.hasOwnProperty("toppings") && pic.hasOwnProperty("size"))
       {
-        console.log()
-          checkSize(pic)
-          props.topping.map((product) => {
-            pic.toppings.map((topping) => {
-              if (product.name == topping) {
-                toppingChosen.push(product);
-                toppingsPrices = toppingChosen.reduce((prev,curr) => {
-                  return prev + curr.price
-              },0)
-              }
-            })
+        checkSize(pic)
+        props.topping.map((product) => {
+          pic.toppings.map((topping) => {
+            if (product.name == topping) {
+              toppingChosen.push(product);
+              toppingsPrice = toppingChosen.reduce((prev,curr) => {
+                console.log(curr)
+                return prev + curr.price
+            },0)
+            }
           })
+        })
+        checkSize(pic)
+        pizzaArray.push(pic)
+        pizzaPrice = pizzaArray.reduce((prev,curr) => {
+          if (curr.toppings.length === 0){
+            toppingsPrice = 0 ;
+          }
+          else {
+            props.topping.map((product) => {  
+              curr.toppings.map((topping) => {
+                if (product.name == topping) {
+                  toppingChosen.push(product);
+                  toppingsPrice = toppingChosen.reduce((prev,curr) => {
+                    console.log(curr)
+                    return prev + curr.price
+                },0)
+                }
+              })
+            })
+          }
+          return prev + curr.price * curr.quantity + sizePrice * curr.quantity + toppingsPrice * curr.quantity
+      },0)
+        console.log(pizzaPrice)
         
       }
       else if (pic.hasOwnProperty('size')){ 
-          console.log(pic)
         checkSize(pic)
-        toppingsPrices = 0 ;
       saladsArray.push(pic)
       saladsPrice = saladsArray.reduce((prev,curr) => {
         return prev + curr.price * curr.quantity + sizePrice * curr.quantity
@@ -71,20 +90,17 @@ function Cart(props) {
       }
       else {
           drinksArray.push(pic)
-          
+          console.log(pic)
           drinksPrice = drinksArray.reduce((prev,curr) => {
             return prev + curr.price * curr.quantity
         },0)
-        
       }
+      console.log(drinksArray)
+      console.log(drinksPrice)
   })
-  console.log(toppingsPrices)
-  console.log(drinksPrice)
-  console.log(saladsPrice)
   const classes = useStyles();
-  const total = props.cart_data.cart.reduce((total, pic) => {
-    return (total = total + pic.quantity * pic.price + sizePrice * pic.quantity + toppingsPrices * pic.quantity );
-  }, 0);
+  const total = pizzaPrice + saladsPrice + drinksPrice
+    
   return (
     <div>
       <Scroll showBelow={250}></Scroll>
@@ -108,6 +124,10 @@ function Cart(props) {
                         topping={props.topping}
                         cart={cart_item}
                         key={cart_item.id}
+                        saladsPrice ={saladsPrice}
+                        toppingsPrice ={toppingsPrice}
+                        pizzaPrice ={pizzaPrice}
+                        drinksPrice ={drinksPrice}
                       ></CartProduct>
                     </Box>
                   );
