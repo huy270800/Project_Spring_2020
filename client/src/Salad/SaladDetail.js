@@ -44,7 +44,8 @@ class SaladDetail extends Component {
   componentDidMount() {
     axios
       .get(
-        constant.baseAddress + `/products/salads?id=${this.props.match.params.id}`
+        // constant.baseAddress + `/products/salads?id=${this.props.match.params.id}`
+        constant.baseAddress + `/products/salads/${this.props.match.params.id}`
       )
       .then((res) => {
         const { id, name, price, size, img, description } = res.data;

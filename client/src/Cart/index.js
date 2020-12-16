@@ -42,17 +42,17 @@ function Cart(props) {
   }
   props.cart_data.cart.map((pic) => {
     if (pic.hasOwnProperty("toppings") && pic.hasOwnProperty("size")) {
-      checkSize(pic);
-      props.topping.map((product) => {
-        pic.toppings.map((topping) => {
-          if (product.name === topping) {
-            toppingChosen.push(product);
-            toppingsPrice = toppingChosen.reduce((prev, curr) => {
-              return prev + curr.price;
-            }, 0);
-          }
-        });
-      });
+      // checkSize(pic);
+      // props.topping.map((product) => {
+      //   pic.toppings.map((topping) => {
+      //     if (product.name === topping) {
+      //       toppingChosen.push(product);
+      //       toppingsPrice = toppingChosen.reduce((prev, curr) => {
+      //         return prev + curr.price;
+      //       }, 0);
+      //     }
+      //   });
+      // });
       checkSize(pic);
       pizzaArray.push(pic);
       pizzaPrice = pizzaArray.reduce((prev, curr) => {
@@ -85,7 +85,6 @@ function Cart(props) {
       }, 0);
     } else {
       drinksArray.push(pic);
-
       drinksPrice = drinksArray.reduce((prev, curr) => {
         return prev + curr.price * curr.quantity;
       }, 0);

@@ -3,6 +3,17 @@ import { Grid, Button, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
   const { img, size, name, price, quantity, toppings, id_cart } = props.cart;
+ if (props.cart.hasOwnProperty('toppings') && props.cart.hasOwnProperty('size')){
+   console.log(props.cart)
+ }
+ else {
+   console.log('dasd')
+ }
+  // props.cart.map((product) => {
+  //   if (product.hasOwnProperty("toppings") && product.hasOwnProperty("size")){
+  //     console.log(product)
+  //   }
+  // })
   const checkSize = (string) => {
     if (string === "Small") {
       return <> Small </>;
@@ -10,6 +21,7 @@ export default function CartProduct(props) {
       return <> Medium (+ 2€)</>;
     } else return <>Large (+ 4€)</>;
   };
+
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
       props.deleteCart(id_cart);
@@ -56,14 +68,11 @@ export default function CartProduct(props) {
               <Grid item md={6}>
                 <h4> {name} </h4>
                 <p>{checkSize(size)}</p>
-<<<<<<< HEAD
-=======
                 {availableTopping(toppings) === true ? (
                   <p>{toppings.join(",")}</p>
                 ) : (
                   <p></p>
                 )}
->>>>>>> a3ca023d3713126d9ed7537d6bcddc1a159b4d22
               </Grid>
               <Grid item>
                 <Button
