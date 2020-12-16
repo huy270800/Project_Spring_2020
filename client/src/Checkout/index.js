@@ -1,5 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clear_cart } from "../actions";
 import { Container, Box, Button } from "@material-ui/core";
 
 import axios from "axios";
@@ -63,6 +64,7 @@ const border = {
 export default function Checkout(props) {
   let cart = useSelector((state) => state.cart);
   let isLogged = useSelector((state) => state.isLogged);
+  const dispatch = useDispatch();
   //post order to server
   const postOrder = (event) => {
     console.log("post: " + cart.cart);
@@ -80,7 +82,7 @@ export default function Checkout(props) {
     })
       .then((response) => {
         console.log("Post order worked.");
-        cart.cart = [];
+        dispatch(clear_cart());
         alert("Your order has been received.");
         props.history.push("/");
       })

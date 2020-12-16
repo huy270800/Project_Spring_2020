@@ -100,6 +100,12 @@ const cart = (state = initState, action) => {
         cart: new_cart
       };
     }
+    case "CLEAR_CART": {
+      return {
+        ...state,
+        cart: []
+      };
+    }
 
     default:
       return state;

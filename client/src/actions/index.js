@@ -46,3 +46,10 @@ export const decrease = (id_cart) => {
   };
 };
 
+export const clear_cart = () => {
+  return {
+    type: "CLEAR_CART"
+  };
+};
+
+
