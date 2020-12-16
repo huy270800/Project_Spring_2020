@@ -38,13 +38,14 @@ const border = {
 class SaladDetail extends Component {
   state = {
     selected_size: "Small",
-    quantity: 1
+    quantity: 1,
+    totalPrice: 0,
+    sizeCost: 0
   };
 
   componentDidMount() {
     axios
       .get(
-        // constant.baseAddress + `/products/salads?id=${this.props.match.params.id}`
         constant.baseAddress + `/products/salads/${this.props.match.params.id}`
       )
       .then((res) => {
@@ -66,12 +67,40 @@ class SaladDetail extends Component {
   changeSize = (event) => {
     this.setState({ selected_size: event.target.value });
   };
+  sizePrice = () => {
+    var price;
+    if (this.state.selected_size === "Small") {
+      price = this.state.price;
+    } else if (this.state.selected_size === "Medium") {
+      price = this.state.price + 2;
+    } else {
+      price = this.state.price + 4;
+    }
+    this.state.sizeCost = price;
+    // this.setState({ sizeCost: price });
+  };
+  calculatePrice = () => {
+    this.sizePrice();
+    this.setState((state, props) => ({
+      totalPrice: state.sizeCost
+    }));
+    this.state.totalPrice = this.state.sizeCost;
+  };
   buttonOnClick = () => {
+    this.calculatePrice();
     this.props.handleClickOpen();
     this.handleAddToCart();
   };
   handleAddToCart = () => {
-    const { id, name, price, selected_size, quantity, img } = this.state;
+    const {
+      id,
+      name,
+      price,
+      selected_size,
+      quantity,
+      img,
+      totalPrice
+    } = this.state;
     this.props.addToCart({
       id_cart: "cart_" + Date.now() + Math.random(),
       id_product: id,
@@ -79,7 +108,8 @@ class SaladDetail extends Component {
       price,
       img,
       size: selected_size,
-      quantity
+      quantity,
+      totalPrice: totalPrice
     });
   };
 

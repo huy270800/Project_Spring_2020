@@ -34,11 +34,10 @@ const border = {
 };
 
 class DrinkDetail extends Component {
-  state = { quantity: 1 };
+  state = { quantity: 1, totalPrice: 0 };
   componentDidMount() {
     axios
       .get(
-        // constant.baseAddress + `/products/drinks?id=${this.props.match.params.id}`
         constant.baseAddress + `/products/drinks/${this.props.match.params.id}`
       )
       .then((res) => {
@@ -55,19 +54,24 @@ class DrinkDetail extends Component {
         console.log(err);
       });
   }
+  calculatePrice = () => {
+    this.state.totalPrice = this.state.totalPrice + this.state.price;
+  };
   buttonOnClick = () => {
+    this.calculatePrice();
     this.props.handleClickOpen();
     this.handleAddToCart();
   };
   handleAddToCart = () => {
-    const { id, name, price, quantity, img } = this.state;
+    const { id, name, price, quantity, img, totalPrice } = this.state;
     this.props.addToCart({
       id_cart: "cart_" + Date.now() + Math.random(),
       id_product: id,
       name,
       price,
       img,
-      quantity
+      quantity,
+      totalPrice
     });
   };
   render() {

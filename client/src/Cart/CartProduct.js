@@ -2,24 +2,24 @@ import React from "react";
 import { Grid, Button, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
-  const { img, size, name, price, quantity, toppings, id_cart } = props.cart;
- if (props.cart.hasOwnProperty('toppings') && props.cart.hasOwnProperty('size')){
-   console.log(props.cart)
- }
- else {
-   console.log('dasd')
- }
-  // props.cart.map((product) => {
-  //   if (product.hasOwnProperty("toppings") && product.hasOwnProperty("size")){
-  //     console.log(product)
-  //   }
-  // })
+  const {
+    img,
+    size,
+    name,
+    quantity,
+    toppings,
+    id_cart,
+    id_product,
+    totalPrice
+  } = props.cart;
   const checkSize = (string) => {
-    if (string === "Small") {
-      return <> Small </>;
-    } else if (string === "Medium") {
-      return <> Medium (+ 2€)</>;
-    } else return <>Large (+ 4€)</>;
+    if (id_product < 41 || id_product > 53) {
+      if (string === "Small") {
+        return <> Small </>;
+      } else if (string === "Medium") {
+        return <> Medium (+ 2€)</>;
+      } else return <>Large (+ 4€)</>;
+    }
   };
 
   const handleDeleteCart = () => {
@@ -85,7 +85,7 @@ export default function CartProduct(props) {
                 <Button onClick={handleIncreaseQuantity}>+</Button>
               </Grid>
               <Grid item>
-                <p>€{price * quantity}</p>
+                <p>€{totalPrice * quantity}</p>
               </Grid>
               <Grid item>
                 <Button onClick={handleDeleteCart}>Delete</Button>
