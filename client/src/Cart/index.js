@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1)
   }
 }));
-
+    let toppingChosen = [];
+    let toppingsPrices;
 function Cart(props) {
   const classes = useStyles();
   const total = props.cart_data.cart.reduce((total, pic) => {
-    let toppingChosen = [];
-    let toppingsPrices;
+    
     props.topping.map((product) => {
       return pic.toppings.map((topping) => {
         if (product.name == topping) {
