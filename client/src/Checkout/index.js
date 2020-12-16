@@ -73,11 +73,12 @@ export default function Checkout(props) {
         password: isLogged.password
       },
       data: {
-        detail: cartToString(cart.cart)
+        detail: cartToString(cart.cart, props.toppings)
       }
     })
       .then((response) => {
         console.log("Post order worked.");
+        console.log(props.history);
         alert("Your order has been received.");
         props.history.push("/");
       })

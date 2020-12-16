@@ -194,11 +194,9 @@ class App extends Component {
             <Route path="/user" component={User} />
             {/*<Route path="/checkout" component={Checkout}></Route>*/}
             {/* ProtectedRoute here is a precaution. It will cause problems in the server if someone posts an order without username */ }
-            <ProtectedRoute path="/checkout">
-              <Checkout
-                toppings = {this.state.topping}
-              ></Checkout>
-            </ProtectedRoute>
+            <ProtectedRoute path="/checkout"
+              render={(routeProps ) => <Checkout {...routeProps } toppings = {this.state.topping} />}
+            />
             <Route path="/*/validation" component={Validation} />
             <Route path="/confirmEmail" component={ConfirmEmail} />
             <Route path="/change" component={ChangePw}></Route>
