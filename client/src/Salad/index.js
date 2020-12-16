@@ -36,7 +36,7 @@ function Salad(props) {
         <Box {...defaultProps} borderTop={0}>
           <Navbar></Navbar>
           <Box {...border} borderTop={1}>
-            <h3>Salad</h3>
+            <h2>Salad</h2>
           </Box>
           <SaladList salads={props.salads}></SaladList>
         </Box>

@@ -27,7 +27,7 @@ import PizzaDetail from "./Pizza/PizzaDetail";
 import DrinkDetail from "./Beverages/DrinkDetail";
 
 import * as constant from "./constants.json";
-// import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const theme = createMuiTheme({
   palette: {
@@ -80,7 +80,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/products/storeList")
+      .get(constant.baseAddress + "/locations")
       .then((res) => {
         this.setState({ location: res.data });
         this.setState({ searchResults: res.data });
@@ -98,7 +98,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/products/promotions")
+      .get(constant.baseAddress + "/promotions")
       .then((res) => {
         this.setState({ promotion: res.data });
       })
@@ -192,8 +192,11 @@ class App extends Component {
               </Cart>
             </Route>
             <Route path="/user" component={User} />
-            <Route path="/checkout" component={Checkout}></Route>
-            {/* <ProtectedRoute path="/checkout" component={Checkout} /> */}
+            {/*<Route path="/checkout" component={Checkout}></Route>*/}
+            {/* ProtectedRoute here is a precaution. It will cause problems in the server if someone posts an order without username */ }
+            <ProtectedRoute path="/checkout"
+              render={(routeProps ) => <Checkout {...routeProps } toppings = {this.state.topping} />}
+            />
             <Route path="/*/validation" component={Validation} />
             <Route path="/confirmEmail" component={ConfirmEmail} />
             <Route path="/change" component={ChangePw}></Route>

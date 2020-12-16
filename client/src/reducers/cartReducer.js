@@ -1,6 +1,7 @@
 const initState = {
   cart: []
 };
+
 // pic = product in cart
 const cart = (state = initState, action) => {
   switch (action.type) {
@@ -89,7 +90,7 @@ const cart = (state = initState, action) => {
         return product.id_cart === action.payload.id_cart;
       });
       const new_cart = [...state.cart];
-      if (find_product >= 0 && new_cart[find_product].quantity >= 1) {
+      if (find_product >= 0 && new_cart[find_product].quantity >= 2) {
         new_cart[find_product].quantity--;
       } else {
         console.log("Product not found");
@@ -99,6 +100,7 @@ const cart = (state = initState, action) => {
         cart: new_cart
       };
     }
+
     default:
       return state;
   }

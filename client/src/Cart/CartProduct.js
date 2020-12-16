@@ -2,30 +2,42 @@ import React from "react";
 import { Grid, Button, Box } from "@material-ui/core";
 
 export default function CartProduct(props) {
-  const { img, size, name, price, quantity, toppings } = props.cart;
+  const { img, size, name, price, quantity, toppings, id_cart } = props.cart;
   const checkSize = (string) => {
     if (string === "Small") {
       return <> Small </>;
-    } else if (string == "Medium") {
+    } else if (string === "Medium") {
       return <> Medium (+ 2€)</>;
     } else return <>Large (+ 4€)</>;
   };
   const handleDeleteCart = () => {
     if (window.confirm("Are you sure?")) {
-      props.deleteCart(props.cart.id_cart);
+      props.deleteCart(id_cart);
     }
   };
   const handleChangeQuantity = (event) => {
     if (Number(event.target.value) === 0) {
-      return props.deleteCart(props.cart.id_cart);
+      return props.deleteCart(id_cart);
     }
-    props.updateCart(props.cart.id_cart, event.target.value);
+    props.updateCart(id_cart, event.target.value);
   };
   const handleDecreaseQuantity = () => {
-    props.decrease(props.cart.id_cart);
+    props.decrease(id_cart);
   };
   const handleIncreaseQuantity = () => {
-    props.increase(props.cart.id_cart);
+    props.increase(id_cart);
+  };
+  const availableTopping = (array) => {
+    var a;
+    if (
+      typeof array != "undefined" &&
+      array != null &&
+      array.length != null &&
+      array.length > 0
+    )
+      a = true;
+    else a = false;
+    return a;
   };
   return (
     <Box>
@@ -42,8 +54,16 @@ export default function CartProduct(props) {
               alignItems="center"
             >
               <Grid item md={6}>
-                <h4>Name: {name} </h4>
+                <h4> {name} </h4>
                 <p>{checkSize(size)}</p>
+<<<<<<< HEAD
+=======
+                {availableTopping(toppings) === true ? (
+                  <p>{toppings.join(",")}</p>
+                ) : (
+                  <p></p>
+                )}
+>>>>>>> a3ca023d3713126d9ed7537d6bcddc1a159b4d22
               </Grid>
               <Grid item>
                 <Button

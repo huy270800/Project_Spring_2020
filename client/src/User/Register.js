@@ -78,7 +78,7 @@ export default function Login(props) {
                 <Box style={{ marginBottom: "3vh" }}>
                   <TextField
                     fullWidth
-                    type="text"
+                    type="email"
                     label="Email"
                     variant="outlined"
                     color="secondary"

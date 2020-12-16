@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { addToCart } from "../actions/index";
 
 function SaladList(props) {
-  console.log(props);
   return (
     <Container>
       {props.isLoading ? (

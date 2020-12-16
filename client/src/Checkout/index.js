@@ -7,8 +7,8 @@ import constants from "../constants.json";
 import Scroll from "../components/Scroll.js";
 import Navbar from "../components/Navbar.js";
 
+/* Use this if cart.price has the complete price
 const totalPrice = (acc, curr) => acc + curr.price * curr.quantity;
-
 const cartToString = (cart) => {
   let ret = "";
   for (let i = 0; i < cart.length; ++i) {
@@ -19,6 +19,36 @@ const cartToString = (cart) => {
     ret += `- ${cart[i].price * cart[i].quantity}€` + "; ";
   }
   ret += "Total price: " + cart.reduce(totalPrice, 0) + "€";
+  return ret;
+};*/
+// Use this if cart.price has only the base price (without size and toppings)
+const cartToString = (cart, tpgs) => {
+  let ret = "";
+  let finalPrice = 0;
+  for (let i = 0; i < cart.length; ++i) {
+    let calculatePrice = cart[i].price * cart[i].quantity;
+    ret += cart[i].quantity + "x ";
+    if (cart[i].size){
+      ret += cart[i].size + " ";
+      //add size pricing
+      if(cart[i].size === "Medium") calculatePrice = calculatePrice + 2;
+      if(cart[i].size === "Large") calculatePrice = calculatePrice + 4;
+    }
+    ret += cart[i].name + " ";
+    if (cart[i].toppings){
+      ret += "(" + cart[i].toppings.toString() + ") ";
+      //add topping pricing
+      for(let j = 0; j < cart[i].toppings.length; ++j){
+        let matchTopping = tpgs.find(t => t.name === cart[i].toppings[j]);
+        calculatePrice += matchTopping.price;
+      }
+    }
+    //prevent weird results
+    calculatePrice = Math.round(calculatePrice*100)/100
+    ret += `- ${calculatePrice}€` + "; ";
+    finalPrice += calculatePrice;
+  }
+  ret += "Total price: " + finalPrice + "€";
   return ret;
 };
 
@@ -45,11 +75,12 @@ export default function Checkout(props) {
         password: isLogged.password
       },
       data: {
-        detail: cartToString(cart.cart)
+        detail: cartToString(cart.cart, props.toppings)
       }
     })
       .then((response) => {
         console.log("Post order worked.");
+        console.log(props.history);
         alert("Your order has been received.");
         props.history.push("/");
       })
@@ -71,7 +102,7 @@ export default function Checkout(props) {
             </Box>
 
             <h4>You have selected:</h4>
-            <p>{cartToString(cart.cart)}</p>
+            <p>{cartToString(cart.cart, props.toppings)}</p>
             <Box textAlign="center">
               <Button onClick={postOrder}>confirm</Button>
             </Box>

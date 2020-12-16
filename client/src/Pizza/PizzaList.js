@@ -7,7 +7,7 @@ import { addToCart } from "../actions/index";
 function PizzaList(props) {
   return (
     <Container>
-      {<h1>Seafood Pizza</h1>}
+      {<h3>Seafood Pizza</h3>}
       {props.isLoading ? (
         <Box
           width="100%"
@@ -43,7 +43,7 @@ function PizzaList(props) {
             })}
         </Grid>
       )}
-      {<h1>Mixed Pizza</h1>}
+      {<h3>Mixed Pizza</h3>}
       <Grid container direction="row" justify="flex-start" alignItems="center">
         {props.pizzas
           .filter((item) => item.mixed === true)
@@ -62,7 +62,7 @@ function PizzaList(props) {
             );
           })}
       </Grid>
-      {<h1>Traditional Pizza</h1>}
+      {<h3>Traditional Pizza</h3>}
       <Grid container direction="row" justify="flex-start" alignItems="center">
         {props.pizzas
           .filter((item) => item.traditional === true)
@@ -81,7 +81,7 @@ function PizzaList(props) {
             );
           })}
       </Grid>
-      {<h1>Filled Pizza</h1>}
+      {<h3>Filled Pizza</h3>}
       <Grid container direction="row" justify="flex-start" alignItems="center">
         {props.pizzas
           .filter((item) => item.filling === true)

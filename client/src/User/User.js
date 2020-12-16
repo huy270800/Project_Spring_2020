@@ -15,7 +15,7 @@ export default function User(props) {
     <div>
       <Route exact path={routeName + "/login"} component={Login} />
       <Route exact path={routeName + "/register"} component={Register} />
-      <ProtectedRoute exact path={routeName + "/restorePw"} component={RestorePw} />
+      <Route exact path={routeName + "/restorePw"} component={RestorePw} />
       <ProtectedRoute exact path={routeName + "/account"} component={Account} />
       <ProtectedRoute exact path={routeName + "/changeEmail"} component={ChangeEmail} />
       <ProtectedRoute exact path={routeName + "/changePw"} component={ChangePw} />
