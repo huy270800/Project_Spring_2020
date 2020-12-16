@@ -43,6 +43,8 @@ const cartToString = (cart, tpgs) => {
         calculatePrice += matchTopping.price;
       }
     }
+    //prevent weird results
+    calculatePrice = Math.round(calculatePrice*100)/100
     ret += `- ${calculatePrice}€` + "; ";
     finalPrice += calculatePrice;
   }
