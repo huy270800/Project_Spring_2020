@@ -40,13 +40,16 @@ class PizzaDetail extends Component {
     selected_size: "Small",
     selected_topping: [],
     quantity: 1,
-    valueSize: ""
+    valueSize: "",
+    sizeCost: 0,
+    toppingCost: 0,
+    totalPrice: 0
   };
 
   componentDidMount() {
     axios
       .get(
-        constant.baseAddress + `/products/pizzas?id=${this.props.match.params.id}`
+        constant.baseAddress + `/products/pizzas/${this.props.match.params.id}`
       )
       .then((res) => {
         const { id, name, price, size, img, description } = res.data;
@@ -70,6 +73,7 @@ class PizzaDetail extends Component {
   changeSize = (event) => {
     this.setState({ selected_size: event.target.value });
   };
+
   handleCheck(e, x) {
     this.setState((state) => ({
       selected_topping: state.selected_topping.includes(x)
@@ -77,16 +81,50 @@ class PizzaDetail extends Component {
         : [...state.selected_topping, x]
     }));
   }
-  checkSize = () => {
+
+  sizePrice = () => {
+    var price;
     if (this.state.selected_size === "Small") {
-      this.setState({ totalPrice: this.state.price });
+      price = this.state.price;
     } else if (this.state.selected_size === "Medium") {
-      this.setState({ totalPrice: this.state.price + 2 });
+      price = this.state.price + 2;
     } else {
-      this.setState({ totalPrice: this.state.price + 4 });
+      price = this.state.price + 4;
     }
-    console.log(this.state.totalPrice);
+    this.state.sizeCost = price;
+    // this.setState({ sizeCost: price });
   };
+
+  toppingPrice = () => {
+    const { selected_topping } = this.state;
+    var toppingChosen = [];
+
+    if (selected_topping.length !== 0) {
+      this.props.topping.map((product) => {
+        return selected_topping.map((topping) => {
+          if (product.name === topping) {
+            toppingChosen.push(product);
+          }
+        });
+      });
+      var a = toppingChosen.map((top) => top.price);
+      var b = a.reduce((pre, cur) => pre + cur);
+      this.state.toppingCost = b;
+      // this.setState({ toppingCost: b });
+    }
+  };
+
+  calculatePrice = () => {
+    this.sizePrice();
+    this.toppingPrice();
+
+    this.setState((state, props) => ({
+      totalPrice: state.sizeCost + state.toppingCost
+    }));
+    // eslint-disable-next-line
+    this.state.totalPrice = this.state.sizeCost + this.state.toppingCost;
+  };
+
   handleAddToCart = () => {
     const {
       id,
@@ -95,7 +133,8 @@ class PizzaDetail extends Component {
       selected_size,
       selected_topping,
       quantity,
-      img
+      img,
+      totalPrice
     } = this.state;
     this.props.addToCart({
       id_cart: "cart_" + Date.now() + Math.random(),
@@ -105,44 +144,23 @@ class PizzaDetail extends Component {
       img,
       size: selected_size,
       quantity,
-      toppings: selected_topping.sort()
+      toppings: selected_topping.sort(),
+      totalPrice: totalPrice
     });
   };
+
   buttonOnClick = () => {
+    this.calculatePrice();
     this.props.handleClickOpen();
     this.handleAddToCart();
     this.setState({
       selected_size: "Small",
-      selected_topping: []
+      selected_topping: [],
+      sizeCost: 0,
+      toppingCost: 0
     });
   };
-  // calculateToppingPrice = () => {
-  //     this.props.topping.map((product) => {
-  //       this.state.selected_topping.map((top) => {
-  //           if (product.name == top){
-  //               this.setState({toppingChosen: product});
-  //             this.state.toppingsPrice = this.state.toppingChosen.reduce((prev,curr) =>{
-  //               return prev + curr.price
-  //             }, 0 )
-  //           }
-  //       })
-  //     })
-  // }
-  // calculatePizzaPrice =() =>{
-  //   this.state.map((top) => {
-  //     this.checkSize(top)
-  //     this.setState({pizzaArray : top})
-  //     this.state.pizzaPrice =  this.state.pizzaArray.reduce((prev,curr) => {
-  //         if (this.curr.selected_topping.length === 0 ){
-  //           this.setState({toppingsPrice: 0 })
-  //         }
-  //         else {
-  //           this.calculateToppingPrice()
-  //         }
-  //         return this.setState({totalPrice: prev + curr.price * curr.quantity + this.sizePrice * curr.quantity + this.toppingsPrice * curr.quantity})
-  //     }, 0 )
-  //   })
-  // }
+
   render() {
     return (
       <div>
@@ -249,9 +267,6 @@ class PizzaDetail extends Component {
                   buttonOnClick={this.buttonOnClick}
                   open={this.props.open}
                   handleClose={this.props.handleClose}
-                  // calculatePizzaPrice={this.calculatePizzaPrice}
-                  // calculateToppingPrice={this.calculateToppingPrice}
-                  // checkSize={this.checkSize}
                 ></AddToCart>
               </Grid>
             </Grid>

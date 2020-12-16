@@ -59,6 +59,7 @@ export default function Size(props) {
   return (
     <div>
       <Typography variant="h6">SIZE</Typography>
+      <p>Medium Size: +2€ and Large Size: +4€</p>
       <FormControl id="size" component="fieldset">
         <RadioGroup
           defaultValue="Small"
