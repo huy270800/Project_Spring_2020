@@ -98,7 +98,7 @@ class App extends Component {
         console.log(err);
       });
     axios
-      .get(constant.baseAddress + "/promotions")
+      .get(constant.baseAddress + "/products/promotions")
       .then((res) => {
         this.setState({ promotion: res.data });
       })
