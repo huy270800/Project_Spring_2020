@@ -26,7 +26,7 @@ const cartToString = (cart, tpgs) => {
   let ret = "";
   let finalPrice = 0;
   for (let i = 0; i < cart.length; ++i) {
-    let calculatePrice = cart[i].price * cart[i].quantity;
+    let calculatePrice = cart[i].price;
     ret += cart[i].quantity + "x ";
     if (cart[i].size){
       ret += cart[i].size + " ";
@@ -44,7 +44,7 @@ const cartToString = (cart, tpgs) => {
       }
     }
     //prevent weird results
-    calculatePrice = Math.round(calculatePrice*100)/100
+    calculatePrice = Math.round(calculatePrice*cart[i].quantity*100)/100
     ret += `- ${calculatePrice}€` + "; ";
     finalPrice += calculatePrice;
   }
@@ -80,7 +80,7 @@ export default function Checkout(props) {
     })
       .then((response) => {
         console.log("Post order worked.");
-        console.log(props.history);
+        cart.cart = [];
         alert("Your order has been received.");
         props.history.push("/");
       })
